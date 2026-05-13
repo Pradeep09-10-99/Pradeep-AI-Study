@@ -1,60 +1,402 @@
+# Advanced Pradeep AI Study Website
+
+## Step 1: Replace Your Old `index.html`
+
+पूरा नीचे वाला code अपनी `index.html` file में paste कर दो.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Pradeep AI Study</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+scroll-behavior:smooth;
+}
+
 body{
-    margin:0;
-    font-family:Arial;
-    background:#0f172a;
-    color:white;
-    text-align:center;
+background:#0f172a;
+color:white;
+overflow-x:hidden;
 }
 
-header{
-    padding:20px;
-    background:#1e293b;
-    font-size:32px;
-    font-weight:bold;
+/* BACKGROUND ANIMATION */
+
+.bg-animation{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+overflow:hidden;
 }
 
-.container{
-    padding:30px;
+.bg-animation span{
+position:absolute;
+display:block;
+width:20px;
+height:20px;
+background:rgba(0,255,255,0.2);
+animation:move 25s linear infinite;
+bottom:-150px;
+border-radius:50%;
 }
 
-.box{
-    background:#1e293b;
-    margin:20px auto;
-    padding:20px;
-    border-radius:15px;
-    width:80%;
-    max-width:700px;
+@keyframes move{
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(-1000px) rotate(720deg);
+opacity:0;
+}
 }
 
-input{
-    width:80%;
-    padding:12px;
-    border:none;
-    border-radius:10px;
+.bg-animation span:nth-child(1){left:10%; animation-duration:15s;}
+.bg-animation span:nth-child(2){left:20%; animation-duration:22s; width:30px; height:30px;}
+.bg-animation span:nth-child(3){left:35%; animation-duration:18s;}
+.bg-animation span:nth-child(4){left:50%; animation-duration:26s; width:40px; height:40px;}
+.bg-animation span:nth-child(5){left:65%; animation-duration:17s;}
+.bg-animation span:nth-child(6){left:80%; animation-duration:30s;}
+.bg-animation span:nth-child(7){left:90%; animation-duration:20s;}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(17,24,39,0.8);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-button{
-    padding:12px 20px;
-    border:none;
-    border-radius:10px;
-    background:#38bdf8;
-    color:white;
-    cursor:pointer;
-    margin-top:10px;
+.logo{
+font-size:32px;
+font-weight:bold;
+color:cyan;
 }
 
-button:hover{
-    background:#0ea5e9;
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:18px;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:cyan;
+}
+
+/* HERO SECTION */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:70px;
+margin-bottom:20px;
+}
+
+.hero-content h2{
+font-size:35px;
+color:cyan;
+margin-bottom:20px;
+height:45px;
+}
+
+.hero-content p{
+font-size:22px;
+line-height:35px;
+max-width:850px;
+margin:auto;
+}
+
+.hero-btns{
+margin-top:40px;
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.hero-btns button{
+padding:15px 35px;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.btn1{
+background:cyan;
+color:black;
+}
+
+.btn2{
+background:transparent;
+color:white;
+border:2px solid cyan !important;
+}
+
+.hero-btns button:hover{
+transform:scale(1.08);
+}
+
+/* FEATURES */
+
+.features{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:50px;
+margin-bottom:60px;
+color:cyan;
+}
+
+.feature-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.feature-card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+padding:35px;
+border-radius:20px;
+text-align:center;
+transition:0.4s;
+}
+
+.feature-card:hover{
+transform:translateY(-12px);
+background:rgba(255,255,255,0.12);
+}
+
+.feature-card i{
+font-size:55px;
+color:cyan;
+margin-bottom:20px;
+}
+
+.feature-card h3{
+font-size:28px;
+margin-bottom:15px;
+}
+
+.feature-card p{
+line-height:28px;
+font-size:17px;
+}
+
+/* LOGIN SECTION */
+
+.login{
+padding:100px 8%;
+}
+
+.login-box{
+max-width:500px;
+margin:auto;
+background:rgba(255,255,255,0.08);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+.login-box h2{
+text-align:center;
+margin-bottom:30px;
+font-size:40px;
+color:cyan;
+}
+
+.login-box input{
+width:100%;
+padding:15px;
+margin-bottom:20px;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+.login-box button{
+width:100%;
+padding:15px;
+background:cyan;
+border:none;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* YOUTUBE SECTION */
+
+.youtube{
+padding:100px 8%;
+text-align:center;
+}
+
+.video-box{
+margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+iframe{
+width:100%;
+height:250px;
+border:none;
+border-radius:15px;
+}
+
+/* CONTACT */
+
+.contact{
+padding:100px 8%;
+}
+
+.contact form{
+max-width:700px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.contact input,
+.contact textarea{
+padding:18px;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+.contact button{
+padding:18px;
+background:cyan;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+background:#111827;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
+
+footer h3{
+margin-bottom:15px;
+}
+
+.social-icons{
+display:flex;
+justify-content:center;
+gap:20px;
+font-size:28px;
+}
+
+.social-icons i{
+color:cyan;
+cursor:pointer;
+transition:0.3s;
+}
+
+.social-icons i:hover{
+transform:scale(1.2);
+}
+
+/* DARK LIGHT MODE */
+
+.mode-btn{
+position:fixed;
+right:20px;
+bottom:20px;
+background:cyan;
+color:black;
+border:none;
+padding:15px;
+border-radius:50%;
+cursor:pointer;
+font-size:20px;
+font-weight:bold;
+}
+
+.light-mode{
+background:white;
+color:black;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+gap:20px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.hero-content h1{
+font-size:45px;
+}
+
+.hero-content h2{
+font-size:25px;
+}
+
+.hero-content p{
+font-size:18px;
+}
+
+.section-title{
+font-size:38px;
+}
+
 }
 
 </style>
@@ -62,38 +404,263 @@ button:hover{
 
 <body>
 
-<header>
-🚀 Pradeep AI Study
-</header>
+<!-- BACKGROUND -->
 
-<div class="container">
-
-<div class="box">
-<h2>🤖 AI Chatbot</h2>
-
-<input type="text" placeholder="Ask your question...">
-<br>
-<button>Send</button>
-
-<p>AI response will appear here...</p>
+<div class="bg-animation">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
 </div>
 
-<div class="box">
-<h2>📝 Notes Section</h2>
-<p>Study notes coming soon...</p>
+<!-- NAVBAR -->
+
+<nav>
+<div class="logo">Pradeep AI Study</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#login">Login</a></li>
+<li><a href="#youtube">Videos</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Pradeep AI Study</h1>
+
+<h2 id="typing"></h2>
+
+<p>
+Learn AI, Coding, Web Development, Programming,
+NTPC Preparation and Smart Study Techniques.
+</p>
+
+<div class="hero-btns">
+<button class="btn1">Start Learning</button>
+<button class="btn2">Join Now</button>
 </div>
 
-<div class="box">
-<h2>❓ MCQ Practice</h2>
+</div>
 
-<p>2 + 2 = ?</p>
+</section>
 
-<button>4</button>
-<button>5</button>
+<!-- FEATURES -->
 
+<section class="features" id="features">
+
+<h1 class="section-title">Website Features</h1>
+
+<div class="feature-container">
+
+<div class="feature-card">
+<i class="fa-solid fa-code"></i>
+<h3>Web Development</h3>
+<p>Learn HTML, CSS, JavaScript and build modern websites.</p>
+</div>
+
+<div class="feature-card">
+<i class="fa-solid fa-robot"></i>
+<h3>Artificial Intelligence</h3>
+<p>Learn AI tools and future technologies step by step.</p>
+</div>
+
+<div class="feature-card">
+<i class="fa-solid fa-book"></i>
+<h3>NTPC Study</h3>
+<p>Prepare for competitive exams with smart strategy.</p>
+</div>
+
+<div class="feature-card">
+<i class="fa-solid fa-video"></i>
+<h3>Video Learning</h3>
+<p>Watch educational videos directly from your website.</p>
 </div>
 
 </div>
+
+</section>
+
+<!-- LOGIN -->
+
+<section class="login" id="login">
+
+<div class="login-box">
+
+<h2>Login</h2>
+
+<input type="text" placeholder="Enter Username">
+<input type="password" placeholder="Enter Password">
+
+<button>Login</button>
+
+</div>
+
+</section>
+
+<!-- YOUTUBE -->
+
+<section class="youtube" id="youtube">
+
+<h1 class="section-title">Study Videos</h1>
+
+<div class="video-box">
+
+<iframe src="https://www.youtube.com/embed/HcOc7P5BMi4"></iframe>
+
+<iframe src="https://www.youtube.com/embed/ER9SspLe4Hg"></iframe>
+
+<iframe src="https://www.youtube.com/embed/BsDoLVMnmZs"></iframe>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h1 class="section-title">Contact Us</h1>
+
+<form>
+<input type="text" placeholder="Enter Name">
+<input type="email" placeholder="Enter Email">
+<textarea rows="6" placeholder="Enter Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h3>© 2026 Pradeep AI Study | All Rights Reserved</h3>
+
+<div class="social-icons">
+<i class="fa-brands fa-youtube"></i>
+<i class="fa-brands fa-instagram"></i>
+<i class="fa-brands fa-github"></i>
+<i class="fa-brands fa-facebook"></i>
+</div>
+
+</footer>
+
+<!-- DARK MODE BUTTON -->
+
+<button class="mode-btn" onclick="toggleMode()">☀</button>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* TYPING EFFECT */
+
+const text = [
+"Learn Coding",
+"Learn Artificial Intelligence",
+"Build Modern Websites",
+"Prepare For NTPC Exams"
+];
+
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type(){
+
+if(count === text.length){
+count = 0;
+}
+
+currentText = text[count];
+letter = currentText.slice(0, ++index);
+
+document.getElementById('typing').textContent = letter;
+
+if(letter.length === currentText.length){
+count++;
+index = 0;
+}
+
+setTimeout(type, 120);
+
+})();
+
+/* DARK LIGHT MODE */
+
+function toggleMode(){
+document.body.classList.toggle('light-mode');
+}
+
+</script>
 
 </body>
 </html>
+```
+
+---
+
+# Step 2: Upload Updated File To GitHub
+
+1. GitHub repository खोलो
+2. `index.html` पर click करो
+3. Pencil icon ✏️ दबाओ
+4. पुराना code delete करो
+5. नया पूरा code paste करो
+6. नीचे `Commit changes`
+
+---
+
+# Step 3: Website Refresh करो
+
+अपनी live website open करो:
+
+```text
+https://pradeep09-10-99.github.io/Pradeep-AI-Study/
+```
+
+फिर `Ctrl + F5` दबाओ.
+
+---
+
+# Features Added
+
+✅ AI animated background
+✅ Typing text effect
+✅ Premium glassmorphism design
+✅ Login section
+✅ Video section
+✅ Dark / Light mode
+✅ Mobile responsive design
+✅ Smooth animations
+✅ Social icons
+✅ Modern UI
+
+---
+
+# Next Advanced Upgrades
+
+अगर चाहो तो आगे यह भी add कर सकते हो:
+
+* Real Firebase Login System
+* Student Dashboard
+* Notes Download System
+* AI Chatbot
+* Online Quiz
+* Admin Panel
+* User Database
+* Certificate Generator
+* Live Chat
+* Payment System
+* Hosting With Custom Domain
