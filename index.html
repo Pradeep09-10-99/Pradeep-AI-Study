@@ -1,48 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pradeep AI Study</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* [Keeping your original styles here] */
-        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;scroll-behavior:smooth;}
-        body{background:#0f172a;color:white;overflow-x:hidden;transition: 0.3s;}
-        .bg-animation{position:fixed;width:100%;height:100%;top:0;left:0;z-index:-1;overflow:hidden;}
-        .bg-animation span{position:absolute;display:block;width:20px;height:20px;background:rgba(0,255,255,0.2);animation:move 25s linear infinite;bottom:-150px;border-radius:50%;}
-        @keyframes move{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(-1000px) rotate(720deg);opacity:0;}}
-        /* Animation delays */
-        .bg-animation span:nth-child(1){left:10%; animation-duration:15s;}
-        .bg-animation span:nth-child(2){left:20%; animation-duration:22s; width:30px; height:30px;}
-        .bg-animation span:nth-child(3){left:35%; animation-duration:18s;}
-        .bg-animation span:nth-child(4){left:50%; animation-duration:26s; width:40px; height:40px;}
-        /* Navbar & Hero */
-        nav{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:rgba(17,24,39,0.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000;}
-        .logo{font-size:32px;font-weight:bold;color:cyan;}
-        nav ul{display:flex;list-style:none;gap:30px;}
-        nav ul li a{text-decoration:none;color:white;font-size:18px;transition:0.3s;}
-        nav ul li a:hover{color:cyan;}
-        .hero{height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;}
-        .hero-content h1{font-size:70px;margin-bottom:20px;}
-        .hero-content h2{font-size:35px;color:cyan;margin-bottom:20px;height:45px;}
-        /* Login Box Fixes */
-        .login-box{max-width:500px;margin:auto;background:rgba(255,255,255,0.08);padding:40px;border-radius:20px;backdrop-filter:blur(10px);text-align:center;}
-        .login-box input{width:100%;padding:15px;margin-bottom:15px;border:none;border-radius:10px;outline:none;}
-        .btn-group{display: flex; gap: 10px; flex-wrap: wrap;}
-        .login-box button{flex: 1; padding:15px; background:cyan; border:none; border-radius:10px; font-weight:bold; cursor:pointer; transition: 0.3s;}
-        .login-box button:hover{opacity: 0.8;}
-        .logout-btn{background: #ff4757 !important; color: white; margin-top: 10px; width: 100%;}
-        /* Mode Toggle */
-        .mode-btn{position:fixed;right:20px;bottom:20px;background:cyan;color:black;border:none;padding:15px;border-radius:50%;cursor:pointer;z-index:1001;}
-        .light-mode{background: #f1f5f9; color: #1e293b;}
-        .light-mode .feature-card, .light-mode .login-box{background: rgba(0,0,0,0.05); color: #1e293b;}
-        
-        /* Mobile */
-        @media(max-width:768px){ .hero-content h1{font-size:40px;} nav ul{display:none;} }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pradeep AI Study</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0f172a;
+color:white;
+overflow-x:hidden;
+transition: 0.3s;
+}
+
+/* BACKGROUND ANIMATION */
+.bg-animation{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+overflow:hidden;
+}
+
+.bg-animation span{
+position:absolute;
+display:block;
+width:20px;
+height:20px;
+background:rgba(0,255,255,0.2);
+animation:move 25s linear infinite;
+bottom:-150px;
+border-radius:50%;
+}
+
+@keyframes move{
+0%{ transform:translateY(0) rotate(0deg); opacity:1; }
+100%{ transform:translateY(-1000px) rotate(720deg); opacity:0; }
+}
+
+.bg-animation span:nth-child(1){left:10%; animation-duration:15s;}
+.bg-animation span:nth-child(2){left:20%; animation-duration:22s; width:30px; height:30px;}
+.bg-animation span:nth-child(3){left:35%; animation-duration:18s;}
+.bg-animation span:nth-child(4){left:50%; animation-duration:26s; width:40px; height:40px;}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(17,24,39,0.8);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{ font-size:32px; font-weight:bold; color:cyan; }
+
+nav ul{ display:flex; list-style:none; gap:30px; }
+
+nav ul li a{ text-decoration:none; color:white; font-size:18px; transition:0.3s; }
+
+nav ul li a:hover{ color:cyan; }
+
+/* HERO SECTION */
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content h1{ font-size:70px; margin-bottom:20px; }
+
+.hero-content h2{ font-size:35px; color:cyan; margin-bottom:20px; height:45px; }
+
+.hero-content p{ font-size:22px; line-height:35px; max-width:850px; margin:auto; }
+
+/* FEATURES */
+.features{ padding:100px 8%; }
+
+.section-title{ text-align:center; font-size:50px; margin-bottom:60px; color:cyan; }
+
+.feature-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.feature-card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+padding:35px;
+border-radius:20px;
+text-align:center;
+transition:0.4s;
+}
+
+.feature-card:hover{ transform:translateY(-12px); background:rgba(255,255,255,0.12); }
+
+.feature-card i{ font-size:55px; color:cyan; margin-bottom:20px; }
+
+/* LOGIN SYSTEM SECTION */
+.login{ padding:100px 8%; }
+
+.login-box{
+max-width:450px;
+margin:auto;
+background:rgba(255,255,255,0.08);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align: center;
+border: 1px solid rgba(255,255,255,0.1);
+}
+
+.login-box h2{ margin-bottom:30px; font-size:35px; color:cyan; }
+
+.login-box input{
+width:100%;
+padding:15px;
+margin-bottom:20px;
+border:none;
+border-radius:10px;
+font-size:16px;
+outline: none;
+}
+
+.login-btns{
+display: flex;
+gap: 10px;
+margin-bottom: 15px;
+}
+
+.login-box button{
+width:100%;
+padding:15px;
+background:cyan;
+color: black;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition: 0.3s;
+}
+
+.login-box button:hover{ transform: scale(1.03); opacity: 0.9; }
+
+.logout-btn{ background: #ff4757 !important; color: white !important; margin-top: 10px; }
+
+/* YOUTUBE */
+.youtube{ padding:100px 8%; text-align:center; }
+.video-box{
+margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+iframe{ width:100%; height:250px; border:none; border-radius:15px; }
+
+/* FOOTER */
+footer{ background:#111827; padding:30px; text-align:center; margin-top:50px; }
+.social-icons{ display:flex; justify-content:center; gap:20px; font-size:28px; margin-top: 15px; }
+.social-icons i{ color:cyan; cursor:pointer; transition:0.3s; }
+
+/* DARK LIGHT MODE */
+.mode-btn{
+position:fixed;
+right:20px;
+bottom:20px;
+background:cyan;
+color:black;
+border:none;
+padding:15px;
+border-radius:50%;
+cursor:pointer;
+font-size:20px;
+z-index: 2000;
+}
+
+.light-mode{ background:white; color:black; }
+.light-mode .feature-card, .light-mode .login-box { background: rgba(0,0,0,0.05); color: black; }
+
+@media(max-width:768px){
+nav{ flex-direction:column; gap:20px; }
+nav ul{ gap: 15px; }
+.hero-content h1{ font-size:45px; }
+}
+</style>
 </head>
-<body id="mainBody">
+<body>
 
 <div class="bg-animation">
     <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -66,31 +229,59 @@
     </div>
 </section>
 
-<!-- FIX: Integrated Login System -->
+<!-- CORRECTED LOGIN SECTION -->
 <section class="login" id="login">
     <div class="login-box">
-        <h2 style="color:cyan; margin-bottom:20px;">Student Portal</h2>
-        <input type="email" id="email" placeholder="Email Address">
-        <input type="password" id="password" placeholder="Password">
-        <div class="btn-group">
-            <button onclick="signup()">Signup</button>
+        <h2>Student Login</h2>
+        <input type="email" id="email" placeholder="Enter Email">
+        <input type="password" id="password" placeholder="Enter Password">
+        
+        <div class="login-btns">
             <button onclick="login()">Login</button>
+            <button onclick="signup()">Signup</button>
         </div>
         <button class="logout-btn" onclick="logout()">Logout</button>
     </div>
 </section>
 
-<!-- ... (Rest of sections: Features, YouTube, Contact) ... -->
+<section class="features" id="features">
+    <h1 class="section-title">Features</h1>
+    <div class="feature-container">
+        <div class="feature-card">
+            <i class="fa-solid fa-code"></i>
+            <h3>Web Dev</h3>
+            <p>Master HTML, CSS, & JS.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-robot"></i>
+            <h3>AI Tools</h3>
+            <p>Learn future tech today.</p>
+        </div>
+    </div>
+</section>
+
+<section class="youtube" id="youtube">
+    <h1 class="section-title">Study Videos</h1>
+    <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/HcOc7P5BMi4"></iframe>
+        <iframe src="https://www.youtube.com/embed/ER9SspLe4Hg"></iframe>
+    </div>
+</section>
 
 <footer>
-    <h3>© 2026 Pradeep AI Study | All Rights Reserved</h3>
+    <h3>© 2026 Pradeep AI Study</h3>
+    <div class="social-icons">
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-github"></i>
+    </div>
 </footer>
 
 <button class="mode-btn" onclick="toggleMode()">☀</button>
 
 <script>
-    /* Typing Effect */
-    const text = ["Learn Coding", "Learn AI", "Build Websites", "NTPC Prep"];
+    /* TYPING EFFECT */
+    const text = ["Learn Coding", "Learn AI", "NTPC Prep", "Web Design"];
     let count = 0, index = 0;
     function type(){
         if(count === text.length) count = 0;
@@ -98,13 +289,14 @@
         let letter = currentText.slice(0, ++index);
         document.getElementById('typing').textContent = letter;
         if(letter.length === currentText.length){ count++; index = 0; setTimeout(type, 2000); }
-        else { setTimeout(type, 120); }
+        else { setTimeout(type, 150); }
     }
     type();
 
     function toggleMode(){ document.body.classList.toggle('light-mode'); }
 </script>
 
+<!-- FIREBASE LOGIC -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } 
@@ -122,26 +314,27 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Globalizing functions so buttons can find them
-    window.signup = () => {
+    // Ye functions buttons ke liye global banaye gaye hain
+    window.signup = function() {
         const email = document.getElementById("email").value;
-        const pass = document.getElementById("password").value;
-        createUserWithEmailAndPassword(auth, email, pass)
-            .then(() => alert("Account Created!"))
-            .catch((err) => alert(err.message));
+        const password = document.getElementById("password").value;
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(() => alert("Signup Successful! Welcome."))
+            .catch((error) => alert(error.message));
     };
 
-    window.login = () => {
+    window.login = function() {
         const email = document.getElementById("email").value;
-        const pass = document.getElementById("password").value;
-        signInWithEmailAndPassword(auth, email, pass)
-            .then(() => alert("Logged In Successfully!"))
-            .catch((err) => alert(err.message));
+        const password = document.getElementById("password").value;
+        signInWithEmailAndPassword(auth, email, password)
+            .then(() => alert("Login Successful!"))
+            .catch((error) => alert("Error: " + error.message));
     };
 
-    window.logout = () => {
+    window.logout = function() {
         signOut(auth).then(() => alert("Logged Out!"));
     };
 </script>
+
 </body>
 </html>
