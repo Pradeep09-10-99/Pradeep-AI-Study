@@ -524,6 +524,66 @@ Logout
 </div>
 
 </section>
+<!-- DASHBOARD -->
+
+<section class="features" id="dashboard">
+
+<h1 class="section-title">
+Student Dashboard
+</h1>
+
+<div class="feature-container">
+
+<div class="feature-card">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+<h3>Student Profile</h3>
+
+<p id="studentEmail">
+Login to see your profile
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-book-open"></i>
+
+<h3>Study Notes</h3>
+
+<p>
+Download notes and study material here.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-brain"></i>
+
+<h3>AI Learning</h3>
+
+<p>
+Learn AI tools and smart study techniques.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<h3>Progress</h3>
+
+<p>
+Track your daily study progress.
+</p>
+
+</div>
+
+</div>
+</section>
 
 <!-- YOUTUBE -->
 
@@ -670,7 +730,7 @@ createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
 
 signOut
-
+onAuthStateChanged
 }
 
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -768,6 +828,19 @@ alert(error.message);
 });
 
 }
+
+/* USER INFO */
+
+onAuthStateChanged(auth, (user) => {
+
+if(user){
+
+document.getElementById("studentEmail").innerHTML =
+"Welcome : " + user.email;
+
+}
+
+});
 
 </script>
 
