@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pradeep AI Study</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -20,10 +25,11 @@ body{
 background:#0f172a;
 color:white;
 overflow-x:hidden;
-transition: 0.3s;
+transition:0.3s;
 }
 
-/* BACKGROUND ANIMATION */
+/* BACKGROUND */
+
 .bg-animation{
 position:fixed;
 width:100%;
@@ -46,16 +52,29 @@ border-radius:50%;
 }
 
 @keyframes move{
-0%{ transform:translateY(0) rotate(0deg); opacity:1; }
-100%{ transform:translateY(-1000px) rotate(720deg); opacity:0; }
+
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(-1000px) rotate(720deg);
+opacity:0;
+}
+
 }
 
 .bg-animation span:nth-child(1){left:10%; animation-duration:15s;}
 .bg-animation span:nth-child(2){left:20%; animation-duration:22s; width:30px; height:30px;}
 .bg-animation span:nth-child(3){left:35%; animation-duration:18s;}
 .bg-animation span:nth-child(4){left:50%; animation-duration:26s; width:40px; height:40px;}
+.bg-animation span:nth-child(5){left:65%; animation-duration:17s;}
+.bg-animation span:nth-child(6){left:80%; animation-duration:30s;}
+.bg-animation span:nth-child(7){left:90%; animation-duration:20s;}
 
 /* NAVBAR */
+
 nav{
 display:flex;
 justify-content:space-between;
@@ -68,15 +87,31 @@ top:0;
 z-index:1000;
 }
 
-.logo{ font-size:32px; font-weight:bold; color:cyan; }
+.logo{
+font-size:32px;
+font-weight:bold;
+color:cyan;
+}
 
-nav ul{ display:flex; list-style:none; gap:30px; }
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
 
-nav ul li a{ text-decoration:none; color:white; font-size:18px; transition:0.3s; }
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:18px;
+transition:0.3s;
+}
 
-nav ul li a:hover{ color:cyan; }
+nav ul li a:hover{
+color:cyan;
+}
 
-/* HERO SECTION */
+/* HERO */
+
 .hero{
 height:100vh;
 display:flex;
@@ -86,16 +121,70 @@ text-align:center;
 padding:20px;
 }
 
-.hero-content h1{ font-size:70px; margin-bottom:20px; }
+.hero-content h1{
+font-size:70px;
+margin-bottom:20px;
+}
 
-.hero-content h2{ font-size:35px; color:cyan; margin-bottom:20px; height:45px; }
+.hero-content h2{
+font-size:35px;
+color:cyan;
+margin-bottom:20px;
+height:45px;
+}
 
-.hero-content p{ font-size:22px; line-height:35px; max-width:850px; margin:auto; }
+.hero-content p{
+font-size:22px;
+line-height:35px;
+max-width:850px;
+margin:auto;
+}
+
+.hero-btns{
+margin-top:40px;
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.hero-btns button{
+padding:15px 35px;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.btn1{
+background:cyan;
+color:black;
+}
+
+.btn2{
+background:transparent;
+color:white;
+border:2px solid cyan;
+}
+
+.hero-btns button:hover{
+transform:scale(1.08);
+}
 
 /* FEATURES */
-.features{ padding:100px 8%; }
 
-.section-title{ text-align:center; font-size:50px; margin-bottom:60px; color:cyan; }
+.features{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:50px;
+margin-bottom:60px;
+color:cyan;
+}
 
 .feature-container{
 display:grid;
@@ -112,25 +201,43 @@ text-align:center;
 transition:0.4s;
 }
 
-.feature-card:hover{ transform:translateY(-12px); background:rgba(255,255,255,0.12); }
+.feature-card:hover{
+transform:translateY(-12px);
+background:rgba(255,255,255,0.12);
+}
 
-.feature-card i{ font-size:55px; color:cyan; margin-bottom:20px; }
+.feature-card i{
+font-size:55px;
+color:cyan;
+margin-bottom:20px;
+}
 
-/* LOGIN SYSTEM SECTION */
-.login{ padding:100px 8%; }
+.feature-card h3{
+font-size:28px;
+margin-bottom:15px;
+}
+
+/* LOGIN */
+
+.login{
+padding:100px 8%;
+}
 
 .login-box{
-max-width:450px;
+max-width:500px;
 margin:auto;
 background:rgba(255,255,255,0.08);
 padding:40px;
 border-radius:20px;
 backdrop-filter:blur(10px);
-text-align: center;
-border: 1px solid rgba(255,255,255,0.1);
 }
 
-.login-box h2{ margin-bottom:30px; font-size:35px; color:cyan; }
+.login-box h2{
+text-align:center;
+margin-bottom:30px;
+font-size:40px;
+color:cyan;
+}
 
 .login-box input{
 width:100%;
@@ -139,48 +246,97 @@ margin-bottom:20px;
 border:none;
 border-radius:10px;
 font-size:16px;
-outline: none;
-}
-
-.login-btns{
-display: flex;
-gap: 10px;
-margin-bottom: 15px;
 }
 
 .login-box button{
 width:100%;
 padding:15px;
 background:cyan;
-color: black;
 border:none;
 border-radius:10px;
-font-size:16px;
+font-size:18px;
 font-weight:bold;
 cursor:pointer;
-transition: 0.3s;
+margin-bottom:15px;
 }
 
-.login-box button:hover{ transform: scale(1.03); opacity: 0.9; }
-
-.logout-btn{ background: #ff4757 !important; color: white !important; margin-top: 10px; }
-
 /* YOUTUBE */
-.youtube{ padding:100px 8%; text-align:center; }
+
+.youtube{
+padding:100px 8%;
+text-align:center;
+}
+
 .video-box{
 margin-top:40px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:30px;
 }
-iframe{ width:100%; height:250px; border:none; border-radius:15px; }
+
+iframe{
+width:100%;
+height:250px;
+border:none;
+border-radius:15px;
+}
+
+/* CONTACT */
+
+.contact{
+padding:100px 8%;
+}
+
+.contact form{
+max-width:700px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.contact input,
+.contact textarea{
+padding:18px;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+.contact button{
+padding:18px;
+background:cyan;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
 
 /* FOOTER */
-footer{ background:#111827; padding:30px; text-align:center; margin-top:50px; }
-.social-icons{ display:flex; justify-content:center; gap:20px; font-size:28px; margin-top: 15px; }
-.social-icons i{ color:cyan; cursor:pointer; transition:0.3s; }
 
-/* DARK LIGHT MODE */
+footer{
+background:#111827;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
+
+.social-icons{
+display:flex;
+justify-content:center;
+gap:20px;
+font-size:28px;
+margin-top:20px;
+}
+
+.social-icons i{
+color:cyan;
+cursor:pointer;
+}
+
+/* DARK MODE */
+
 .mode-btn{
 position:fixed;
 right:20px;
@@ -192,148 +348,427 @@ padding:15px;
 border-radius:50%;
 cursor:pointer;
 font-size:20px;
-z-index: 2000;
+font-weight:bold;
 }
 
-.light-mode{ background:white; color:black; }
-.light-mode .feature-card, .light-mode .login-box { background: rgba(0,0,0,0.05); color: black; }
+.light-mode{
+background:white;
+color:black;
+}
+
+/* MOBILE */
 
 @media(max-width:768px){
-nav{ flex-direction:column; gap:20px; }
-nav ul{ gap: 15px; }
-.hero-content h1{ font-size:45px; }
+
+nav{
+flex-direction:column;
+gap:20px;
 }
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.hero-content h1{
+font-size:45px;
+}
+
+.hero-content h2{
+font-size:25px;
+}
+
+.hero-content p{
+font-size:18px;
+}
+
+.section-title{
+font-size:38px;
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
 
+<!-- BACKGROUND -->
+
 <div class="bg-animation">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
 </div>
 
+<!-- NAVBAR -->
+
 <nav>
-    <div class="logo">Pradeep AI Study</div>
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#login">Login</a></li>
-        <li><a href="#youtube">Videos</a></li>
-    </ul>
+
+<div class="logo">
+Pradeep AI Study
+</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#login">Login</a></li>
+<li><a href="#youtube">Videos</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
 </nav>
 
+<!-- HERO -->
+
 <section class="hero">
-    <div class="hero-content">
-        <h1>Pradeep AI Study</h1>
-        <h2 id="typing"></h2>
-        <p>Learn AI, Coding, Web Development, and NTPC Preparation.</p>
-    </div>
+
+<div class="hero-content">
+
+<h1>Pradeep AI Study</h1>
+
+<h2 id="typing"></h2>
+
+<p>
+Learn AI, Coding, Web Development,
+Programming and NTPC Preparation.
+</p>
+
+<div class="hero-btns">
+
+<button class="btn1">
+Start Learning
+</button>
+
+<button class="btn2">
+Join Now
+</button>
+
+</div>
+
+</div>
+
 </section>
 
-<!-- CORRECTED LOGIN SECTION -->
-<section class="login" id="login">
-    <div class="login-box">
-        <h2>Student Login</h2>
-        <input type="email" id="email" placeholder="Enter Email">
-        <input type="password" id="password" placeholder="Enter Password">
-        
-        <div class="login-btns">
-            <button onclick="login()">Login</button>
-            <button onclick="signup()">Signup</button>
-        </div>
-        <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-</section>
+<!-- FEATURES -->
 
 <section class="features" id="features">
-    <h1 class="section-title">Features</h1>
-    <div class="feature-container">
-        <div class="feature-card">
-            <i class="fa-solid fa-code"></i>
-            <h3>Web Dev</h3>
-            <p>Master HTML, CSS, & JS.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fa-solid fa-robot"></i>
-            <h3>AI Tools</h3>
-            <p>Learn future tech today.</p>
-        </div>
-    </div>
+
+<h1 class="section-title">
+Website Features
+</h1>
+
+<div class="feature-container">
+
+<div class="feature-card">
+<i class="fa-solid fa-code"></i>
+<h3>Web Development</h3>
+<p>Learn HTML CSS JavaScript and modern web design.</p>
+</div>
+
+<div class="feature-card">
+<i class="fa-solid fa-robot"></i>
+<h3>Artificial Intelligence</h3>
+<p>Learn AI tools and future technologies.</p>
+</div>
+
+<div class="feature-card">
+<i class="fa-solid fa-book"></i>
+<h3>NTPC Study</h3>
+<p>Prepare for exams with smart strategies.</p>
+</div>
+
+<div class="feature-card">
+<i class="fa-solid fa-video"></i>
+<h3>Video Learning</h3>
+<p>Watch educational videos directly.</p>
+</div>
+
+</div>
+
 </section>
+
+<!-- LOGIN -->
+
+<section class="login" id="login">
+
+<h1 class="section-title">
+Student Login
+</h1>
+
+<div class="login-box">
+
+<h2>Login System</h2>
+
+<input type="email" id="email" placeholder="Enter Email">
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<button onclick="signup()">
+Signup
+</button>
+
+<button onclick="login()">
+Login
+</button>
+
+<button onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</section>
+
+<!-- YOUTUBE -->
 
 <section class="youtube" id="youtube">
-    <h1 class="section-title">Study Videos</h1>
-    <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/HcOc7P5BMi4"></iframe>
-        <iframe src="https://www.youtube.com/embed/ER9SspLe4Hg"></iframe>
-    </div>
+
+<h1 class="section-title">
+Study Videos
+</h1>
+
+<div class="video-box">
+
+<iframe src="https://www.youtube.com/embed/HcOc7P5BMi4"></iframe>
+
+<iframe src="https://www.youtube.com/embed/ER9SspLe4Hg"></iframe>
+
+<iframe src="https://www.youtube.com/embed/BsDoLVMnmZs"></iframe>
+
+</div>
+
 </section>
 
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h1 class="section-title">
+Contact Us
+</h1>
+
+<form>
+
+<input type="text" placeholder="Enter Name">
+
+<input type="email" placeholder="Enter Email">
+
+<textarea rows="6" placeholder="Enter Message"></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</section>
+
+<!-- FOOTER -->
+
 <footer>
-    <h3>© 2026 Pradeep AI Study</h3>
-    <div class="social-icons">
-        <i class="fa-brands fa-youtube"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-github"></i>
-    </div>
+
+<h3>
+© 2026 Pradeep AI Study | All Rights Reserved
+</h3>
+
+<div class="social-icons">
+
+<i class="fa-brands fa-youtube"></i>
+
+<i class="fa-brands fa-instagram"></i>
+
+<i class="fa-brands fa-github"></i>
+
+<i class="fa-brands fa-facebook"></i>
+
+</div>
+
 </footer>
 
-<button class="mode-btn" onclick="toggleMode()">☀</button>
+<!-- DARK MODE -->
+
+<button class="mode-btn" onclick="toggleMode()">
+☀
+</button>
+
+<!-- JAVASCRIPT -->
 
 <script>
-    /* TYPING EFFECT */
-    const text = ["Learn Coding", "Learn AI", "NTPC Prep", "Web Design"];
-    let count = 0, index = 0;
-    function type(){
-        if(count === text.length) count = 0;
-        let currentText = text[count];
-        let letter = currentText.slice(0, ++index);
-        document.getElementById('typing').textContent = letter;
-        if(letter.length === currentText.length){ count++; index = 0; setTimeout(type, 2000); }
-        else { setTimeout(type, 150); }
-    }
-    type();
 
-    function toggleMode(){ document.body.classList.toggle('light-mode'); }
+/* TYPING EFFECT */
+
+const text = [
+
+"Learn Coding",
+
+"Learn Artificial Intelligence",
+
+"Build Modern Websites",
+
+"Prepare For NTPC Exams"
+
+];
+
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type(){
+
+if(count === text.length){
+count = 0;
+}
+
+currentText = text[count];
+
+letter = currentText.slice(0, ++index);
+
+document.getElementById("typing").textContent = letter;
+
+if(letter.length === currentText.length){
+
+count++;
+index = 0;
+
+}
+
+setTimeout(type, 120);
+
+})();
+
+/* DARK MODE */
+
+function toggleMode(){
+
+document.body.classList.toggle("light-mode");
+
+}
+
 </script>
 
-<!-- FIREBASE LOGIC -->
+<!-- FIREBASE -->
+
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } 
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyAWhwjfy21WmroQ0P_McbT45Om1eDD8qL4",
-        authDomain: "pradeep-ai-study.firebaseapp.com",
-        projectId: "pradeep-ai-study",
-        storageBucket: "pradeep-ai-study.firebasestorage.app",
-        messagingSenderId: "688622064792",
-        appId: "1:688622064792:web:75daa8c6cf11638beeeced"
-    };
+import { initializeApp }
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-    // Ye functions buttons ke liye global banaye gaye hain
-    window.signup = function() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(() => alert("Signup Successful! Welcome."))
-            .catch((error) => alert(error.message));
-    };
+import {
 
-    window.login = function() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => alert("Login Successful!"))
-            .catch((error) => alert("Error: " + error.message));
-    };
+getAuth,
 
-    window.logout = function() {
-        signOut(auth).then(() => alert("Logged Out!"));
-    };
+createUserWithEmailAndPassword,
+
+signInWithEmailAndPassword,
+
+signOut
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyAWhwjfy21WmroQ0P_McbT45Om1eDD8qL4",
+
+authDomain: "pradeep-ai-study.firebaseapp.com",
+
+projectId: "pradeep-ai-study",
+
+storageBucket: "pradeep-ai-study.firebasestorage.app",
+
+messagingSenderId: "688622064792",
+
+appId: "1:688622064792:web:75daa8c6cf11638beeeced",
+
+measurementId: "G-RW4YHPVKMJ"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+/* SIGNUP */
+
+window.signup = function(){
+
+let email = document.getElementById("email").value;
+
+let password = document.getElementById("password").value;
+
+createUserWithEmailAndPassword(auth, email, password)
+
+.then(() => {
+
+alert("Signup Successful");
+
+})
+
+.catch((error) => {
+
+alert(error.message);
+
+});
+
+}
+
+
+/* LOGIN */
+
+window.login = function(){
+
+let email = document.getElementById("email").value;
+
+let password = document.getElementById("password").value;
+
+signInWithEmailAndPassword(auth, email, password)
+
+.then(() => {
+
+alert("Login Successful");
+
+})
+
+.catch((error) => {
+
+alert(error.message);
+
+});
+
+}
+
+
+/* LOGOUT */
+
+window.logout = function(){
+
+signOut(auth)
+
+.then(() => {
+
+alert("Logout Successful");
+
+})
+
+.catch((error) => {
+
+alert(error.message);
+
+});
+
+}
+
 </script>
 
 </body>
