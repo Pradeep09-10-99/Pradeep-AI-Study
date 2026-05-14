@@ -604,7 +604,90 @@ document.body.classList.toggle('light-mode');
 }
 
 </script>
+<!-- FIREBASE -->
 
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAWhwjfy21WmroQ0P_McbT45Om1eDD8qL4",
+  authDomain: "pradeep-ai-study.firebaseapp.com",
+  projectId: "pradeep-ai-study",
+  storageBucket: "pradeep-ai-study.firebasestorage.app",
+  messagingSenderId: "688622064792",
+  appId: "1:688622064792:web:75daa8c6cf11638beeeced",
+  measurementId: "G-RW4YHPVKMJ"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+/* SIGNUP */
+
+window.signup = function(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+createUserWithEmailAndPassword(auth, email, password)
+
+.then((userCredential) => {
+
+alert("Signup Successful");
+
+})
+
+.catch((error) => {
+
+alert(error.message);
+
+});
+
+}
+
+
+<div class="login-box">
+
+<h2>Login System</h2>
+
+<input type="email" id="email" placeholder="Enter Email">
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<button onclick="signup()">Signup</button>
+
+<br><br>
+
+<button onclick="login()">Login</button>
+
+<br><br>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+.catch((error) => {
+
+alert(error.message);
+
+});
+
+}
+
+</script>
 </body>
 </html>
 ```
