@@ -847,7 +847,38 @@ function toggleMode(){
 /* AI CHATBOT */
 
 function askAI(){
+/* QUIZ SYSTEM */
 
+function checkQuiz(){
+
+let answer =
+document.querySelector('input[name="q1"]:checked');
+
+let result =
+document.getElementById("quizResult");
+
+if(answer == null){
+
+result.innerHTML =
+"Please select an answer.";
+
+}
+
+else if(answer.value == "a"){
+
+result.innerHTML =
+"Correct Answer 🎉";
+
+}
+
+else{
+
+result.innerHTML =
+"Wrong Answer ❌";
+
+}
+
+}
 let question =
 document.getElementById("userQuestion").value;
 
