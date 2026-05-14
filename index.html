@@ -604,7 +604,35 @@ Study Videos
 </div>
 
 </section>
+<!-- AI CHATBOT -->
 
+<section class="features" id="chatbot">
+
+<h1 class="section-title">
+AI Chatbot
+</h1>
+
+<div class="login-box">
+
+<h2>Ask AI</h2>
+
+<input type="text"
+id="userQuestion"
+placeholder="Ask something...">
+
+<button onclick="askAI()">
+Ask AI
+</button>
+
+<br><br>
+
+<p id="aiAnswer">
+AI answer will appear here...
+</p>
+
+</div>
+
+</section>
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -706,7 +734,59 @@ setTimeout(type, 120);
 /* DARK MODE */
 
 function toggleMode(){
+/* AI CHATBOT */
 
+function askAI(){
+
+let question =
+document.getElementById("userQuestion").value;
+
+let answer =
+document.getElementById("aiAnswer");
+
+if(question == ""){
+
+answer.innerHTML =
+"Please ask a question.";
+
+}
+
+else if(question.includes("html")){
+
+answer.innerHTML =
+"HTML is used to create website structure.";
+
+}
+
+else if(question.includes("css")){
+
+answer.innerHTML =
+"CSS is used for website design.";
+
+}
+
+else if(question.includes("javascript")){
+
+answer.innerHTML =
+"JavaScript makes websites interactive.";
+
+}
+
+else if(question.includes("ai")){
+
+answer.innerHTML =
+"AI means Artificial Intelligence.";
+
+}
+
+else{
+
+answer.innerHTML =
+"AI is learning your question...";
+
+}
+
+}
 document.body.classList.toggle("light-mode");
 
 }
