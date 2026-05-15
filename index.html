@@ -169,7 +169,26 @@ border:2px solid cyan;
 .hero-btns button:hover{
 transform:scale(1.08);
 }
+.hero-image img{
+width:350px;
+animation:float 3s ease-in-out infinite;
+}
 
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-20px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
 /* FEATURES */
 
 .features{
@@ -491,6 +510,12 @@ Join Now
 </button>
 
 </div>
+
+</div>
+
+<div class="hero-image">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
 
 </div>
 
