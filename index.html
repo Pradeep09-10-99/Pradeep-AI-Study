@@ -491,6 +491,43 @@ font-size:38px;
   color:#ccc;
   line-height:1.6;
 }
+/* HAMBURGER MENU */
+
+.menu-toggle{
+display:none;
+font-size:30px;
+color:cyan;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.menu-toggle{
+display:block;
+}
+
+nav{
+flex-direction:row;
+}
+
+#nav-links{
+display:none;
+flex-direction:column;
+position:absolute;
+top:80px;
+right:20px;
+background:#111827;
+width:220px;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+#nav-links.active{
+display:flex;
+}
+
+}  
 </style>
 
 </head>
@@ -524,7 +561,9 @@ Pradeep AI Study
 <li><a href="#youtube">Videos</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
-
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fa-solid fa-bars"></i>
+</div>
 </nav>
 
 <!-- HERO -->
@@ -1060,7 +1099,15 @@ result.innerHTML =
 
 }
 
+/* MOBILE MENU */
 
+function toggleMenu(){
+
+document
+.getElementById("nav-links")
+.classList.toggle("active");
+
+}
 </script>
 
 <!-- FIREBASE -->
