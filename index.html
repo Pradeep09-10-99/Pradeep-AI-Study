@@ -419,14 +419,62 @@ color:black;
 
 @media(max-width:768px){
 
+@media(max-width:768px){
+
+.menu-toggle{
+display:block;
+}
+
 nav{
+flex-direction:row;
+justify-content:space-between;
+align-items:center;
+}
+
+#nav-links{
+display:none;
 flex-direction:column;
+position:absolute;
+top:80px;
+right:20px;
+background:#111827;
+width:220px;
+padding:20px;
+border-radius:10px;
+text-align:center;
 gap:20px;
 }
 
-nav ul{
-flex-wrap:wrap;
-justify-content:center;
+#nav-links.active{
+display:flex;
+}
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.hero-image img{
+width:250px;
+margin-top:30px;
+}
+
+.hero-content h1{
+font-size:45px;
+}
+
+.hero-content h2{
+font-size:25px;
+}
+
+.hero-content p{
+font-size:18px;
+}
+
+.section-title{
+font-size:38px;
+}
+
 }
 
 .hero-content h1{
@@ -563,6 +611,7 @@ Pradeep AI Study
 </ul>
 <div class="menu-toggle" onclick="toggleMenu()">
 <i class="fa-solid fa-bars"></i>
+  <ul id="nav-links">
 </div>
 </nav>
 
