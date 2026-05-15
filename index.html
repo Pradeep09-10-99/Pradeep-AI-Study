@@ -387,7 +387,50 @@ font-size:38px;
 }
 
 }
+/* Subjects Section */
 
+.subjects{
+  padding:80px 50px;
+  background:#111;
+  color:white;
+  text-align:center;
+}
+
+.subjects h1{
+  font-size:40px;
+  margin-bottom:50px;
+}
+
+.subject-box{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+}
+
+.card{
+  background:#1c1c1c;
+  padding:30px;
+  width:300px;
+  border-radius:15px;
+  transition:0.4s;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  background:#222;
+}
+
+.card h2{
+  color:cyan;
+  margin-bottom:15px;
+}
+
+.card p{
+  color:#ccc;
+  line-height:1.6;
+}
 </style>
 
 </head>
@@ -427,7 +470,31 @@ Pradeep AI Study
 <!-- HERO -->
 
 <section class="hero">
+<!-- Subjects Section -->
+<section class="subjects">
 
+  <h1>Our Subjects</h1>
+
+  <div class="subject-box">
+
+    <div class="card">
+      <h2>Mathematics</h2>
+      <p>Arithmetic, Algebra, Geometry, Mensuration and more.</p>
+    </div>
+
+    <div class="card">
+      <h2>Reasoning</h2>
+      <p>Logical reasoning, puzzles, coding-decoding and tricks.</p>
+    </div>
+
+    <div class="card">
+      <h2>Science</h2>
+      <p>Physics, Chemistry and Biology complete preparation.</p>
+    </div>
+
+  </div>
+
+</section>
 <div class="hero-content">
 
 <h1>Pradeep AI Study</h1>
