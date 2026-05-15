@@ -111,11 +111,20 @@ color:cyan;
 }
 
 /* HERO */
+
 .hero{
-text-align:center;
-justify-content:center;
+display:flex;
+justify-content:space-between;
+align-items:center;
 padding:80px 50px;
-  flex-wrap:wrap;
+flex-wrap:wrap;
+min-height:90vh;
+}
+
+.hero-content{
+flex:1;
+padding-right:40px;
+text-align:center;
 }
 
 .hero-content h1{
@@ -168,24 +177,7 @@ border:2px solid cyan;
 
 .hero-btns button:hover{
 transform:scale(1.08);
-}
-.hero-image img{
-width:350px;
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-20px);
-}
-
-100%{
-transform:translateY(0px);
+box-shadow:0 0 15px cyan;
 }
 
 .hero-image{
@@ -197,6 +189,7 @@ align-items:center;
 
 .hero-image img{
 width:350px;
+  
 filter:drop-shadow(0 0 20px cyan);
 animation:float 3s ease-in-out infinite;
 }
@@ -216,11 +209,18 @@ transform:translateY(0px);
 }
 
 }
-
 /* MOBILE */
 
 @media(max-width:768px){
+.hero{
+flex-direction:column;
+text-align:center;
+}
 
+.hero-image img{
+width:250px;
+margin-top:30px;
+}
 .hero{
 flex-direction:column;
 text-align:center;
@@ -837,7 +837,7 @@ Download
 </div>
 
 </section>
-</section> 
+
   <!-- QUIZ SECTION -->
 
 <section class="features" id="quiz">
@@ -935,15 +935,10 @@ Send Message
 /* TYPING EFFECT */
 
 const text = [
-
 "Learn Coding",
-
 "Learn Artificial Intelligence",
-
 "Build Modern Websites",
-
 "Prepare For NTPC Exams"
-
 ];
 
 let count = 0;
@@ -964,15 +959,108 @@ letter = currentText.slice(0, ++index);
 document.getElementById("typing").textContent = letter;
 
 if(letter.length === currentText.length){
-
 count++;
 index = 0;
-
 }
 
 setTimeout(type, 120);
 
 })();
+
+/* DARK MODE */
+
+function toggleMode(){
+document.body.classList.toggle("light-mode");
+}
+
+/* AI CHATBOT */
+
+function askAI(){
+
+let question =
+document.getElementById("userQuestion").value.toLowerCase();
+
+let answer =
+document.getElementById("aiAnswer");
+
+if(question == ""){
+
+answer.innerHTML =
+"Please ask a question.";
+
+}
+
+else if(question.includes("html")){
+
+answer.innerHTML =
+"HTML is used to create website structure.";
+
+}
+
+else if(question.includes("css")){
+
+answer.innerHTML =
+"CSS is used for website design.";
+
+}
+
+else if(question.includes("javascript")){
+
+answer.innerHTML =
+"JavaScript makes websites interactive.";
+
+}
+
+else if(question.includes("ai")){
+
+answer.innerHTML =
+"AI means Artificial Intelligence.";
+
+}
+
+else{
+
+answer.innerHTML =
+"AI is learning your question...";
+
+}
+
+}
+
+/* QUIZ SYSTEM */
+
+function checkQuiz(){
+
+let answer =
+document.querySelector('input[name="q1"]:checked');
+
+let result =
+document.getElementById("quizResult");
+
+if(answer == null){
+
+result.innerHTML =
+"Please select an answer.";
+
+}
+
+else if(answer.value == "a"){
+
+result.innerHTML =
+"Correct Answer 🎉";
+
+}
+
+else{
+
+result.innerHTML =
+"Wrong Answer ❌";
+
+}
+
+}
+
+</script>
 
 /* DARK MODE */
 
