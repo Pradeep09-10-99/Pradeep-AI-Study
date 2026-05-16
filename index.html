@@ -1167,18 +1167,24 @@ const response = await fetch(
 method:"POST",
 
 headers:{
+
 "Authorization":
 "Bearer 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",
 
-"Content-Type":"application/json"
-  "HTTP-Referer":"https://pradeep09-10-99.github.io",
+"Content-Type":
+"application/json",
 
-"X-Title":"Pradeep AI Study",
+"HTTP-Referer":
+"https://pradeep09-10-99.github.io/Pradeep-AI-Study/",
+
+"X-Title":
+"Pradeep AI Study"
+
 },
 
 body:JSON.stringify({
 
-model:"openai/gpt-3.5-turbo",
+model:"deepseek/deepseek-chat:free",
 
 messages:[
 {
@@ -1193,8 +1199,21 @@ content:question
 
 const data = await response.json();
 
+console.log(data);
+
+if(data.choices){
+
 answer.innerHTML =
 data.choices[0].message.content;
+
+}
+
+else{
+
+answer.innerHTML =
+"AI not responding.";
+
+}
 
 }
 
@@ -1203,10 +1222,11 @@ catch(error){
 answer.innerHTML =
 "Error loading AI response.";
 
-}
+console.log(error);
 
 }
 
+}
 /* QUIZ SYSTEM */
 
 function checkQuiz(){
