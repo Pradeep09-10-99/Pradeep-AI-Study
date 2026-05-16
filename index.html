@@ -1010,6 +1010,37 @@ Submit Quiz
 </div>
 
 </section>
+  <!-- STUDY TIMER -->
+
+<section class="features" id="timer">
+
+<h1 class="section-title">
+Study Timer
+</h1>
+
+<div class="login-box">
+
+<h2 id="time">
+00:00:00
+</h2>
+
+<br>
+
+<button onclick="startTimer()" class="btn1">
+Start
+</button>
+
+<button onclick="stopTimer()" class="btn2">
+Stop
+</button>
+
+<button onclick="resetTimer()" class="btn1">
+Reset
+</button>
+
+</div>
+
+</section>
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1210,6 +1241,75 @@ document
 .classList.toggle("active");
 
 }
+/* STUDY TIMER */
+
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+let timer = null;
+
+function updateDisplay(){
+
+let h =
+hours < 10 ? "0" + hours : hours;
+
+let m =
+minutes < 10 ? "0" + minutes : minutes;
+
+let s =
+seconds < 10 ? "0" + seconds : seconds;
+
+document.getElementById("time").innerHTML =
+`${h}:${m}:${s}`;
+
+}
+
+function startTimer(){
+
+if(timer !== null){
+return;
+}
+
+timer = setInterval(() => {
+
+seconds++;
+
+if(seconds == 60){
+seconds = 0;
+minutes++;
+}
+
+if(minutes == 60){
+minutes = 0;
+hours++;
+}
+
+updateDisplay();
+
+},1000);
+
+}
+
+function stopTimer(){
+
+clearInterval(timer);
+
+timer = null;
+
+}
+
+function resetTimer(){
+
+stopTimer();
+
+seconds = 0;
+minutes = 0;
+hours = 0;
+
+updateDisplay();
+
+}  
 </script>
 
 <!-- FIREBASE -->
