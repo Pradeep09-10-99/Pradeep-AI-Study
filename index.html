@@ -1170,7 +1170,6 @@ headers:{
 
 "Authorization":
 "Bearer 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
-
 ",
 
 "Content-Type":
@@ -1186,7 +1185,8 @@ headers:{
 
 body:JSON.stringify({
 
-model:"meta-llama/llama-3-8b-instruct:free",
+model:
+"meta-llama/llama-3-8b-instruct:free",
 
 messages:[
 {
@@ -1210,6 +1210,13 @@ data.choices[0].message.content;
 
 }
 
+else if(data.error){
+
+answer.innerHTML =
+data.error.message;
+
+}
+
 else{
 
 answer.innerHTML =
@@ -1221,10 +1228,10 @@ answer.innerHTML =
 
 catch(error){
 
+console.log(error);
+
 answer.innerHTML =
 "Error loading AI response.";
-
-console.log(error);
 
 }
 
