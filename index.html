@@ -1139,54 +1139,66 @@ document.body.classList.toggle("light-mode");
 }
 
 /* AI CHATBOT */
-
-function askAI(){
+async function askAI(){
 
 let question =
-document.getElementById("userQuestion").value.toLowerCase();
+document.getElementById("userQuestion").value;
 
 let answer =
 document.getElementById("aiAnswer");
 
-if(question == ""){
+if(question === ""){
 
 answer.innerHTML =
-"Please ask a question.";
+"Please ask something.";
+
+return;
 
 }
 
-else if(question.includes("html")){
+answer.innerHTML = "Thinking...";
+
+try{
+
+const response = await fetch(
+"https://openrouter.ai/api/v1/chat/completions",
+{
+
+method:"POST",
+
+headers:{
+"Authorization":
+"Bearer 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",
+
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+model:"mistralai/mistral-7b-instruct:free",
+
+messages:[
+{
+role:"user",
+content:question
+}
+]
+
+})
+
+});
+
+const data = await response.json();
 
 answer.innerHTML =
-"HTML is used to create website structure.";
+data.choices[0].message.content;
 
 }
 
-else if(question.includes("css")){
+catch(error){
 
 answer.innerHTML =
-"CSS is used for website design.";
-
-}
-
-else if(question.includes("javascript")){
-
-answer.innerHTML =
-"JavaScript makes websites interactive.";
-
-}
-
-else if(question.includes("ai")){
-
-answer.innerHTML =
-"AI means Artificial Intelligence.";
-
-}
-
-else{
-
-answer.innerHTML =
-"AI is learning your question...";
+"Error loading AI response.";
 
 }
 
