@@ -569,6 +569,20 @@ background:cyan;
 z-index:99999;
 transition:0.2s;
 } 
+ /* TO DO LIST */
+
+#taskList{
+margin-top:20px;
+text-align:left;
+}
+
+#taskList li{
+background:rgba(255,255,255,0.1);
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+list-style:none;
+} 
 /* LOADER */
 
 #loader{
@@ -1091,6 +1105,30 @@ Live Clock
 </div>
 
 </section>
+  <!-- TO DO LIST -->
+
+<section class="features">
+
+<h1 class="section-title">
+Daily Study Tasks
+</h1>
+
+<div class="login-box">
+
+<input
+type="text"
+id="taskInput"
+placeholder="Enter task">
+
+<button onclick="addTask()">
+Add Task
+</button>
+
+<ul id="taskList"></ul>
+
+</div>
+
+</section>
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1334,6 +1372,30 @@ document.getElementById("progress-bar")
 .style.width = scrolled + "%";
 
 };
+ /* TO DO LIST */
+
+function addTask(){
+
+let taskInput =
+document.getElementById("taskInput");
+
+let task =
+taskInput.value;
+
+if(task === "") return;
+
+let li =
+document.createElement("li");
+
+li.textContent = task;
+
+document
+.getElementById("taskList")
+.appendChild(li);
+
+taskInput.value = "";
+
+} 
   /* LOADER */
 
 window.addEventListener("load", function(){
