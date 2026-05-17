@@ -768,6 +768,39 @@ Join Now
 
   </div>
 </section>
+  <!-- STATS COUNTER -->
+
+<section class="features">
+
+<h1 class="section-title">
+Our Achievements
+</h1>
+
+<div class="feature-container">
+
+<div class="feature-card">
+<h2 id="students">0</h2>
+<p>Students</p>
+</div>
+
+<div class="feature-card">
+<h2 id="courses">0</h2>
+<p>Courses</p>
+</div>
+
+<div class="feature-card">
+<h2 id="videos">0</h2>
+<p>Videos</p>
+</div>
+
+<div class="feature-card">
+<h2 id="success">0%</h2>
+<p>Success Rate</p>
+</div>
+
+</div>
+
+</section>
 <!-- FEATURES -->
 
 <section class="features" id="features">
@@ -1395,7 +1428,78 @@ document
 
 taskInput.value = "";
 
-} 
+}
+  /* STATS COUNTER */
+
+let counted = false;
+
+window.addEventListener("scroll", () => {
+
+if(counted) return;
+
+let section =
+document.querySelector(".features");
+
+let position =
+section.getBoundingClientRect().top;
+
+let screen =
+window.innerHeight;
+
+if(position < screen){
+
+counted = true;
+
+animate("students",500);
+animate("courses",50);
+animate("videos",200);
+animatePercent("success",95);
+
+}
+
+});
+
+function animate(id,target){
+
+let count = 0;
+
+let interval = setInterval(() => {
+
+count++;
+
+document.getElementById(id)
+.innerHTML = count;
+
+if(count >= target){
+
+clearInterval(interval);
+
+}
+
+},10);
+
+}
+
+function animatePercent(id,target){
+
+let count = 0;
+
+let interval = setInterval(() => {
+
+count++;
+
+document.getElementById(id)
+.innerHTML = count + "%";
+
+if(count >= target){
+
+clearInterval(interval);
+
+}
+
+},20);
+
+}
   /* LOADER */
 
 window.addEventListener("load", function(){
