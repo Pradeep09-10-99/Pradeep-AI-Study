@@ -582,7 +582,21 @@ padding:12px;
 margin-top:10px;
 border-radius:10px;
 list-style:none;
-} 
+}
+  /* NOTES LIST */
+
+#notesList{
+margin-top:20px;
+text-align:left;
+}
+
+#notesList li{
+background:rgba(255,255,255,0.1);
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+list-style:none;
+}
 /* LOADER */
 
 #loader{
@@ -1221,6 +1235,33 @@ Check Speed
 </div>
 
 </section>
+  <!-- NOTES UPLOAD -->
+
+<section class="features">
+
+<h1 class="section-title">
+Upload Notes
+</h1>
+
+<div class="login-box">
+
+<input
+type="file"
+id="noteFile">
+
+<br><br>
+
+<button onclick="uploadNotes()">
+Upload Notes
+</button>
+
+<br><br>
+
+<ul id="notesList"></ul>
+
+</div>
+
+</section>
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1617,6 +1658,26 @@ result.innerHTML =
 "Typing does not match ❌";
 
 }
+
+}
+  /* NOTES UPLOAD */
+
+function uploadNotes(){
+
+let file =
+document.getElementById("noteFile").files[0];
+
+if(!file) return;
+
+let li =
+document.createElement("li");
+
+li.innerHTML =
+"📄 " + file.name;
+
+document
+.getElementById("notesList")
+.appendChild(li);
 
 }
   /* LOADER */
