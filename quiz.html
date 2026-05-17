@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Quiz - Pradeep AI Study</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+padding:20px 8%;
+background:#111827;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.quiz{
+padding:80px 8%;
+text-align:center;
+}
+
+.quiz h1{
+font-size:55px;
+color:cyan;
+margin-bottom:40px;
+}
+
+.box{
+max-width:600px;
+margin:auto;
+background:rgba(255,255,255,0.08);
+padding:40px;
+border-radius:20px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+background:cyan;
+color:black;
+font-weight:bold;
+border-radius:10px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>Pradeep AI Study</h2>
+
+<div>
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="courses.html">Courses</a>
+
+<a href="notes.html">Notes</a>
+
+<a href="quiz.html">Quiz</a>
+
+</div>
+
+</nav>
+
+<section class="quiz">
+
+<h1>Online Quiz</h1>
+
+<div class="box">
+
+<h2>
+1. HTML stands for?
+</h2>
+
+<input type="radio"
+name="q1"
+value="a">
+
+Hyper Text Markup Language
+
+<br><br>
+
+<input type="radio"
+name="q1"
+value="b">
+
+High Transfer Machine Language
+
+<br><br>
+
+<button onclick="checkQuiz()">
+Submit
+</button>
+
+<h2 id="result"></h2>
+
+</div>
+
+</section>
+
+<script>
+
+function checkQuiz(){
+
+let ans =
+document.querySelector(
+'input[name="q1"]:checked'
+);
+
+if(ans == null){
+
+document.getElementById("result")
+.innerHTML =
+"Please select an answer.";
+
+}
+
+else if(ans.value == "a"){
+
+document.getElementById("result")
+.innerHTML =
+"Correct Answer 🎉";
+
+}
+
+else{
+
+document.getElementById("result")
+.innerHTML =
+"Wrong Answer ❌";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
