@@ -1187,7 +1187,40 @@ Generate Certificate
 
 </div>
 
-</section>  
+</section>
+  <!-- TYPING TEST -->
+
+<section class="features">
+
+<h1 class="section-title">
+Typing Speed Test
+</h1>
+
+<div class="login-box">
+
+<p id="typingText">
+HTML CSS JavaScript AI Coding
+</p>
+
+<textarea
+id="typingInput"
+rows="5"
+placeholder="Start typing here...">
+</textarea>
+
+<br><br>
+
+<button onclick="checkTypingSpeed()">
+Check Speed
+</button>
+
+<br><br>
+
+<h2 id="typingResult"></h2>
+
+</div>
+
+</section>
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1542,7 +1575,50 @@ document.getElementById(
 "🏆 Certificate Awarded to <br><br>"
 + name;
 
-} 
+}
+  /* TYPING SPEED TEST */
+
+function checkTypingSpeed(){
+
+let text =
+document.getElementById("typingText")
+.innerText;
+
+let input =
+document.getElementById("typingInput")
+.value;
+
+let words =
+input.trim().split(" ").length;
+
+let result =
+document.getElementById("typingResult");
+
+if(input === ""){
+
+result.innerHTML =
+"Please type something.";
+
+return;
+
+}
+
+if(input === text){
+
+result.innerHTML =
+"Excellent Typing 🚀 | Words: "
++ words;
+
+}
+
+else{
+
+result.innerHTML =
+"Typing does not match ❌";
+
+}
+
+}
   /* LOADER */
 
 window.addEventListener("load", function(){
