@@ -539,6 +539,18 @@ font-size:38px;
   color:#ccc;
   line-height:1.6;
 }
+ /* SCROLL PROGRESS BAR */
+
+#progress-bar{
+position:fixed;
+top:0;
+left:0;
+width:0%;
+height:5px;
+background:cyan;
+z-index:99999;
+transition:0.2s;
+} 
 /* LOADER */
 
 #loader{
@@ -620,6 +632,9 @@ display:flex;
 </head>
 
 <body>
+ <!-- SCROLL BAR -->
+
+<div id="progress-bar"></div> 
 <!-- LOADER -->
 
 <div id="loader">
@@ -1283,6 +1298,24 @@ result.innerHTML =
 }
 
 }
+  /* SCROLL BAR */
+
+window.onscroll = function(){
+
+let scrollTop =
+document.documentElement.scrollTop;
+
+let height =
+document.documentElement.scrollHeight -
+document.documentElement.clientHeight;
+
+let scrolled =
+(scrollTop / height) * 100;
+
+document.getElementById("progress-bar")
+.style.width = scrolled + "%";
+
+};
   /* LOADER */
 
 window.addEventListener("load", function(){
