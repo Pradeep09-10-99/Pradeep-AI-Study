@@ -1041,6 +1041,23 @@ Reset
 </div>
 
 </section>
+  <!-- LIVE CLOCK -->
+
+<section class="features">
+
+<h1 class="section-title">
+Live Clock
+</h1>
+
+<div class="login-box">
+
+<h2 id="clock">
+00:00:00
+</h2>
+
+</div>
+
+</section>
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1352,6 +1369,28 @@ hours = 0;
 updateDisplay();
 
 }  
+/* LIVE CLOCK */
+
+function updateClock(){
+
+let now = new Date();
+
+let h = now.getHours();
+let m = now.getMinutes();
+let s = now.getSeconds();
+
+h = h < 10 ? "0" + h : h;
+m = m < 10 ? "0" + m : m;
+s = s < 10 ? "0" + s : s;
+
+document.getElementById("clock").innerHTML =
+`${h}:${m}:${s}`;
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();  
 </script>
 
 <!-- FIREBASE -->
