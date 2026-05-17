@@ -1167,8 +1167,11 @@ const response = await fetch(
 method:"POST",
 
 headers:{
+
 "Authorization":
 "Bearer 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",
+
+
 "Content-Type":
 "application/json",
 
@@ -1183,6 +1186,7 @@ headers:{
 body:JSON.stringify({
 
 model:"openai/gpt-3.5-turbo",
+
 messages:[
 {
 role:"user",
@@ -1193,7 +1197,6 @@ content:question
 })
 
 });
-
 const data = await response.json();
 
 console.log(data);
