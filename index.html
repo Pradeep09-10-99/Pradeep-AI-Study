@@ -634,6 +634,19 @@ opacity:0.5;
 transform:scale(1);
 }
 
+}/* STUDY PLANNER */
+
+#planList{
+margin-top:20px;
+text-align:left;
+}
+
+#planList li{
+background:rgba(255,255,255,0.1);
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+list-style:none;
 }
   
 /* HAMBURGER MENU */
@@ -1262,6 +1275,32 @@ Upload Notes
 </div>
 
 </section>
+  <!-- STUDY PLANNER -->
+
+<section class="features">
+
+<h1 class="section-title">
+Study Planner
+</h1>
+
+<div class="login-box">
+
+<input
+type="text"
+id="planInput"
+placeholder="Enter study plan">
+
+<button onclick="addPlan()">
+Add Plan
+</button>
+
+<br><br>
+
+<ul id="planList"></ul>
+
+</div>
+
+</section>
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1678,6 +1717,30 @@ li.innerHTML =
 document
 .getElementById("notesList")
 .appendChild(li);
+
+}
+  /* STUDY PLANNER */
+
+function addPlan(){
+
+let input =
+document.getElementById("planInput");
+
+let plan =
+input.value;
+
+if(plan === "") return;
+
+let li =
+document.createElement("li");
+
+li.innerHTML = "📘 " + plan;
+
+document
+.getElementById("planList")
+.appendChild(li);
+
+input.value = "";
 
 }
   /* LOADER */
