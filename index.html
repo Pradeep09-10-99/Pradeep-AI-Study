@@ -1162,6 +1162,32 @@ Add Task
 </div>
 
 </section>
+  <!-- CERTIFICATE -->
+
+<section class="features">
+
+<h1 class="section-title">
+Certificate Generator
+</h1>
+
+<div class="login-box">
+
+<input
+type="text"
+id="certificateName"
+placeholder="Enter Your Name">
+
+<button onclick="generateCertificate()">
+Generate Certificate
+</button>
+
+<br><br>
+
+<h2 id="certificateOutput"></h2>
+
+</div>
+
+</section>  
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1500,6 +1526,23 @@ clearInterval(interval);
 },20);
 
 }
+ /* CERTIFICATE */
+
+function generateCertificate(){
+
+let name =
+document.getElementById("certificateName").value;
+
+if(name === "") return;
+
+document.getElementById(
+"certificateOutput"
+).innerHTML =
+
+"🏆 Certificate Awarded to <br><br>"
++ name;
+
+} 
   /* LOADER */
 
 window.addEventListener("load", function(){
