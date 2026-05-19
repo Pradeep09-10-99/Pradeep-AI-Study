@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -435,15 +435,14 @@ color:black;
 
 /* MOBILE */
 
-@media(max-width:768px){
-
-@media(max-width:768px){
+@media (max-width:768px){
 
 .menu-toggle{
 display:block;
 }
 
 nav{
+display:flex;
 flex-direction:row;
 justify-content:space-between;
 align-items:center;
@@ -475,24 +474,8 @@ text-align:center;
 .hero-image img{
 width:250px;
 margin-top:30px;
-}
-
-.hero-content h1{
-font-size:45px;
-}
-
-.hero-content h2{
-font-size:25px;
-}
-
-.hero-content p{
-font-size:18px;
-}
-
-.section-title{
-font-size:38px;
-}
-
+max-width:100%;
+height:auto;
 }
 
 .hero-content h1{
