@@ -445,7 +445,10 @@ font-size:35px;
 }
 
 .menu-toggle{
-display:block;
+display:none;
+font-size:30px;
+cursor:pointer;
+color:white;
 }
 
 nav{
@@ -686,7 +689,22 @@ display:flex;
 </div>
 
 <!-- NAVBAR -->
+<nav>
 
+<h2 class="logo">Pradeep AI Study</h2>
+
+<div class="menu-toggle" onclick="toggleMenu()">
+☰
+</div>
+
+<ul id="nav-links">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Courses</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+
+</nav>
 <nav>
 
 <div class="logo">
@@ -1960,6 +1978,13 @@ document.getElementById("studentEmail").innerHTML =
 });
 
 </script>
+<script>
 
+function toggleMenu(){
+document.getElementById("nav-links")
+.classList.toggle("active");
+}
+
+</script>
 </body>
 </html>
