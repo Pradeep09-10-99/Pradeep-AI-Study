@@ -238,9 +238,17 @@ padding:0 10px;
 }
 
 .logo{
+display:flex;
+align-items:center;
+gap:10px;
 font-size:28px;
 }
 
+.logo img{
+width:45px;
+height:45px;
+border-radius:50%;
+}
 body{
 overflow-x:hidden;
 }
@@ -701,7 +709,10 @@ display:flex;
 <!-- NAVBAR -->
 <nav>
 
-<h2 class="logo">Pradeep AI Study</h2>
+<h2 class="logo">
+<img src="logo.png">
+Pradeep AI Study
+</h2>
 
 <div class="menu-toggle" onclick="toggleMenu()">
 ☰
