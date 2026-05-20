@@ -12,7 +12,11 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 *{
 margin:0;
 padding:0;
@@ -434,8 +438,11 @@ color:black;
 }
 
 /* MOBILE */
-
 @media (max-width:768px){
+
+.logo{
+font-size:35px;
+}
 
 .menu-toggle{
 display:block;
@@ -443,55 +450,36 @@ display:block;
 
 nav{
 display:flex;
-flex-direction:row;
 justify-content:space-between;
 align-items:center;
+padding:15px;
 }
 
-#nav-links{
+nav ul{
 display:none;
 flex-direction:column;
-position:absolute;
-top:80px;
-right:20px;
+width:100%;
 background:#111827;
-width:220px;
+position:absolute;
+top:70px;
+left:0;
 padding:20px;
-border-radius:10px;
-text-align:center;
-gap:20px;
 }
 
-#nav-links.active{
+nav ul.active{
 display:flex;
 }
 
-.hero{
-flex-direction:column;
-text-align:center;
-}
-
-.hero-image img{
-width:250px;
-margin-top:30px;
-max-width:100%;
-height:auto;
+nav ul li{
+margin:10px 0;
 }
 
 .hero-content h1{
-font-size:45px;
+font-size:55px;
 }
 
-.hero-content h2{
-font-size:25px;
-}
-
-.hero-content p{
-font-size:18px;
-}
-
-.section-title{
-font-size:38px;
+body{
+overflow-x:hidden;
 }
 
 }
