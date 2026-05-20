@@ -685,19 +685,18 @@ display:flex;
 
 <!-- NAVBAR -->
 <nav>
-
-
+  
 <div class="menu-toggle" onclick="toggleMenu()">
 ☰
 </div>
 
 <ul id="nav-links">
 <li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Courses</a></li>
-<li><a href="#">Contact</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#login">Login</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
-
+  
 </nav>
 
 
@@ -732,8 +731,8 @@ Join Now
 
 <div class="hero-image">
 
-<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
-
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+alt="Student">
 </div>
 
 </section>
@@ -1964,11 +1963,14 @@ document.getElementById("studentEmail").innerHTML =
 "Welcome : " + user.email;
 
 }
+else{
+
+document.getElementById("studentEmail").innerHTML =
+"Login to see your profile";
+
+}
 
 });
-
-
-
 
 </script>
 </body>
