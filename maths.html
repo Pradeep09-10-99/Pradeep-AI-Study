@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths Preparation - Pradeep AI Study</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior:smooth; }
+        body { background:#0f172a; color:white; overflow-x:hidden; }
+        
+        /* NAVBAR */
+        nav { display:flex; justify-content:space-between; align-items:center; padding:15px 8%; background:rgba(15, 23, 42, 0.75); backdrop-filter:blur(12px); position:sticky; top:0; z-index:1000; border-bottom: 1px solid rgba(0, 255, 255, 0.15); }
+        .logo { font-size:28px; font-weight:bold; color:cyan; text-decoration:none; }
+        nav ul { display:flex; list-style:none; gap:25px; }
+        nav ul li a { text-decoration:none; color:white; transition:0.3s; font-size: 16px; }
+        nav ul li a:hover { color:cyan; }
+
+        /* SECTIONS */
+        section { padding:60px 8%; }
+        .section-title { text-align:center; font-size:40px; margin-bottom:20px; background: linear-gradient(135deg, #ffffff 40%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-subtitle { text-align:center; color:#94a3b8; margin-bottom:50px; font-size:18px; }
+
+        /* MATH GRID */
+        .math-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .math-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 255, 255, 0.1); border-radius: 16px; padding: 25px; text-align: left; height: 450px; display: flex; flex-direction: column; backdrop-filter: blur(10px); }
+        .math-box h3 { color: cyan; margin-bottom: 15px; border-bottom: 1px solid rgba(0,255,255,0.2); padding-bottom: 10px; text-align: center; font-size:22px; }
+        .math-list { font-size: 16px; line-net: 1.8; color: #cbd5e1; overflow-y: auto; flex-grow: 1; padding-right: 5px; }
+        .math-list span { font-weight: bold; color: white; display: inline-block; width: 80px; }
+        
+        /* SCROLLBAR */
+        .math-list::-webkit-scrollbar { width: 6px; }
+        .math-list::-webkit-scrollbar-thumb { background: cyan; border-radius: 10px; }
+
+        /* HOME BUTTON */
+        .btn-back { display: inline-block; padding: 10px 20px; background: cyan; color: #0f172a; text-decoration: none; font-weight: bold; border-radius: 8px; margin-bottom: 20px; transition: 0.3s; }
+        .btn-back:hover { transform: scale(1.05); box-shadow: 0 0 15px cyan; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">Pradeep AI Study</a>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#subjects">Subjects</a></li>
+    </ul>
+</nav>
+
+<section>
+    <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Main Website Pe Jayein</a>
+    <h1 class="section-title">Maths Calculation Booster</h1>
+    <p class="section-subtitle">NTPC, SSC aur baaki sabhi exams ke liye speed calculation sheets</p>
+    
+    <div class="math-grid">
+        <div class="math-box">
+            <h3>Multiplication Tables (1-30)</h3>
+            <div class="math-list" id="tables-container"></div>
+        </div>
+
+        <div class="math-box">
+            <h3>Squares (1-50)</h3>
+            <div class="math-list" id="squares-container" style="word-break: break-all; line-height: 2.5;"></div>
+        </div>
+
+        <div class="math-box">
+            <h3>Cubes (1-25)</h3>
+            <div class="math-list" id="cubes-container" style="word-break: break-all; line-height: 2.5;"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function generateMathData() {
+        // Tables Generator
+        let tablesHtml = "";
+        for (let i = 1; i <= 30; i++) {
+            let seq = [];
+            for (let j = 1; j <= 10; j++) { seq.push(i * j); }
+            tablesHtml += `<div><span>Table ${i}:</span> ${seq.join(", ")}</div>`;
+        }
+        document.getElementById("tables-container").innerHTML = tablesHtml;
+
+        // Squares Generator
+        let squaresSeq = [];
+        for (let i = 1; i <= 50; i++) { squaresSeq.push(i * i); }
+        document.getElementById("squares-container").innerHTML = `<div>${squaresSeq.join(", ")}</div>`;
+
+        // Cubes Generator
+        let cubesSeq = [];
+        for (let i = 1; i <= 25; i++) { cubesSeq.push(i * i * i); }
+        document.getElementById("cubes-container").innerHTML = `<div>${cubesSeq.join(", ")}</div>`;
+    }
+    window.addEventListener("DOMContentLoaded", generateMathData);
+</script>
+
+</body>
+</html>
