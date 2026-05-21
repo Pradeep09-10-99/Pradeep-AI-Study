@@ -240,12 +240,23 @@
 </section>
 
 <section id="chatbot">
-    <h1 class="section-title">AI Assistant</h1>
-    <div class="login-box" style="max-width: 700px; margin:auto;">
-        <input type="text" id="userQuestion" placeholder="Ask AI anything...">
-        <button onclick="askAI()">Ask AI</button>
-        <p id="aiAnswer" style="margin-top:20px; color:#94a3b8;">Answers will appear here...</p>
+    <h1 class="section-title">Pradeep AI Assistant</h1>
+    <div class="login-box" style="max-width: 750px; margin: auto; text-align: left; display: flex; flex-direction: column; height: 500px;">
+        
+        <div id="chatScreen" style="flex-grow: 1; overflow-y: auto; padding: 15px; background: rgba(15, 23, 42, 0.4); border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(0, 255, 255, 0.05);">
+            <div style="background: rgba(0, 252, 254, 0.1); border-left: 4px solid cyan; padding: 12px; border-radius: 8px; margin-bottom: 15px; color: #cbd5e1;">
+                🤖 <b>Pradeep AI:</b> Hello Pradeep Meena! Aap aaj AI, Coding, ya NTPC Exams ke baare mein kya poochna chahte hain?
+            </div>
+            <div id="chatHistory"></div>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="userQuestion" placeholder="Type your doubt here..." style="margin-bottom: 0; flex-grow: 1;">
+            <button onclick="askAIUpgrade()" style="width: 120px; margin-top: 0; background: cyan; color: #0f172a; font-weight: bold;">Ask AI</button>
+        </div>
+        
     </div>
+</section>
 </section>
 
 <section>
@@ -357,21 +368,73 @@
     }
 
     // AI CHATBOT
-    async function askAI() {
-        let q = document.getElementById("userQuestion").value;
-        let a = document.getElementById("aiAnswer");
-        if(!q) return; a.innerHTML = "Thinking...";
-        try {
-            const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                method: "POST",
-                headers: { "Authorization": "Bearer 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", "Content-Type": "application/json" },
-                body: JSON.stringify({ model: "openai/gpt-3.5-turbo", messages: [{role: "user", content: q}] })
-            });
-            const data = await res.json();
-            a.innerHTML = data.choices[0].message.content;
-        } catch(e) { a.innerHTML = "Error loading AI."; }
-    }
+  // UPGRADED AI CHATBOT LOGIC
+async function askAIUpgrade() {
+    let qInput = document.getElementById("userQuestion");
+    let chatHistory = document.getElementById("chatHistory");
+    let chatScreen = document.getElementById("chatScreen");
+    let question = qInput.value.trim();
 
+    if (!question) return;
+
+    // 1. User ka message screen par add karein
+    chatHistory.innerHTML += `
+        <div style="text-align: right; margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
+                <b>Aap:</b> ${question}
+            </div>
+        </div>`;
+    
+    qInput.value = ""; // Input clear karein
+    chatScreen.scrollTop = chatScreen.scrollHeight; // Auto scroll down
+
+    // 2. Loading State create karein
+    let loadingId = "loader_" + Date.now();
+    chatHistory.innerHTML += `
+        <div id="${loadingId}" style="margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
+                🤖 <b>AI:</b> Thinking... 🤔
+            </div>
+        </div>`;
+    chatScreen.scrollTop = chatScreen.scrollHeight;
+
+    try {
+        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: { 
+                "Authorization": "Bearer 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", 
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({ 
+                model: "openai/gpt-3.5-turbo", 
+                messages: [{role: "user", content: question}] 
+            })
+        });
+        
+        const data = await res.json();
+        let aiResponse = data.choices[0].message.content;
+
+        // Loader ko hata kar actual response set karein
+        document.getElementById(loadingId).remove();
+        chatHistory.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                    🤖 <b>AI:</b> ${aiResponse}
+                </div>
+            </div>`;
+
+    } catch(e) {
+        document.getElementById(loadingId).remove();
+        chatHistory.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(239, 68, 68, 0.1); padding: 10px 15px; border-radius: 12px; border: 1px solid #ef4444; color: #ef4444;">
+                    ❌ Server temporary busy hai. Kripya thodi der baad dobara koshish karein.
+                </div>
+            </div>`;
+    }
+    
+    chatScreen.scrollTop = chatScreen.scrollHeight; // Final scroll down
+}
     // TYPING SPEED
     function checkTypingSpeed() {
         let target = document.getElementById("typingText").innerText;
