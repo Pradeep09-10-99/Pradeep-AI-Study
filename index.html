@@ -202,26 +202,7 @@ nav {
         <div class="card"><h2>Science</h2><p>Physics, Chemistry & Biology Preparation.</p></div>
     </div>
 </section>
-<section id="math-prep" class="features">
-    <h1 class="section-title">Maths Calculation Booster</h1>
-    
-    <div class="math-grid">
-        <div class="math-box">
-            <h3>Multiplication Tables (1-30)</h3>
-            <div class="math-list" id="tables-container"></div>
-        </div>
 
-        <div class="math-box">
-            <h3>Squares (1-50)</h3>
-            <div class="math-list" id="squares-container"></div>
-        </div>
-
-        <div class="math-box">
-            <h3>Cubes (1-25)</h3>
-            <div class="math-list" id="cubes-container"></div>
-        </div>
-    </div>
-</section>
 <!-- STATS -->
 <section>
     <h1 class="section-title">Our Achievements</h1>
@@ -457,30 +438,7 @@ nav {
         if(user) status.innerHTML = "Welcome: " + user.email;
         else status.innerHTML = "Login to Dashboard";
     });
-    // Math Booster Sequences Generator
-function generateMathData() {
-    // 1. Tables (1-30) - Sequence Format
-    let tablesHtml = "";
-    for (let i = 1; i <= 30; i++) {
-        let seq = [];
-        for (let j = 1; j <= 10; j++) { seq.push(i * j); }
-        tablesHtml += `<div><span>Table ${i}:</span> ${seq.join(", ")}</div><br>`;
-    }
-    document.getElementById("tables-container").innerHTML = tablesHtml;
-
-    // 2. Squares (1-50) - Sequence Format
-    let squaresSeq = [];
-    for (let i = 1; i <= 50; i++) { squaresSeq.push(i * i); }
-    document.getElementById("squares-container").innerHTML = `<div>${squaresSeq.join(", ")}</div>`;
-
-    // 3. Cubes (1-25) - Sequence Format
-    let cubesSeq = [];
-    for (let i = 1; i <= 25; i++) { cubesSeq.push(i * i * i); }
-    document.getElementById("cubes-container").innerHTML = `<div>${cubesSeq.join(", ")}</div>`;
-}
-
-// Call on load
-window.addEventListener("DOMContentLoaded", generateMathData);
+  
 </script>
 </body>
 </html>
