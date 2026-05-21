@@ -6,218 +6,323 @@
     <title>Pradeep AI Study</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
-        body { background: #0f172a; color: white; overflow-x: hidden; transition: 0.3s; }
+        /* BASE STYLES */
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior:smooth; }
+        body { background:#0f172a; color:white; overflow-x:hidden; }
         
-        /* SCROLL PROGRESS BAR */
-        #progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 5px; background: cyan; z-index: 99999; }
+        #progress-bar { position:fixed; top:0; left:0; width:0%; height:5px; background:cyan; z-index:99999; }
+        #loader { position:fixed; width:100%; height:100vh; background:#0f172a; display:flex; justify-content:center; align-items:center; z-index:99999; flex-direction:column; }
+        #loader h1 { color:cyan; font-size:40px; animation:pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity:0.5; transform:scale(1); } 50% { opacity:1; transform:scale(1.1); } }
 
-        /* LOADER */
-        #loader { position: fixed; width: 100%; height: 100vh; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 100000; flex-direction: column; }
-        #loader h1 { color: cyan; font-size: 40px; animation: pulse 1.5s infinite; }
-
-        @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
-
-        /* BACKGROUND ANIMATION */
-        .bg-animation { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; overflow: hidden; }
-        .bg-animation span { position: absolute; display: block; width: 20px; height: 20px; background: rgba(0, 255, 255, 0.1); animation: move 25s linear infinite; bottom: -150px; border-radius: 50%; }
-        @keyframes move { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-1200px) rotate(720deg); opacity: 0; } }
+        /* BACKGROUND */
+        .bg-animation { position:fixed; width:100%; height:100%; top:0; left:0; z-index:-1; overflow:hidden; }
+        .bg-animation span { position:absolute; display:block; width:20px; height:20px; background:rgba(0,255,255,0.1); animation:move 25s linear infinite; bottom:-150px; border-radius:50%; }
+        @keyframes move { 0% { transform:translateY(0) rotate(0deg); opacity:1; } 100% { transform:translateY(-1200px) rotate(720deg); opacity:0; } }
 
         /* NAVBAR */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(17, 24, 39, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0, 255, 255, 0.1); }
-        .logo { font-size: 28px; font-weight: bold; color: cyan; text-decoration: none; }
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav ul li a { text-decoration: none; color: white; font-size: 17px; transition: 0.3s; }
-        nav ul li a:hover { color: cyan; }
-        .menu-toggle { display: none; font-size: 25px; color: cyan; cursor: pointer; }
+        nav { display:flex; justify:space-between; align-items:center; padding:15px 8%; background:rgba(17,24,39,0.9); backdrop-filter:blur(10px); position:sticky; top:0; z-index:1000; border-bottom: 1px solid rgba(0,255,255,0.1); }
+        .logo { font-size:28px; font-weight:bold; color:cyan; flex:1; }
+        nav ul { display:flex; list-style:none; gap:25px; }
+        nav ul li a { text-decoration:none; color:white; transition:0.3s; font-size: 16px; }
+        nav ul li a:hover { color:cyan; }
+        .menu-toggle { display:none; font-size:28px; color:cyan; cursor:pointer; }
 
-        /* HERO SECTION */
-        .hero { display: flex; justify-content: space-between; align-items: center; padding: 60px 8%; min-height: 90vh; flex-wrap: wrap; }
-        .hero-content { flex: 1; min-width: 300px; }
-        .hero-content h1 { font-size: 50px; margin-bottom: 10px; }
-        .hero-content h2 { font-size: 30px; color: cyan; min-height: 40px; margin-bottom: 20px; }
-        .hero-content p { font-size: 18px; color: #cbd5e1; line-height: 1.6; margin-bottom: 30px; }
-        .hero-btns { display: flex; gap: 15px; }
-        .hero-btns button { padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 16px; border: 2px solid cyan; }
-        .btn1 { background: cyan; color: #0f172a; }
-        .btn2 { background: transparent; color: cyan; }
-        .hero-btns button:hover { transform: translateY(-3px); box-shadow: 0 0 15px cyan; }
-        .hero-image { flex: 1; display: flex; justify-content: center; }
-        .hero-image img { width: 100%; max-width: 400px; filter: drop-shadow(0 0 20px cyan); animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        /* SECTIONS */
+        section { padding:80px 8%; }
+        .section-title { text-align:center; font-size:40px; margin-bottom:50px; color:cyan; }
 
-        /* COMMON SECTION STYLING */
-        section { padding: 80px 8%; }
-        .section-title { text-align: center; font-size: 35px; color: cyan; margin-bottom: 50px; }
-        .feature-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .feature-card, .login-box { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; transition: 0.3s; }
-        .feature-card:hover { border-color: cyan; transform: translateY(-10px); background: rgba(255, 255, 255, 0.08); }
-        .feature-card i { font-size: 40px; color: cyan; margin-bottom: 20px; }
+        /* HERO */
+        .hero { display:flex; align-items:center; justify-content:space-between; min-height:90vh; flex-wrap:wrap; }
+        .hero-content { flex:1; min-width:300px; }
+        .hero-content h1 { font-size:55px; line-height:1.1; margin-bottom:20px; }
+        .hero-content h2 { color:cyan; font-size:32px; min-height:40px; margin-bottom:20px; }
+        .hero-btns { display:flex; gap:15px; margin-top:30px; }
+        .btn1, .btn2 { padding:12px 30px; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.4s; border:2px solid cyan; }
+        .btn1 { background:cyan; color:#0f172a; }
+        .btn2 { background:transparent; color:cyan; }
+        .btn1:hover, .btn2:hover { transform:scale(1.05); box-shadow:0 0 15px cyan; }
+        .hero-image img { width:100%; max-width:400px; filter:drop-shadow(0 0 20px cyan); animation:float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-20px); } }
 
-        /* INPUTS & BUTTONS */
-        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: white; }
-        .login-box button { width: 100%; padding: 12px; background: cyan; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 5px; color: #0f172a; }
+        /* CARDS & BOXES */
+        .feature-container, .subject-box { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px; }
+        .feature-card, .card, .login-box { background:rgba(255,255,255,0.05); padding:30px; border-radius:20px; text-align:center; transition:0.4s; border:1px solid rgba(255,255,255,0.1); }
+        .feature-card:hover, .card:hover { transform:translateY(-10px); border-color:cyan; box-shadow:0 10px 20px rgba(0,255,255,0.1); }
+        .feature-card i { font-size:50px; color:cyan; margin-bottom:20px; }
 
-        /* MOBILE VIEW */
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav ul { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #111827; padding: 20px; }
-            nav ul.active { display: flex; }
-            .hero-content h1 { font-size: 35px; }
-            .hero { text-align: center; justify-content: center; }
-            .hero-btns { justify-content: center; }
+        /* FORMS & INPUTS */
+        input, textarea { width:100%; padding:14px; margin-bottom:15px; border-radius:10px; border:1px solid #334155; background:#1e293b; color:white; font-size:16px; }
+        .login-box button { width:100%; padding:14px; background:cyan; border:none; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px; color:#0f172a; }
+        
+        /* LISTS */
+        ul.list-style { text-align:left; list-style:none; margin-top:20px; }
+        ul.list-style li { background:rgba(255,255,255,0.1); padding:12px; margin-bottom:10px; border-radius:8px; border-left:4px solid cyan; }
+
+        /* FOOTER */
+        footer { background:#111827; padding:40px; text-align:center; border-top:1px solid rgba(0,255,255,0.1); }
+        .social-icons { margin-top:20px; font-size:25px; display:flex; justify-content:center; gap:20px; }
+        .social-icons i { color:cyan; cursor:pointer; transition:0.3s; }
+        .social-icons i:hover { transform:scale(1.2); }
+
+        /* MODE BTN */
+        .mode-btn { position:fixed; right:20px; bottom:20px; background:cyan; border:none; width:55px; height:55px; border-radius:50%; cursor:pointer; font-size:22px; z-index:1000; box-shadow:0 0 15px cyan; }
+        .light-mode { background:#f8fafc; color:#0f172a; }
+        .light-mode .feature-card, .light-mode .card, .light-mode .login-box { background:white; color:#0f172a; border:1px solid #e2e8f0; }
+
+        @media (max-width:768px) {
+            .menu-toggle { display:block; }
+            nav ul { display:none; flex-direction:column; position:absolute; top:70px; left:0; width:100%; background:#111827; padding:20px; border-bottom:1px solid cyan; }
+            nav ul.active { display:flex; }
+            .hero-content h1 { font-size:38px; }
+            section { padding:50px 5%; }
         }
-
-        /* DARK/LIGHT MODE */
-        .light-mode { background: #f1f5f9; color: #0f172a; }
-        .light-mode .feature-card, .light-mode .login-box { background: white; color: #0f172a; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .mode-btn { position: fixed; right: 20px; bottom: 20px; background: cyan; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 2000; font-size: 20px; }
     </style>
 </head>
 <body>
 
 <div id="progress-bar"></div>
 <div id="loader"><h1>Pradeep AI Study</h1></div>
+<div class="bg-animation"><span></span><span></span><span></span><span></span><span></span></div>
 
 <nav>
-    <a href="#" class="logo">Pradeep AI</a>
+    <div class="logo">Pradeep AI Study</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <ul id="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#features">Features</a></li>
+        <li><a href="#subjects">Subjects</a></li>
         <li><a href="#login">Login</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
     <div class="hero-content">
-        <h1>Welcome to Pradeep AI</h1>
+        <h1>Pradeep AI Study</h1>
         <h2 id="typing"></h2>
-        <p>Expert-led courses in AI, Web Development, and NTPC Exam preparation. Join thousands of students today.</p>
+        <p>Learn AI, Coding, Web Development, Programming and NTPC Preparation with our smart tools.</p>
         <div class="hero-btns">
             <button class="btn1">Start Learning</button>
-            <button class="btn2">Join Community</button>
+            <button class="btn2">Join Now</button>
         </div>
     </div>
     <div class="hero-image">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Study AI">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student">
     </div>
 </section>
 
-<section id="features" class="features">
-    <h1 class="section-title">Why Choose Us?</h1>
+<!-- SUBJECTS -->
+<section id="subjects">
+    <h1 class="section-title">Our Subjects</h1>
+    <div class="subject-box">
+        <div class="card"><h2>Mathematics</h2><p>Arithmetic, Algebra, Geometry & NTPC Specials.</p></div>
+        <div class="card"><h2>Reasoning</h2><p>Logical Puzzles, Coding-Decoding & Tricks.</p></div>
+        <div class="card"><h2>Science</h2><p>Physics, Chemistry & Biology Preparation.</p></div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section>
+    <h1 class="section-title">Our Achievements</h1>
     <div class="feature-container">
-        <div class="feature-card">
-            <i class="fa-solid fa-code"></i>
-            <h3>Coding</h3>
-            <p>From HTML to advanced Backend systems.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fa-solid fa-robot"></i>
-            <h3>AI Tools</h3>
-            <p>Master ChatGPT, Midjourney, and Automation.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <h3>NTPC Prep</h3>
-            <p>Complete guide for Railway and Competitive exams.</p>
-        </div>
+        <div class="feature-card"><h2 id="students">0</h2><p>Students</p></div>
+        <div class="feature-card"><h2 id="courses">0</h2><p>Courses</p></div>
+        <div class="feature-card"><h2 id="success">0%</h2><p>Success Rate</p></div>
     </div>
 </section>
 
+<!-- FEATURES -->
+<section id="features">
+    <h1 class="section-title">Website Features</h1>
+    <div class="feature-container">
+        <div class="feature-card"><i class="fa-solid fa-code"></i><h3>Web Dev</h3><p>HTML, CSS & JS.</p></div>
+        <div class="feature-card"><i class="fa-solid fa-robot"></i><h3>AI Learning</h3><p>Future Tech Tools.</p></div>
+        <div class="feature-card"><i class="fa-solid fa-clock"></i><h3>Study Timer</h3><p>Track your sessions.</p></div>
+    </div>
+</section>
+
+<!-- LOGIN -->
 <section id="login">
-    <h1 class="section-title">Student Portal</h1>
-    <div class="login-box" style="max-width: 400px; margin: auto;">
-        <h3 id="studentEmail" style="margin-bottom: 15px;">Login to your account</h3>
-        <input type="email" id="email" placeholder="Email Address">
+    <h1 class="section-title">Student Login</h1>
+    <div class="login-box" style="max-width: 450px; margin:auto;">
+        <h3 id="studentEmail">Login to Dashboard</h3><br>
+        <input type="email" id="email" placeholder="Email">
         <input type="password" id="password" placeholder="Password">
         <button onclick="window.login()">Login</button>
-        <button onclick="window.signup()" style="background: transparent; color: cyan; margin-top: 10px; border: 1px solid cyan;">Sign Up</button>
-        <button onclick="window.logout()" style="background: #ef4444; color: white; border:none; margin-top: 10px;">Logout</button>
+        <button onclick="window.signup()" style="background:transparent; color:cyan; border:1px solid cyan;">Sign Up</button>
+        <button onclick="window.logout()" style="background:#ef4444; color:white;">Logout</button>
     </div>
 </section>
 
-<section id="chatbot">
-    <h1 class="section-title">Ask Pradeep AI</h1>
-    <div class="login-box" style="max-width: 600px; margin: auto;">
-        <input type="text" id="userQuestion" placeholder="Type your doubt here...">
-        <button onclick="askAI()">Get Answer</button>
-        <p id="aiAnswer" style="margin-top: 20px; font-style: italic; color: #94a3b8;">AI will reply here...</p>
+<!-- TOOLS SECTION (Timer, ToDo, Quiz) -->
+<section>
+    <div class="feature-container">
+        <!-- Timer -->
+        <div class="login-box">
+            <h3>Study Timer</h3>
+            <h1 id="time" style="font-size: 40px; margin: 20px 0;">00:00:00</h1>
+            <button class="btn1" onclick="startTimer()">Start</button>
+            <button class="btn2" onclick="stopTimer()">Stop</button>
+        </div>
+        <!-- To Do -->
+        <div class="login-box">
+            <h3>Study Tasks</h3>
+            <input type="text" id="taskInput" placeholder="New Task">
+            <button onclick="addTask()">Add</button>
+            <ul id="taskList" class="list-style"></ul>
+        </div>
     </div>
 </section>
+
+<!-- AI CHATBOT -->
+<section id="chatbot">
+    <h1 class="section-title">AI Assistant</h1>
+    <div class="login-box" style="max-width: 700px; margin:auto;">
+        <input type="text" id="userQuestion" placeholder="Ask AI anything...">
+        <button onclick="askAI()">Ask AI</button>
+        <p id="aiAnswer" style="margin-top:20px; color:#94a3b8;">Answers will appear here...</p>
+    </div>
+</section>
+
+<!-- TYPING TEST -->
+<section>
+    <h1 class="section-title">Typing Speed Test</h1>
+    <div class="login-box" style="max-width: 700px; margin:auto;">
+        <p id="typingText" style="background:#0f172a; padding:15px; border-radius:10px; margin-bottom:15px;">Pradeep AI Study is the best place to learn coding and AI tools.</p>
+        <textarea id="typingInput" rows="4" placeholder="Start typing above text..."></textarea>
+        <button onclick="checkTypingSpeed()">Check Speed</button>
+        <h3 id="typingResult" style="margin-top:15px;"></h3>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h1 class="section-title">Contact Us</h1>
+    <form class="login-box" style="max-width: 700px; margin:auto;">
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+        <textarea rows="5" placeholder="Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <h3>© 2026 Pradeep AI Study | All Rights Reserved</h3>
+    <div class="social-icons">
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-github"></i>
+    </div>
+</footer>
 
 <button class="mode-btn" onclick="toggleMode()">🌓</button>
 
 <script>
-    // Loader
-    window.addEventListener("load", () => {
-        document.getElementById("loader").style.display = "none";
-    });
+    // LOADER
+    window.onload = () => document.getElementById("loader").style.display = "none";
 
-    // Scroll Progress
+    // MENU
+    function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
+
+    // MODE
+    function toggleMode() { document.body.classList.toggle("light-mode"); }
+
+    // SCROLL PROGRESS
     window.onscroll = () => {
         let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        document.getElementById("progress-bar").style.width = scrolled + "%";
+        document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
+        
+        // Trigger Stats Animation
+        if (winScroll > 800) startStats();
     };
 
-    // Typing Effect
-    const texts = ["Master Web Development", "Learn Artificial Intelligence", "Clear NTPC Exams"];
-    let count = 0, index = 0, isDeleting = false;
-    function type() {
-        const currentText = texts[count % texts.length];
-        if (isDeleting) {
-            index--;
-        } else {
-            index++;
-        }
-        document.getElementById("typing").innerHTML = currentText.substring(0, index);
+    // TYPING HERO
+    const texts = ["Learn Coding", "Master AI Tools", "NTPC Preparation"];
+    let tCount = 0, tIndex = 0, isDeleting = false;
+    function typeEffect() {
+        const current = texts[tCount % texts.length];
+        if (isDeleting) tIndex--; else tIndex++;
+        document.getElementById("typing").innerHTML = current.substring(0, tIndex);
         let speed = isDeleting ? 50 : 150;
-        if (!isDeleting && index === currentText.length) {
-            speed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && index === 0) {
-            isDeleting = false;
-            count++;
-            speed = 500;
-        }
-        setTimeout(type, speed);
+        if (!isDeleting && tIndex === current.length) { speed = 2000; isDeleting = true; }
+        else if (isDeleting && tIndex === 0) { isDeleting = false; tCount++; speed = 500; }
+        setTimeout(typeEffect, speed);
     }
-    type();
+    typeEffect();
 
-    // UI Functions
-    function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
-    function toggleMode() { document.body.classList.toggle("light-mode"); }
+    // STATS
+    let started = false;
+    function startStats() {
+        if (started) return;
+        started = true;
+        animateValue("students", 0, 500, 2000);
+        animateValue("courses", 0, 50, 2000);
+        animateValue("success", 0, 95, 2000, "%");
+    }
+    function animateValue(id, start, end, duration, suffix="") {
+        let obj = document.getElementById(id);
+        let range = end - start;
+        let startTime = new Date().getTime();
+        let timer = setInterval(() => {
+            let timePassed = new Date().getTime() - startTime;
+            let progress = Math.min(timePassed / duration, 1);
+            obj.innerHTML = Math.floor(progress * range + start) + suffix;
+            if (progress === 1) clearInterval(timer);
+        }, 10);
+    }
 
-    // AI Chatbot Logic
+    // TIMER
+    let timer, sec=0, min=0, hrs=0;
+    function startTimer() {
+        if(timer) return;
+        timer = setInterval(() => {
+            sec++; if(sec==60){sec=0; min++;} if(min==60){min=0; hrs++;}
+            document.getElementById("time").innerHTML = 
+                (hrs<10?'0'+hrs:hrs)+":"+(min<10?'0'+min:min)+":"+(sec<10?'0'+sec:sec);
+        }, 1000);
+    }
+    function stopTimer() { clearInterval(timer); timer=null; }
+
+    // TODO
+    function addTask() {
+        let input = document.getElementById("taskInput");
+        if (!input.value) return;
+        let li = document.createElement("li");
+        li.innerHTML = "✅ " + input.value;
+        document.getElementById("taskList").appendChild(li);
+        input.value = "";
+    }
+
+    // AI CHATBOT
     async function askAI() {
-        const question = document.getElementById("userQuestion").value;
-        const answer = document.getElementById("aiAnswer");
-        if (!question) return;
-        answer.innerText = "Thinking...";
+        let q = document.getElementById("userQuestion").value;
+        let a = document.getElementById("aiAnswer");
+        if(!q) return; a.innerHTML = "Thinking...";
         try {
-            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                 method: "POST",
-                headers: {
-                    "Authorization": "Bearer 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", // Apni Key yahan rakhein
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    model: "openai/gpt-3.5-turbo",
-                    messages: [{role: "user", content: question}]
-                })
+                headers: { "Authorization": "Bearer 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", "Content-Type": "application/json" },
+                body: JSON.stringify({ model: "openai/gpt-3.5-turbo", messages: [{role: "user", content: q}] })
             });
-            const data = await response.json();
-            answer.innerText = data.choices[0].message.content;
-        } catch (e) {
-            answer.innerText = "Error connecting to AI. Please try again.";
-        }
+            const data = await res.json();
+            a.innerHTML = data.choices[0].message.content;
+        } catch(e) { a.innerHTML = "Error loading AI."; }
+    }
+
+    // TYPING SPEED
+    function checkTypingSpeed() {
+        let target = document.getElementById("typingText").innerText;
+        let input = document.getElementById("typingInput").value;
+        let result = document.getElementById("typingResult");
+        if(target.trim() === input.trim()) result.innerHTML = "Perfect! 🚀 Speed: High";
+        else result.innerHTML = "Doesn't match. Try again! ❌";
     }
 </script>
 
-<!-- Firebase Module -->
+<!-- FIREBASE MODULE -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -234,34 +339,25 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Global binding for buttons
     window.signup = () => {
         const email = document.getElementById("email").value;
         const pass = document.getElementById("password").value;
-        createUserWithEmailAndPassword(auth, email, pass).then(() => alert("Signup Success!")).catch(e => alert(e.message));
+        createUserWithEmailAndPassword(auth, email, pass).then(() => alert("Signed Up!")).catch(e => alert(e.message));
     };
 
     window.login = () => {
         const email = document.getElementById("email").value;
         const pass = document.getElementById("password").value;
-        signInWithEmailAndPassword(auth, email, pass).then(() => alert("Welcome back!")).catch(e => alert(e.message));
+        signInWithEmailAndPassword(auth, email, pass).then(() => alert("Logged In!")).catch(e => alert(e.message));
     };
 
-    window.logout = () => {
-        signOut(auth).then(() => alert("Logged out.")).catch(e => alert(e.message));
-    };
+    window.logout = () => signOut(auth).then(() => alert("Logged Out!"));
 
     onAuthStateChanged(auth, (user) => {
         const status = document.getElementById("studentEmail");
-        if(user) {
-            status.innerHTML = "Welcome: " + user.email;
-            status.style.color = "cyan";
-        } else {
-            status.innerHTML = "Login to your account";
-            status.style.color = "white";
-        }
+        if(user) status.innerHTML = "Welcome: " + user.email;
+        else status.innerHTML = "Login to Dashboard";
     });
 </script>
-
 </body>
 </html>
