@@ -45,11 +45,26 @@
         .hero-image img { width:100%; max-width:400px; filter:drop-shadow(0 0 20px cyan); animation:float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-20px); } }
 
-        /* CARDS & BOXES */
-        .feature-container, .subject-box { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px; }
-        .feature-card, .card, .login-box { background:rgba(255,255,255,0.05); padding:30px; border-radius:20px; text-align:center; transition:0.4s; border:1px solid rgba(255,255,255,0.1); }
-        .feature-card:hover, .card:hover { transform:translateY(-10px); border-color:cyan; box-shadow:0 10px 20px rgba(0,255,255,0.1); }
-        .feature-card i { font-size:50px; color:cyan; margin-bottom:20px; }
+   
+       /* GLASSMORPHISM CARDS UPGRADE */
+.feature-card, .card, .login-box { 
+    background: rgba(255, 255, 255, 0.03); /* Ekdum halka transparent white */
+    padding: 30px; 
+    border-radius: 16px; 
+    text-align: center; 
+    transition: all 0.4s ease-in-out; 
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Bohot patli halke rang ki border */
+    backdrop-filter: blur(10px); /* Kaanch jaisa blur effect */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* HOVER EFFECT (MOUSE LE JAANE PAR CODES KA GLOW) */
+.feature-card:hover, .card:hover, .login-box:hover { 
+    transform: translateY(-8px); /* Card thoda upar uthega */
+    background: rgba(0, 252, 254, 0.05); /* Background mein halka cyan touch */
+    border-color: rgba(0, 252, 254, 0.4); /* Border cyan color ki ho jayegi */
+    box-shadow: 0 10px 25px rgba(0, 252, 254, 0.15); /* Soft cyan glow shadow */
+}
 
         /* FORMS & INPUTS */
         input, textarea { width:100%; padding:14px; margin-bottom:15px; border-radius:10px; border:1px solid #334155; background:#1e293b; color:white; font-size:16px; }
