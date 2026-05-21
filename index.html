@@ -366,29 +366,95 @@
         document.getElementById("taskList").appendChild(li);
         input.value = "";
     }
-// SMART BACKUP CHATBOT LOGIC (NO KEY REQUIRED - ALWAYS WORKS)
+// UPGRADED AI CHATBOT LOGIC (FIXED ASYNC ERROR)
 async function askAIUpgrade() {
     let qInput = document.getElementById("userQuestion");
     let chatHistory = document.getElementById("chatHistory");
     let chatScreen = document.getElementById("chatScreen");
-    let question = qInput.value.trim().toLowerCase();
+    let question = qInput.value.trim();
 
     if (!question) return;
 
-    // User message screen par add karein
+    // 1. User ka message screen par add karein
     chatHistory.innerHTML += `
         <div style="text-align: right; margin-bottom: 15px;">
             <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
-                <b>Aap:</b> ${qInput.value}
+                <b>Aap:</b> ${question}
             </div>
         </div>`;
     
-    qInput.value = ""; 
+    qInput.value = ""; // Input clear karein
+    chatScreen.scrollTop = chatScreen.scrollHeight; // Auto scroll down
+
+    // 2. Loading State create karein
+    let loadingId = "loader_" + Date.now();
+    chatHistory.innerHTML += `
+        <div id="${loadingId}" style="margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
+                🤖 <b>AI:</b> Thinking... 🤔
+            </div>
+        </div>`;
     chatScreen.scrollTop = chatScreen.scrollHeight;
 
-    // AI dynamic response setup
-    let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
+    try {
+        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: { 
+                "Authorization": "Bearer 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", 
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({ 
+                model: "openai/gpt-3.5-turbo", 
+                messages: [{role: "user", content: question}] 
+            })
+        });
+        
+        const data = await res.json();
+        
+        // Agar API key sahi hai aur response aaya hai
+        if (data.choices && data.choices[0]) {
+            let aiResponse = data.choices[0].message.content;
+            document.getElementById(loadingId).remove();
+            chatHistory.innerHTML += `
+                <div style="margin-bottom: 15px;">
+                    <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                        🤖 <b>AI:</b> ${aiResponse}
+                    </div>
+                </div>`;
+        } else {
+            // Agar API Key block ho chuki hai ya credits khatam hain
+            throw new Error("API Limit");
+        }
+
+    } catch(e) {
+        document.getElementById(loadingId).remove();
+        
+        // BACKUP CHATBOT RESPONSE (Agar Internet/Key kaam na kare toh ye automatic chalega)
+        let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
+        let lowQuestion = question.toLowerCase();
+        
+        if(lowQuestion.includes("html")) {
+            aiResponse = "HTML (HyperText Markup Language) web pages ka structure banane ke liye use hoti hai. Isme tags (jaise &lt;div&gt;, &lt;p&gt;) ka use hota hai.";
+        } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
+            aiResponse = "RRB NTPC preparation ke liye aapko Mathematics, General Reasoning, aur General Awareness par zyada dhyan dena chahiye. Sahi strategy ke liye hamara Subjects section check karein!";
+        } else if(lowQuestion.includes("css")) {
+            aiResponse = "CSS (Cascading Style Sheets) web pages ko design aur sundar banane ke liye use hoti hai. Jaise humne apni website par Glassmorphism aur Neon Glow lagaya hai!";
+        } else if(lowQuestion.includes("javascript") || lowQuestion.includes("js")) {
+            aiResponse = "JavaScript ek programming language hai jo website ko interactive banati hai, jaise ye chat system, study timer aur quiz jo humne abhi banaya hai!";
+        } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi")) {
+            aiResponse = "Hello Pradeep Meena! Main Pradeep AI hoon. Aaj aap mujhse kya seekhna chahte hain?";
+        }
+
+        chatHistory.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                    🤖 <b>AI (Smart Assistant):</b> ${aiResponse}
+                </div>
+            </div>`;
+    }
     
+    chatScreen.scrollTop = chatScreen.scrollHeight; // Final scroll down
+}
     // NTPC & Coding Smart Keywords Checking
     if(question.includes("html")) {
         aiResponse = "HTML (HyperText Markup Language) web pages ka structure banane ke liye use hoti hai. Isme tags (jaise &lt;div&gt;, &lt;p&gt;) ka use hota hai.";
