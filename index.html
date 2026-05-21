@@ -366,16 +366,63 @@
         document.getElementById("taskList").appendChild(li);
         input.value = "";
     }
-
-    // AI CHATBOT
-  // UPGRADED AI CHATBOT LOGIC
+// SMART BACKUP CHATBOT LOGIC (NO KEY REQUIRED - ALWAYS WORKS)
 async function askAIUpgrade() {
     let qInput = document.getElementById("userQuestion");
     let chatHistory = document.getElementById("chatHistory");
     let chatScreen = document.getElementById("chatScreen");
-    let question = qInput.value.trim();
+    let question = qInput.value.trim().toLowerCase();
 
     if (!question) return;
+
+    // User message screen par add karein
+    chatHistory.innerHTML += `
+        <div style="text-align: right; margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
+                <b>Aap:</b> ${qInput.value}
+            </div>
+        </div>`;
+    
+    qInput.value = ""; 
+    chatScreen.scrollTop = chatScreen.scrollHeight;
+
+    // AI dynamic response setup
+    let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
+    
+    // NTPC & Coding Smart Keywords Checking
+    if(question.includes("html")) {
+        aiResponse = "HTML (HyperText Markup Language) web pages ka structure banane ke liye use hoti hai. Isme tags (jaise &lt;div&gt;, &lt;p&gt;) ka use hota hai.";
+    } else if(question.includes("ntpc") || question.includes("railway") || question.includes("exam")) {
+        aiResponse = "RRB NTPC preparation ke liye aapko Mathematics, General Reasoning, aur General Awareness (Current Affairs + Science) par zyada dhyan dena chahiye. Sahi strategy ke liye hamara Subjects section check karein!";
+    } else if(question.includes("css")) {
+        aiResponse = "CSS (Cascading Style Sheets) web pages ko design aur sundar banane ke liye use hoti hai. Jaise humne apni website par Glassmorphism aur Neon Glow lagaya hai!";
+    } else if(question.includes("javascript") || question.includes("js")) {
+        aiResponse = "JavaScript ek programming language hai jo website ko interactive banati hai, jaise ye chat system, study timer aur quiz jo humne abhi banaya hai!";
+    } else if(question.includes("hello") || question.includes("hi")) {
+        aiResponse = "Hello Pradeep Meena! Main Pradeep AI hoon. Aaj aap mujhse kya seekhna chahte hain?";
+    }
+
+    // Thinking loader simulation
+    let loadingId = "loader_" + Date.now();
+    chatHistory.innerHTML += `
+        <div id="${loadingId}" style="margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
+                🤖 <b>AI:</b> Typing... ✍️
+            </div>
+        </div>`;
+    chatScreen.scrollTop = chatScreen.scrollHeight;
+
+    setTimeout(() => {
+        document.getElementById(loadingId).remove();
+        chatHistory.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                    🤖 <b>AI:</b> ${aiResponse}
+                </div>
+            </div>`;
+        chatScreen.scrollTop = chatScreen.scrollHeight;
+    }, 800);
+}
 
     // 1. User ka message screen par add karein
     chatHistory.innerHTML += `
