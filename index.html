@@ -255,6 +255,32 @@ nav {
         </div>
     </div>
 </section>
+    <section class="features" id="quiz">
+    <h1 class="section-title">Online Practice Quiz</h1>
+    
+    <div class="login-box" style="max-width: 600px; margin: auto; text-align: left;">
+        <h2 style="text-align: center; margin-bottom: 20px; font-size: 28px;">HTML Quiz</h2>
+        
+        <p style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">
+            Q1. HTML ka full form kya hota hai?
+        </p>
+        
+        <label style="display: block; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+            <input type="radio" name="q1" value="a" style="width: auto; margin-right: 10px; margin-bottom: 0;"> Hyper Text Markup Language
+        </label>
+        
+        <label style="display: block; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 20px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+            <input type="radio" name="q1" value="b" style="width: auto; margin-right: 10px; margin-bottom: 0;"> High Transfer Machine Language
+        </label>
+        
+        <button onclick="checkQuizUpgrade()" style="margin-top: 10px;">Submit Quiz</button>
+        
+        <div id="quizResultUpgrade" style="margin-top: 20px; padding: 15px; border-radius: 10px; display: none;">
+            <h3 id="resultTitle" style="margin-bottom: 5px;"></h3>
+            <p id="resultExplain" style="color: #cbd5e1; font-size: 15px; line-height: 1.5;"></p>
+        </div>
+    </div>
+</section>
 
 <!-- AI CHATBOT -->
 <section id="chatbot">
@@ -438,6 +464,35 @@ nav {
         if(user) status.innerHTML = "Welcome: " + user.email;
         else status.innerHTML = "Login to Dashboard";
     });
+    /* UPGRADED QUIZ SYSTEM WITH EXPLANATION */
+function checkQuizUpgrade() {
+    let answer = document.querySelector('input[name="q1"]:checked');
+    let resultBox = document.getElementById("quizResultUpgrade");
+    let resultTitle = document.getElementById("resultTitle");
+    let resultExplain = document.getElementById("resultExplain");
+
+    if (answer == null) {
+        alert("Please select an answer first!");
+        return;
+    }
+
+    // Show result box
+    resultBox.style.display = "block";
+
+    if (answer.value == "a") {
+        resultBox.style.background = "rgba(34, 197, 94, 0.15)"; // Green background
+        resultBox.style.border = "1px solid #22c55e";
+        resultTitle.innerHTML = "Correct Answer 🎉";
+        resultTitle.style.color = "#22c55e";
+        resultExplain.innerHTML = "<b>Explanation:</b> HTML ka upyog web pages banane ke liye kiya jata hai. Yeh ek Markup Language hai jo web browsers ko batati hai ki content ko screen par kaise dikhana hai.";
+    } else {
+        resultBox.style.background = "rgba(239, 68, 68, 0.15)"; // Red background
+        resultBox.style.border = "1px solid #ef4444";
+        resultTitle.innerHTML = "Wrong Answer ❌";
+        resultTitle.style.color = "#ef4444";
+        resultExplain.innerHTML = "<b>Explanation:</b> Sahi jawab Option (A) hai. High Transfer Machine Language jaisa koi term coding mein nahi hota hai.";
+    }
+}
   
 </script>
 </body>
