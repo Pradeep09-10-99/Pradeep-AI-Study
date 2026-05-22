@@ -482,13 +482,12 @@ async function askAIUpgrade() {
         document.getElementById(loadingId).remove();
         chatHistory.innerHTML += `
             <div style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                    🤖 <b>AI:</b> ${aiResponse}
-                </div>
-            </div>`;
+               <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                🤖 <b>AI:</b> ${aiResponse}
+            </div>
+        </div>`;
         chatScreen.scrollTop = chatScreen.scrollHeight;
     }, 800);
-}
 
     // 1. User ka message screen par add karein
     chatHistory.innerHTML += `
@@ -497,6 +496,9 @@ async function askAIUpgrade() {
                 <b>Aap:</b> ${question}
             </div>
         </div>`;
+    
+    qInput.value = ""; // Input clear karein
+    chatScreen.scrollTop = chatScreen.scrollHeight; // Auto scroll down
     
     qInput.value = ""; // Input clear karein
     chatScreen.scrollTop = chatScreen.scrollHeight; // Auto scroll down
