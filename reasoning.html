@@ -17,18 +17,28 @@
 
         .container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
         
-        .topics-box, .quiz-box { 
+        .topics-box { 
             background: rgba(255, 255, 255, 0.03); 
             padding: 30px; 
             border-radius: 16px; 
             border: 1px solid rgba(255, 255, 255, 0.08); 
             backdrop-filter: blur(10px);
             flex: 1;
-            min-width: 320px;
+            min-width: 300px;
+            max-height: 450px;
+        }
+        .quiz-container { flex: 2; min-width: 350px; display: flex; flex-direction: column; gap: 25px; }
+
+        .quiz-box { 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 30px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(10px);
         }
 
         ul.topics-list { list-style: none; }
-        ul.topics-list li { background: rgba(255,255,255,0.05); padding: 14px; margin-bottom: 12px; border-radius: 8px; border-left: 4px solid cyan; font-weight: 500; }
+        ul.topics-list li { background: rgba(255,255,255,0.05); padding: 12px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid cyan; font-weight: 500; }
 
         label { display: block; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 12px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
         label:hover { background: rgba(0, 252, 254, 0.05); border-color: rgba(0, 252, 254, 0.3); }
@@ -37,7 +47,7 @@
         button { width: 100%; padding: 14px; background: cyan; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; color: #0f172a; margin-top: 15px; transition: 0.4s; }
         button:hover { transform: scale(1.02); box-shadow: 0 0 15px cyan; }
 
-        #quizResult { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; line-height: 1.5; }
+        .quiz-result { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -45,60 +55,94 @@
 <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 
 <h1>Logical Reasoning</h1>
-<p class="subtitle">NTPC Special Puzzles, Coding-Decoding aur Mental Ability Tests.</p>
+<p class="subtitle">NTPC, Group D aur Railway Exams ke liye Top 5 Logical Questions.</p>
 
 <div class="container">
     <div class="topics-box">
-        <h2 style="color: cyan; margin-bottom: 20px;"><i class="fa-solid fa-brain"></i> Important Topics</h2>
+        <h2 style="color: cyan; margin-bottom: 20px;"><i class="fa-solid fa-brain"></i> Reasoning Syllabus</h2>
         <ul class="topics-list">
             <li>🧩 Coding - Decoding</li>
-            <li>👥 Blood Relations (Rakt Sambandh)</li>
-            <li>🔄 Syllogism (Kathan va Nishkarsh)</li>
+            <li>👥 Blood Relations (रक्त संबंध)</li>
+            <li>🔄 Syllogism (कथन व निष्कर्ष)</li>
             <li>🔢 Number & Alphabet Series</li>
             <li>🧭 Direction Sense Test</li>
         </ul>
     </div>
 
-    <div class="quiz-box">
-        <h2 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-pen-to-square"></i> Live Practice Question</h2>
-        <p style="font-size: 17px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Q. Agar ek khaas code me 'CHAIR' ko 'EJCKT' likha jata hai, toh 'LIGHT' ko kya likha jayega?</p>
+    <div class="quiz-container">
         
-        <label><input type="radio" name="r1" value="w1"> NKIGV</label>
-        <label><input type="radio" name="r1" value="c"> NKIJV</label>
-        <label><input type="radio" name="r1" value="w2"> MKIJV</label>
-        
-        <button onclick="checkReasoningQuiz()">Submit Answer</button>
-        
-        <div id="quizResult">
-            <h3 id="resTitle" style="margin-bottom: 5px;"></h3>
-            <p id="resExplain"></p>
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q1. Coding - Decoding</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Agar ek khaas code me 'CHAIR' ko 'EJCKT' likha jata hai, toh 'LIGHT' ko kya likha jayega?</p>
+            <label><input type="radio" name="q1" value="w1"> NKIGV</label>
+            <label><input type="radio" name="q1" value="c"> NKIJV</label>
+            <label><input type="radio" name="q1" value="w2"> MKIJV</label>
+            <button onclick="checkAnswer('q1', 'c', '<b>Sahi Jawab! 🎉</b><br>Explanation: Yahan har letter me <b>+2</b> forward shifting ho rahi hai (C+2=E, H+2=J...). Isi tarah L+2=N, I+2=K, G+2=I, H+2=J, T+2=V. Toh sahi answer NKIJV hoga.')">Submit Answer</button>
+            <div id="q1-result" class="quiz-result"></div>
         </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q2. Blood Relation (रक्त संबंध)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Ek ladke ki tasveer ki or ishara karte hue Suresh ne kaha, "Yeh mere dada ji ke iklote bete ka beta hai." Suresh ka us ladke se kya sambandh hai?</p>
+            <label><input type="radio" name="q2" value="c"> Bhai (Brother)</label>
+            <label><input type="radio" name="q2" value="w1"> Chacha (Uncle)</label>
+            <label><input type="radio" name="q2" value="w2"> Mera beta (Son)</label>
+            <button onclick="checkAnswer('q2', 'c', '<b>Sahi Jawab! 🎉</b><br>Explanation: Suresh ke dada ji ka iklota beta = Suresh ke pita ji. Aur pita ji ka beta = Suresh ka bhai. Isliye wo Suresh ka bhai hai.')">Submit Answer</button>
+            <div id="q2-result" class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q3. Number Series (संख्या श्रृंखला)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Is series ka agla pad kya hoga? <br><span style="color: cyan; font-size: 18px;">2, 6, 12, 20, 30, ?</span></p>
+            <label><input type="radio" name="q3" value="w1"> 40</label>
+            <label><input type="radio" name="q3" value="c"> 42</label>
+            <label><input type="radio" name="q3" value="w2"> 45</label>
+            <button onclick="checkAnswer('q3', 'c', '<b>Sahi Jawab! 🎉</b><br>Explanation: Gap pattern check karein:<br>2 (+4) = 6<br>6 (+6) = 12<br>12 (+8) = 20<br>20 (+10) = 30<br>Toh agla gap +12 ka hoga: 30 + 12 = 42.')">Submit Answer</button>
+            <div id="q3-result" class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q4. Direction Sense (दिशा परीक्षण)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Rohan uttar (North) ki or 10 km chalta hai, fir wo apne daayein (Right) mudta hai aur 5 km chalta hai. Ab wo kis disha me ja raha hai?</p>
+            <label><input type="radio" name="q4" value="w1"> West (पश्चिम)</label>
+            <label><input type="radio" name="q4" value="w2"> North (उत्तर)</label>
+            <label><input type="radio" name="q4" value="c"> East (पूर्व)</label>
+            <button onclick="checkAnswer('q4', 'c', '<b>Sahi Jawab! 🎉</b><br>Explanation: North disha me jaate waqt jab koi Right mudta hai, toh wo hamesha East (East) disha ki taraf face karta hai.')">Submit Answer</button>
+            <div id="q4-result" class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q5. Wrong Number Find (गलत संख्या पहचानें)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Niche di gayi series me kaun si sankhya galat (Wrong) hai?<br><span style="color: cyan; font-size: 18px;">4, 9, 16, 25, 35, 49</span></p>
+            <label><input type="radio" name="q5" value="c"> 35</label>
+            <label><input type="radio" name="q5" value="w1"> 16</label>
+            <label><input type="radio" name="q5" value="w2"> 25</label>
+            <button onclick="checkAnswer('q5', 'c', '<b>Sahi Jawab! 🎉</b><br>Explanation: Yeh saari sankhyayein perfect squares hain:<br>2²=4, 3²=9, 4²=16, 5²=25, 7²=49. Lekin beech me 6² = 36 hona chahiye tha, par 35 likha hai. Isliye 35 galat pad hai.')">Submit Answer</button>
+            <div id="q5-result" class="quiz-result"></div>
+        </div>
+
     </div>
 </div>
 
 <script>
-    function checkReasoningQuiz() {
-        let answer = document.querySelector('input[name="r1"]:checked');
-        let resultBox = document.getElementById("quizResult");
-        let resTitle = document.getElementById("resTitle");
-        let resExplain = document.getElementById("resExplain");
+    function checkAnswer(qName, correctValue, explanation) {
+        let answer = document.querySelector(`input[name="${qName}"]:checked`);
+        let resultBox = document.getElementById(`${qName}-result`);
 
-        if (!answer) { alert("Please select an option first!"); return; }
+        if (!answer) { alert("Kripya pehle ek option select karein!"); return; }
 
         resultBox.style.display = "block";
 
-        if (answer.value === "c") {
+        if (answer.value === correctValue) {
             resultBox.style.background = "rgba(34, 197, 94, 0.15)";
             resultBox.style.border = "1px solid #22c55e";
-            resTitle.innerHTML = "Sahi Jawab! 🎉";
-            resTitle.style.color = "#22c55e";
-            resExplain.innerHTML = "<b>Explanation:</b> Yahan har letter me <b>+2</b> forward shifting ho rahi hai. (C+2=E, H+2=J...). ISI tarah L+2=N, I+2=K, G+2=I, H+2=J, T+2=V. Toh sahi answer <b>NKIJV</b> hoga.";
+            resultBox.style.color = "#22c55e";
+            resultBox.innerHTML = explanation;
         } else {
             resultBox.style.background = "rgba(239, 68, 68, 0.15)";
             resultBox.style.border = "1px solid #ef4444";
-            resTitle.innerHTML = "Galat Jawab! ❌";
-            resTitle.style.color = "#ef4444";
-            resExplain.innerHTML = "<b>Explanation:</b> Sahi jawab Option (B) NKIJV hai. Pattern ko dhyan se dekhein, har alpha-character me 2 steps aage badhna hai.";
+            resultBox.style.color = "#ef4444";
+            resultBox.innerHTML = "<b>Galat Uttar! ❌</b><br>Dobara koshish karein.<br>" + explanation;
         }
     }
 </script>
