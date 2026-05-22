@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Science - Pradeep AI Study</title>
+    <title>General Science Practice - Pradeep AI Study</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior:smooth; }
@@ -17,18 +17,28 @@
 
         .container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
         
-        .topics-box, .quiz-box { 
+        .topics-box { 
             background: rgba(255, 255, 255, 0.03); 
             padding: 30px; 
             border-radius: 16px; 
             border: 1px solid rgba(255, 255, 255, 0.08); 
             backdrop-filter: blur(10px);
             flex: 1;
-            min-width: 320px;
+            min-width: 300px;
+            max-height: 450px;
+        }
+        .quiz-container { flex: 2; min-width: 350px; display: flex; flex-direction: column; gap: 25px; }
+
+        .quiz-box { 
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 30px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(10px);
         }
 
         ul.topics-list { list-style: none; }
-        ul.topics-list li { background: rgba(255,255,255,0.05); padding: 14px; margin-bottom: 12px; border-radius: 8px; border-left: 4px solid #38bdf8; font-weight: 500; }
+        ul.topics-list li { background: rgba(255,255,255,0.05); padding: 12px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid cyan; font-weight: 500; }
         ul.topics-list span { color: cyan; font-size: 13px; display: block; margin-top: 4px; }
 
         label { display: block; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 12px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
@@ -38,7 +48,7 @@
         button { width: 100%; padding: 14px; background: cyan; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; color: #0f172a; margin-top: 15px; transition: 0.4s; }
         button:hover { transform: scale(1.02); box-shadow: 0 0 15px cyan; }
 
-        #quizResult { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; line-height: 1.5; }
+        .quiz-result { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -46,58 +56,92 @@
 <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 
 <h1>General Science</h1>
-<p class="subtitle">RRB NTPC Exams ke liye Physics, Chemistry aur Biology ke core concepts.</p>
+<p class="subtitle">RRB NTPC, Group D Exams ke liye special Physics, Chemistry aur Biology questions.</p>
 
 <div class="container">
     <div class="topics-box">
-        <h2 style="color: cyan; margin-bottom: 20px;"><i class="fa-solid fa-flask"></i> Subject Categories</h2>
+        <h2 style="color: cyan; margin-bottom: 20px;"><i class="fa-solid fa-flask"></i> Science Categories</h2>
         <ul class="topics-list">
             <li>🧲 Physics <span>Units, Motion, Light & Electricity</span></li>
-            <li>🧪 Chemistry <span>Periodic Table, Acids & Bases, Reactions</span></li>
-            <li>🧬 Biology <span>Human Body Systems, Vitamins, Plant Anatomy</span></li>
+            <li>🧪 Chemistry <span>Periodic Table, Acid-Base, Metal-Nonmetal</span></li>
+            <li>🧬 Biology <span>Human Body, Vitamins, Nutrition & Health</span></li>
         </ul>
     </div>
 
-    <div class="quiz-box">
-        <h2 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-vial"></i> Science Quiz</h2>
-        <p style="font-size: 17px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Q. Kiske karan tamatar (Tomato) ka rang laal hota hai?</p>
+    <div class="quiz-container">
         
-        <label><input type="radio" name="s1" value="w1"> Capsaicin</label>
-        <label><input type="radio" name="s1" value="c"> Lycopene</label>
-        <label><input type="radio" name="s1" value="w2"> Melanin</label>
-        
-        <button onclick="checkScienceQuiz()">Submit Answer</button>
-        
-        <div id="quizResult">
-            <h3 id="resTitle" style="margin-bottom: 5px;"></h3>
-            <p id="resExplain"></p>
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q1. Biology (जीव विज्ञान)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Kiske karan tamatar (Tomato) ka rang laal hota hai?</p>
+            <label><input type="radio" name="q1" value="w1"> Capsaicin</label>
+            <label><input type="radio" name="q1" value="c"> Lycopene</label>
+            <label><input type="radio" name="q1" value="w2"> Melanin</label>
+            <button onclick="checkAnswer('q1', 'c', '<b>Sahi Uttar! 🎉</b><br>Explanation: Tamatar ka laal rang <b>Lycopene</b> namak carotenoid pigment ke karan hota hai. Capsaicin se mirch me teekhapan hota hai aur Melanin se body skin ka color decide hota hai.')">Submit Answer</button>
+            <div id="q1-result" class="quiz-result"></div>
         </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q2. Physics (भौतिक विज्ञान)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Vidyut Dhara (Electric Current) ko maapne (measure) ke liye kis instrument ka use kiya jata hai?</p>
+            <label><input type="radio" name="q2" value="c"> Ammeter</label>
+            <label><input type="radio" name="q2" value="w1"> Voltmeter</label>
+            <label><input type="radio" name="q2" value="w2"> Galvanometer</label>
+            <button onclick="checkAnswer('q2', 'c', '<b>Sahi Uttar! 🎉</b><br>Explanation: Electric current ko maapne ke liye <b>Ammeter</b> ka upyog kiya jata hai, jabki Voltmeter ka use Potential Difference (Vibhantar) maapne ke liye hota hai.')">Submit Answer</button>
+            <div id="q2-result" class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q3. Chemistry (रसायन विज्ञान)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Amla (Gooseberry) me kaun sa acid (अम्ल) paaya jata hai?</p>
+            <label><input type="radio" name="q3" value="w1"> Citric Acid</label>
+            <label><input type="radio" name="q3" value="w2"> Tartaric Acid</label>
+            <label><input type="radio" name="q3" value="c"> Ascorbic Acid (Vitamin C)</label>
+            <button onclick="checkAnswer('q3', 'c', '<b>Sahi Uttar! 🎉</b><br>Explanation: Amla me bharpoor matra me Vitamin C paaya jata hai jiska rasayanik naam <b>Ascorbic Acid</b> hai. Nimbu aur santre me Citric acid hota hai.')">Submit Answer</button>
+            <div id="q3-result" class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q4. Biology (विटामिन और रोग)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Kiski kami ke karan 'Rataundhi' (Night Blindness) namak beemari hoti hai?</p>
+            <label><input type="radio" name="q4" value="c"> Vitamin A</label>
+            <label><input type="radio" name="q4" value="w1"> Vitamin B</label>
+            <label><input type="radio" name="q4" value="w2"> Vitamin C</label>
+            <button onclick="checkAnswer('q4', 'c', '<b>Sahi Uttar! 🎉</b><br>Explanation: <b>Vitamin A</b> (Retinol) ki kami se aankhon ki roshni kamzor hoti hai aur Rataundhi rog hota hai. Gajar iska sabse bada source hai.')">Submit Answer</button>
+            <div id="q4-result" class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-box">
+            <h3 style="color: cyan; margin-bottom: 15px;">Q5. Physics (ध्वनि तरंगें)</h3>
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Dhvani ki chaal (Speed of Sound) sabse zyada kis medium (माध्यम) me hoti hai?</p>
+            <label><input type="radio" name="q5" value="c"> Solid (ठोस/Ispat)</label>
+            <label><input type="radio" name="q5" value="w1"> Liquid (द्रव/Paani)</label>
+            <label><input type="radio" name="q5" value="w2"> Gas (हवा)</label>
+            <button onclick="checkAnswer('q5', 'c', '<b>Sahi Uttar! 🎉</b><br>Explanation: Sound waves ko chalne ke liye medium ki zaroorat hoti hai. Inki speed sabse zyada <b>Solids (jaise Steel/Ispat)</b> me, usse kam Liquids me aur sabse kam Gases me hoti hai. Vacuum (Nirvat) me sound travel nahi kar sakti.')">Submit Answer</button>
+            <div id="q5-result" class="quiz-result"></div>
+        </div>
+
     </div>
 </div>
 
 <script>
-    function checkScienceQuiz() {
-        let answer = document.querySelector('input[name="s1"]:checked');
-        let resultBox = document.getElementById("quizResult");
-        let resTitle = document.getElementById("resTitle");
-        let resExplain = document.getElementById("resExplain");
+    function checkAnswer(qName, correctValue, explanation) {
+        let answer = document.querySelector(`input[name="${qName}"]:checked`);
+        let resultBox = document.getElementById(`${qName}-result`);
 
-        if (!answer) { alert("Please select an option first!"); return; }
+        if (!answer) { alert("Kripya pehle ek option select karein!"); return; }
 
         resultBox.style.display = "block";
 
-        if (answer.value === "c") {
+        if (answer.value === correctValue) {
             resultBox.style.background = "rgba(34, 197, 94, 0.15)";
             resultBox.style.border = "1px solid #22c55e";
-            resTitle.innerHTML = "Sahi Uttar! 🎉";
-            resTitle.style.color = "#22c55e";
-            resExplain.innerHTML = "<b>Explanation:</b> Tamatar ka laal rang <b>Lycopene</b> namak carotenoid pigment ke karan hota hai. Yeh ek powerful antioxidant hai.";
+            resultBox.style.color = "#22c55e";
+            resultBox.innerHTML = explanation;
         } else {
             resultBox.style.background = "rgba(239, 68, 68, 0.15)";
             resultBox.style.border = "1px solid #ef4444";
-            resTitle.innerHTML = "Galat Uttar! ❌";
-            resTitle.style.color = "#ef4444";
-            resExplain.innerHTML = "<b>Explanation:</b> Sahi jawab <b>Lycopene</b> hai. Capsaicin ke karan mirch me teekhapan hota hai, aur Melanin se human skin ka color decide hota hai.";
+            resultBox.style.color = "#ef4444";
+            resultBox.innerHTML = "<b>Galat Uttar! ❌</b><br>Sahi logic samjhein.<br>" + explanation;
         }
     }
 </script>
