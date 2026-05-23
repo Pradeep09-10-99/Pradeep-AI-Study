@@ -186,22 +186,13 @@
     </div>
 </a>
 </section>
-
-<section>
+    
+  <section>
     <h1 class="section-title">Our Achievements</h1>
     <div class="feature-container">
         <div class="feature-card"><h2 id="students">0</h2><p>Students</p></div>
         <div class="feature-card"><h2 id="courses">0</h2><p>Courses</p></div>
         <div class="feature-card"><h2 id="success">0%</h2><p>Success Rate</p></div>
-    </div>
-</section>
-
-<section id="features">
-    <h1 class="section-title">Website Features</h1>
-    <div class="feature-container">
-        <div class="feature-card"><i class="fa-solid fa-code"></i><h3>Web Dev</h3><p>HTML, CSS & JS.</p></div>
-        <div class="feature-card"><i class="fa-solid fa-robot"></i><h3>AI Learning</h3><p>Future Tech Tools.</p></div>
-        <div class="feature-card"><i class="fa-solid fa-clock"></i><h3>Study Timer</h3><p>Track your sessions.</p></div>
     </div>
 </section>
 
@@ -230,42 +221,73 @@
         </div>
     </div>
 </section>
-<section>
-    <div class="feature-container">
-        <div class="login-box">
-            <h3>Study Timer</h3>
-            <h1 id="time" style="font-size: 40px; margin: 20px 0;">00:00:00</h1>
-            <button class="btn1" onclick="startTimer()">Start</button>
-            <button class="btn2" onclick="stopTimer()">Stop</button>
-        </div>
-        <div class="login-box">
-            <h3>Study Tasks</h3>
-            <input type="text" id="taskInput" placeholder="New Task">
-            <button onclick="addTask()">Add</button>
-            <ul id="taskList" class="list-style"></ul>
+
+<section id="features">
+    <h1 class="section-title">Web Development Corner</h1>
+    <div class="feature-container" style="justify-content: center;">
+        <div class="feature-card" style="max-width: 400px;">
+            <i class="fa-solid fa-code" style="color: cyan; font-size: 45px; margin-bottom: 15px;"></i>
+            <h3>Web Development Notes</h3>
+            <p style="color: #cbd5e1; margin-top: 10px;">HTML, CSS, aur JavaScript ke basic se lekar advanced tak ke core concepts aur short tricks.</p>
+            <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Coming Soon 🚀</span>
         </div>
     </div>
 </section>
 
-<section class="features" id="quiz">
-    <h1 class="section-title">Online Practice Quiz</h1>
-    <div class="login-box" style="max-width: 600px; margin: auto; text-align: left;">
-        <h2 style="text-align: center; margin-bottom: 20px; font-size: 28px;">HTML Quiz</h2>
-        <p style="font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #cbd5e1;">Q1. HTML ka full form kya hota hai?</p>
+<section id="ntpc-portal" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); border-bottom: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
+    <h1 class="section-title"><i class="fa-solid fa-graduation-cap" style="color: cyan;"></i> NTPC Exam Special Dashboard</h1>
+    
+    <div class="feature-container" style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap;">
         
-        <label style="display: block; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
-            <input type="radio" name="q1" value="a" style="width: auto; margin-right: 10px; margin-bottom: 0;"> Hyper Text Markup Language
-        </label>
-        <label style="display: block; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 20px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
-            <input type="radio" name="q1" value="b" style="width: auto; margin-right: 10px; margin-bottom: 0;"> High Transfer Machine Language
-        </label>
-        
-        <button onclick="checkQuizUpgrade()" style="margin-top: 10px;">Submit Quiz</button>
-        
-        <div id="quizResultUpgrade" style="margin-top: 20px; padding: 15px; border-radius: 10px; display: none;">
-            <h3 id="resultTitle" style="margin-bottom: 5px;"></h3>
-            <p id="resultExplain" style="color: #cbd5e1; font-size: 15px; line-height: 1.5;"></p>
+        <div class="login-box" style="flex: 1; min-width: 320px; text-align: left;">
+            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-pen-to-square"></i> Online Practice Quiz</h3>
+            <p style="font-size: 15px; font-weight: bold; margin-bottom: 12px; color: #cbd5e1;">Q. HTML ka full form kya hota hai?</p>
+            
+            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 8px; cursor: pointer;">
+                <input type="radio" name="q1" value="a" style="width: auto; margin-right: 10px;"> Hyper Text Markup Language
+            </label>
+            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 15px; cursor: pointer;">
+                <input type="radio" name="q1" value="b" style="width: auto; margin-right: 10px;"> High Transfer Machine Language
+            </label>
+            
+            <button onclick="checkQuizUpgrade()" style="padding: 10px; margin-top: 5px;">Submit Quiz</button>
+            
+            <div id="quizResultUpgrade" style="margin-top: 15px; padding: 12px; border-radius: 8px; display: none; font-size: 14px;">
+                <h4 id="resultTitle" style="margin-bottom: 5px;"></h4>
+                <p id="resultExplain" style="color: #cbd5e1; line-height: 1.4;"></p>
+            </div>
         </div>
+
+        <div class="login-box" style="flex: 1; min-width: 320px;">
+            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-keyboard"></i> Typing Speed Test</h3>
+            <p id="typingText" style="background:#0f172a; padding:10px; border-radius:8px; margin-bottom:12px; font-size: 14px;">Pradeep AI Study is the best place to learn coding and AI tools.</p>
+            <textarea id="typingInput" rows="3" placeholder="Upar diye gaye text ko same type karein..." style="font-size: 14px; padding: 10px;"></textarea>
+            <button onclick="checkTypingSpeed()" style="padding: 10px;">Check Speed</button>
+            <h4 id="typingResult" style="margin-top:12px; color: cyan;"></h4>
+        </div>
+
+    </div>
+
+    <div class="feature-container" style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin-top: 25px;">
+        
+        <div class="login-box" style="flex: 1; min-width: 320px;">
+            <h3 style="color: cyan;"><i class="fa-solid fa-stopwatch"></i> Study Timer</h3>
+            <h1 id="time" style="font-size: 38px; margin: 15px 0; font-family: monospace; letter-spacing: 2px;">00:00:00</h1>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn1" onclick="startTimer()" style="margin-top:0; padding: 10px; flex: 1;">Start</button>
+                <button class="btn2" onclick="stopTimer()" style="margin-top:0; padding: 10px; border: 2px solid #ef4444; color: #ef4444; flex: 1;">Stop</button>
+            </div>
+        </div>
+
+        <div class="login-box" style="flex: 1; min-width: 320px;">
+            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-list-check"></i> Study Tasks (To-Do)</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                <input type="text" id="taskInput" placeholder="New Task..." style="margin-bottom: 0; padding: 10px;">
+                <button onclick="addTask()" style="width: 80px; margin-top: 0; padding: 10px;">Add</button>
+            </div>
+            <ul id="taskList" class="list-style" style="margin-top: 0; max-height: 120px; overflow-y: auto;"></ul>
+        </div>
+
     </div>
 </section>
 
@@ -287,17 +309,6 @@
         
     </div>
 </section>
-
-<section>
-    <h1 class="section-title">Typing Speed Test</h1>
-    <div class="login-box" style="max-width: 700px; margin:auto;">
-        <p id="typingText" style="background:#0f172a; padding:15px; border-radius:10px; margin-bottom:15px;">Pradeep AI Study is the best place to learn coding and AI tools.</p>
-        <textarea id="typingInput" rows="4" placeholder="Start typing above text..."></textarea>
-        <button onclick="checkTypingSpeed()">Check Speed</button>
-        <h3 id="typingResult" style="margin-top:15px;"></h3>
-    </div>
-</section>
-
 <section id="contact">
     <h1 class="section-title">Get In Touch</h1>
     <form class="login-box" action="https://formspree.io/f/https://formspree.io/f/xnjrvjaa" method="POST" style="max-width: 600px; margin:auto; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
