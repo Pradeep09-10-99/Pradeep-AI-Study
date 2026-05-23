@@ -26,7 +26,7 @@
         .bg-animation span { position:absolute; display:block; width:20px; height:20px; background:rgba(0,255,255,0.1); animation:move 25s linear infinite; bottom:-150px; border-radius:50%; }
         @keyframes move { 0% { transform:translateY(0) rotate(0deg); opacity:1; } 100% { transform:translateY(-1200px) rotate(720deg); opacity:0; } }
 
-        /* NAVBAR UPGRADE */
+        /* NAVBAR */
         nav { 
             display: flex; 
             justify-content: space-between; 
@@ -45,13 +45,12 @@
         nav ul li a { text-decoration:none; color:white; transition:0.3s; font-size: 16px; }
         nav ul li a:hover { color:cyan; }
         .menu-toggle { display:none; font-size:28px; color:cyan; cursor:pointer; }
-        <li><a href="#videos">Videos</a></li>
 
         /* SECTIONS */
         section { padding:80px 8%; }
         .section-title { text-align:center; font-size:40px; margin-bottom:50px; color:cyan; }
 
-        /* HERO H1 GRADIENT EFFECT */
+        /* HERO */
         .hero { display:flex; align-items:center; justify-content:space-between; min-height:90vh; flex-wrap:wrap; }
         .hero-content { flex:1; min-width:300px; }
         .hero-content h1 { 
@@ -72,7 +71,7 @@
         .hero-image img { width: 350px; height: 350px; border-radius: 50%; object-fit: cover; border: 4px solid cyan; filter: drop-shadow(0 0 20px cyan); display: block; animation:float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-20px); } }
 
-        /* GLASSMORPHISM CARDS UPGRADE */
+        /* GLASSMORPHISM CARDS */
         .feature-card, .card, .login-box { 
             background: rgba(255, 255, 255, 0.03); 
             padding: 30px; 
@@ -96,11 +95,12 @@
 
         /* FORMS & INPUTS */
         input, textarea { width:100%; padding:14px; margin-bottom:15px; border-radius:10px; border:1px solid #334155; background:#1e293b; color:white; font-size:16px; }
-        .login-box button { width:100%; padding:14px; background:cyan; border:none; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px; color:#0f172a; }
+        button { cursor: pointer; transition: 0.3s; }
+        .login-box button { width:100%; padding:14px; background:cyan; border:none; border-radius:10px; font-weight:bold; margin-top:10px; color:#0f172a; }
         
         /* LISTS */
         ul.list-style { text-align:left; list-style:none; margin-top:20px; }
-        ul.list-style li { background:rgba(255,255,255,0.1); padding:12px; margin-bottom:10px; border-radius:8px; border-left:4px solid cyan; }
+        ul.list-style li { background:rgba(255,255,255,0.05); padding:12px; margin-bottom:10px; border-radius:8px; border-left:4px solid cyan; }
 
         /* FOOTER */
         footer { background:#111827; padding:40px; text-align:center; border-top:1px solid rgba(0,255,255,0.1); }
@@ -117,12 +117,7 @@
             .menu-toggle { display:block; }
             nav ul { display:none; flex-direction:column; position:absolute; top:70px; left:0; width:100%; background:#111827; padding:20px; border-bottom:1px solid cyan; }
             nav ul.active { display:flex; }
-            .hero-content h1 { 
-                font-size:38px; 
-                background: linear-gradient(135deg, #ffffff 40%, #00f2fe 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
+            .hero-content h1 { font-size:38px; }
             section { padding:50px 5%; }
         }
     </style>
@@ -138,9 +133,11 @@
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <ul id="nav-links">
         <li><a href="#">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#subjects">Subjects</a></li>
+        <li><a href="#ntpc-portal">NTPC Dashboard</a></li>
+        <li><a href="#features">Web Corner</a></li>
         <li><a href="#login">Login</a></li>
+        <li><a href="#chatbot">AI Assistant</a></li>
+        <li><a href="#videos">Videos</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
@@ -151,8 +148,8 @@
         <h2 id="typing"></h2>
         <p>Learn AI, Coding, Web Development, Programming and NTPC Preparation with our smart tools.</p>
         <div class="hero-btns">
-            <button class="btn1">Start Learning</button>
-            <button class="btn2">Join Now</button>
+            <button class="btn1" onclick="location.href='#ntpc-portal'">Start Learning</button>
+            <button class="btn2" onclick="location.href='#login'">Join Now</button>
         </div>
     </div>
     <div class="hero-image">
@@ -161,7 +158,7 @@
 </section>
 
 <section id="subjects">
-    <h1 class="section-title">Our Subjects</h1>
+    <h1 class="section-title">Practice Subjects</h1>
     <div class="subject-box">
         <a href="maths.html" style="text-decoration: none; color: inherit;">
             <div class="card">
@@ -170,23 +167,23 @@
                 <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Click to Practice 🚀</span>
             </div>
         </a>
-       <a href="reasoning.html" style="text-decoration: none; color: inherit;">
-    <div class="card">
-        <h2>Reasoning</h2>
-        <p>Logical Puzzles, Coding-Decoding & Tricks.</p>
-        <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Click to Practice 🚀</span>
+        <a href="reasoning.html" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <h2>Reasoning</h2>
+                <p>Logical Puzzles, Coding-Decoding & Tricks.</p>
+                <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Click to Practice 🚀</span>
+            </div>
+        </a>
+        <a href="science.html" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <h2>Science</h2>
+                <p>Physics, Chemistry & Biology Preparation.</p>
+                <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Click to Practice 🚀</span>
+            </div>
+        </a>
     </div>
-</a>
-
-<a href="science.html" style="text-decoration: none; color: inherit;">
-    <div class="card">
-        <h2>Science</h2>
-        <p>Physics, Chemistry & Biology Preparation.</p>
-        <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Click to Practice 🚀</span>
-    </div>
-</a>
 </section>
-    
+
 <section>
     <h1 class="section-title">Our Achievements</h1>
     <div class="feature-container">
@@ -195,6 +192,7 @@
         <div class="feature-card"><h2 id="success">0%</h2><p>Success Rate</p></div>
     </div>
 </section>
+
 <section id="login">
     <h1 class="section-title">Student Portal</h1>
     <div class="login-box" style="max-width: 450px; margin:auto; border: 1px solid rgba(0, 252, 254, 0.3); box-shadow: 0 0 20px rgba(0, 252, 254, 0.1);">
@@ -204,96 +202,103 @@
         
         <div style="text-align: left; position: relative;">
             <span style="position: absolute; left: 15px; top: 15px; color: cyan;"><i class="fa-solid fa-envelope"></i></span>
-            <input type="email" id="loginEmail" placeholder="Email Address" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white; width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); padding: 12px 12px 12px 45px; margin-bottom: 15px;">
+            <input type="email" id="loginEmail" placeholder="Email Address" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white;">
         </div>
         
         <div style="text-align: left; position: relative;">
             <span style="position: absolute; left: 15px; top: 15px; color: cyan;"><i class="fa-solid fa-lock"></i></span>
-            <input type="password" id="loginPassword" placeholder="Password" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white; width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); padding: 12px 12px 12px 45px; margin-bottom: 20px;">
+            <input type="password" id="loginPassword" placeholder="Password" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white;">
         </div>
         
-        <button onclick="handleLogin()" style="background: cyan; color: #0f172a; font-weight: bold; font-size: 16px; width: 100%; padding: 12px; border-radius: 8px; border: none; cursor: pointer;">Sign In <i class="fa-solid fa-right-to-bracket"></i></button>
+        <button id="btn-login" style="background: cyan; color: #0f172a; font-weight: bold; font-size: 16px;">Sign In <i class="fa-solid fa-right-to-bracket"></i></button>
         
         <div style="display: flex; gap: 10px; margin-top: 15px;">
-            <button onclick="handleSignup()" style="background:transparent; color:cyan; border:1px solid cyan; padding: 10px; border-radius: 8px; cursor: pointer; flex: 1;">Create Account</button>
-            <button onclick="handleLogout()" style="background:#ef4444; color:white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; flex: 1;">Logout</button>
+            <button id="btn-signup" style="background:transparent; color:cyan; border:1px solid cyan; margin-top:0; flex: 1;">Create Account</button>
+            <button id="btn-logout" style="background:#ef4444; color:white; margin-top:0; flex: 1;">Logout</button>
         </div>
     </div>
 </section>
 
-<script>
-// Naye distinct functions bina window override ke
-function handleSignup() {
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
+<section id="ntpc-portal" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
+    <h1 class="section-title"><i class="fa-solid fa-graduation-cap" style="color: cyan;"></i> NTPC Exam Special Dashboard</h1>
+    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Railway NTPC exam crack karne ke liye daily focus aur target tools.</p>
+    
+    <div class="feature-container">
+        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px;">
+            <h3 style="color: cyan;"><i class="fa-solid fa-stopwatch"></i> Study Timer</h3>
+            <p style="color: #cbd5e1; font-size: 14px; margin-top: 5px;">Apna focus level badhane ke liye session track karein.</p>
+            <h1 id="time" style="font-size: 42px; margin: 20px 0; font-family: monospace; letter-spacing: 2px; color: white;">00:00:00</h1>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn1" onclick="startTimer()" style="margin-top:0; padding: 12px; flex: 1;">Start Focus</button>
+                <button class="btn2" onclick="stopTimer()" style="margin-top:0; padding: 12px; border: 2px solid #ef4444; color: #ef4444; background: transparent; flex: 1;">Stop</button>
+            </div>
+        </div>
 
-    if (!email || !password) {
-        alert("Kripya Email aur Password dono bharein!");
-        return;
-    }
+        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px; text-align: left;">
+            <h3 style="color: cyan; margin-bottom: 5px;"><i class="fa-solid fa-list-check"></i> Study Tasks (To-Do)</h3>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 15px;">Aaj aapko kaun-kaun se topics padhne hain?</p>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <input type="text" id="taskInput" placeholder="E.g., Math Percentage Revision..." style="margin-bottom: 0; padding: 12px;">
+                <button onclick="addTask()" style="width: 90px; margin-top: 0; padding: 12px; background: cyan; color:#0f172a; border:none; border-radius:10px; font-weight:bold;">Add</button>
+            </div>
+            <ul id="taskList" class="list-style" style="margin-top: 0; max-height: 150px; overflow-y: auto;"></ul>
+        </div>
+    </div>
+</section>
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        alert("Account successfully bana diya gaya hai! 🎉");
-        document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
-    })
-    .catch((error) => {
-        alert("Signup Error: " + error.message);
-    });
-}
+<section id="features" style="background: rgba(0, 252, 254, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); border-bottom: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
+    <h1 class="section-title"><i class="fa-solid fa-code" style="color: cyan;"></i> Web Development Corner</h1>
+    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Coding seekhein aur apni programming speed ko build karein.</p>
+    
+    <div class="feature-container">
+        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px; text-align: left;">
+            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-pen-to-square"></i> Online Practice Quiz</h3>
+            <p style="font-size: 15px; font-weight: bold; margin-bottom: 12px; color: #cbd5e1;">Q. HTML ka full form kya hota hai?</p>
+            
+            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 8px; cursor: pointer;">
+                <input type="radio" name="q1" value="a" style="width: auto; margin-right: 10px;"> Hyper Text Markup Language
+            </label>
+            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 15px; cursor: pointer;">
+                <input type="radio" name="q1" value="b" style="width: auto; margin-right: 10px;"> High Transfer Machine Language
+            </label>
+            
+            <button onclick="checkQuizUpgrade()" style="padding: 12px; margin-top: 5px; background:cyan; color:#0f172a; border:none; border-radius:10px; font-weight:bold; width:100%;">Submit Quiz</button>
+            
+            <div id="quizResultUpgrade" style="margin-top: 15px; padding: 12px; border-radius: 8px; display: none; font-size: 14px;">
+                <h4 id="resultTitle" style="margin-bottom: 5px;"></h4>
+                <p id="resultExplain" style="color: #cbd5e1; line-height: 1.4;"></p>
+            </div>
+        </div>
 
-function handleLogin() {
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-
-    if (!email || !password) {
-        alert("Kripya Email aur Password dono bharein!");
-        return;
-    }
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        alert("Login Successful! Welcome back. 🚀");
-        document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
-    })
-    .catch((error) => {
-        alert("Login Error: " + error.message);
-    });
-}
-
-function handleLogout() {
-    firebase.auth().signOut().then(() => {
-        alert("Logged Out Successfully.");
-        document.getElementById('studentEmail').innerText = "Login to Dashboard";
-        document.getElementById('loginEmail').value = "";
-        document.getElementById('loginPassword').value = "";
-    }).catch((error) => {
-        alert("Logout Error: " + error.message);
-    });
-}
-</script>
+        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px;">
+            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-keyboard"></i> Typing Speed Test</h3>
+            <p id="typingText" style="background:#0f172a; padding:12px; border-radius:8px; margin-bottom:12px; font-size: 14px; color: #cbd5e1; text-align: left;">Pradeep AI Study is the best place to learn coding and AI tools.</p>
+            <textarea id="typingInput" rows="3" placeholder="Upar diye gaye text ko same type karein..." style="font-size: 14px; padding: 12px; margin-bottom: 10px;"></textarea>
+            <button onclick="checkTypingSpeed()" style="padding: 12px; background:cyan; color:#0f172a; border:none; border-radius:10px; font-weight:bold; width:100%;">Check Speed</button>
+            <h4 id="typingResult" style="margin-top:12px; color: cyan;"></h4>
+        </div>
+    </div>
+</section>
 
 <section id="chatbot">
     <h1 class="section-title">Pradeep AI Assistant</h1>
     <div class="login-box" style="max-width: 750px; margin: auto; text-align: left; display: flex; flex-direction: column; height: 500px;">
-        
         <div id="chatScreen" style="flex-grow: 1; overflow-y: auto; padding: 15px; background: rgba(15, 23, 42, 0.4); border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(0, 255, 255, 0.05);">
             <div style="background: rgba(0, 252, 254, 0.1); border-left: 4px solid cyan; padding: 12px; border-radius: 8px; margin-bottom: 15px; color: #cbd5e1;">
                 🤖 <b>Pradeep AI:</b> Hello Pradeep Meena! Aap aaj AI, Coding, ya NTPC Exams ke baare mein kya poochna chahte hain?
             </div>
             <div id="chatHistory"></div>
         </div>
-
         <div style="display: flex; gap: 10px;">
             <input type="text" id="userQuestion" placeholder="Type your doubt here..." style="margin-bottom: 0; flex-grow: 1;">
             <button onclick="askAIUpgrade()" style="width: 120px; margin-top: 0; background: cyan; color: #0f172a; font-weight: bold;">Ask AI</button>
         </div>
-        
     </div>
 </section>
+
 <section id="contact">
     <h1 class="section-title">Get In Touch</h1>
-    <form class="login-box" action="https://formspree.io/f/https://formspree.io/f/xnjrvjaa" method="POST" style="max-width: 600px; margin:auto; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
+    <form class="login-box" action="https://formspree.io/f/xnjrvjaa" method="POST" style="max-width: 600px; margin:auto; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
         <h3 style="color: cyan; margin-bottom: 15px; text-align: center;">Koi doubt ya suggestion hai? Message bhejein</h3>
         
         <label style="background: transparent; padding: 0; border: none; margin-bottom: 5px; color: #cbd5e1; font-size: 14px;">Aapka Naam:</label>
@@ -305,10 +310,11 @@ function handleLogout() {
         <label style="background: transparent; padding: 0; border: none; margin-bottom: 5px; color: #cbd5e1; font-size: 14px;">Message:</label>
         <textarea name="message" rows="5" placeholder="Type your doubt or message here..." required></textarea>
         
-        <button type="submit" style="font-size: 16px;">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+        <button type="submit" style="font-size: 16px; background:cyan; color:#0f172a; font-weight:bold; width:100%; padding:12px; border:none; border-radius:10px;">Send Message <i class="fa-solid fa-paper-plane"></i></button>
     </form>
 </section>
-    <section id="videos">
+
+<section id="videos">
     <h1 class="section-title">Video Lectures</h1>
     <div class="feature-container">
         <div class="login-box" style="max-width: 340px; padding: 15px;">
@@ -340,26 +346,17 @@ function handleLogout() {
 <button class="mode-btn" onclick="toggleMode()">🌓</button>
 
 <script>
-    // LOADER
     window.onload = () => document.getElementById("loader").style.display = "none";
-
-    // MENU
     function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
-
-    // MODE
     function toggleMode() { document.body.classList.toggle("light-mode"); }
 
-    // SCROLL PROGRESS
     window.onscroll = () => {
         let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-        
-        // Trigger Stats Animation
         if (winScroll > 800) startStats();
     };
 
-    // TYPING HERO
     const texts = ["Learn Coding", "Master AI Tools", "NTPC Preparation"];
     let tCount = 0, tIndex = 0, isDeleting = false;
     function typeEffect() {
@@ -373,7 +370,6 @@ function handleLogout() {
     }
     typeEffect();
 
-    // STATS
     let started = false;
     function startStats() {
         if (started) return;
@@ -395,7 +391,6 @@ function handleLogout() {
         }, 10);
     }
 
-    // TIMER
     let timer, sec=0, min=0, hrs=0;
     function startTimer() {
         if(timer) return;
@@ -407,7 +402,6 @@ function handleLogout() {
     }
     function stopTimer() { clearInterval(timer); timer=null; }
 
-    // TODO
     function addTask() {
         let input = document.getElementById("taskInput");
         if (!input.value) return;
@@ -417,34 +411,19 @@ function handleLogout() {
         input.value = "";
     }
 
-    // UPGRADED AI CHATBOT LOGIC
     async function askAIUpgrade() {
         let qInput = document.getElementById("userQuestion");
         let chatHistory = document.getElementById("chatHistory");
         let chatScreen = document.getElementById("chatScreen");
         let question = qInput.value.trim();
-
         if (!question) return;
 
-        // 1. User ka message screen par add karein
-        chatHistory.innerHTML += `
-            <div style="text-align: right; margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
-                    <b>Aap:</b> ${question}
-                </div>
-            </div>`;
-        
-        qInput.value = ""; // Input clear karein
-        chatScreen.scrollTop = chatScreen.scrollHeight; // Auto scroll down
+        chatHistory.innerHTML += `<div style="text-align: right; margin-bottom: 15px;"><div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);"><b>Aap:</b> ${question}</div></div>`;
+        qInput.value = ""; 
+        chatScreen.scrollTop = chatScreen.scrollHeight;
 
-        // 2. Loading State create karein
         let loadingId = "loader_" + Date.now();
-        chatHistory.innerHTML += `
-            <div id="${loadingId}" style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
-                    🤖 <b>AI:</b> Thinking... 🤔
-                </div>
-            </div>`;
+        chatHistory.innerHTML += `<div id="${loadingId}" style="margin-bottom: 15px;"><div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">🤖 <b>AI:</b> Thinking... 🤔</div></div>`;
         chatScreen.scrollTop = chatScreen.scrollHeight;
 
         try {
@@ -454,60 +433,26 @@ function handleLogout() {
                     "Authorization": "Bearer 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", 
                     "Content-Type": "application/json" 
                 },
-                body: JSON.stringify({ 
-                    model: "openai/gpt-3.5-turbo", 
-                    messages: [{role: "user", content: question}] 
-                })
+                body: JSON.stringify({ model: "openai/gpt-3.5-turbo", messages: [{role: "user", content: question}] })
             });
-            
             const data = await res.json();
-            
             if (data.choices && data.choices[0]) {
                 let aiResponse = data.choices[0].message.content;
                 document.getElementById(loadingId).remove();
-                chatHistory.innerHTML += `
-                    <div style="margin-bottom: 15px;">
-                        <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                            🤖 <b>AI:</b> ${aiResponse}
-                        </div>
-                    </div>`;
-            } else {
-                throw new Error("API Limit");
-            }
-
+                chatHistory.innerHTML += `<div style="margin-bottom: 15px;"><div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">🤖 <b>AI:</b> ${aiResponse}</div></div>`;
+            } else { throw new Error("API Limit"); }
         } catch(e) {
-            if(document.getElementById(loadingId)) {
-                document.getElementById(loadingId).remove();
-            }
-            
-            // BACKUP CHATBOT RESPONSE
+            if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
             let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
             let lowQuestion = question.toLowerCase();
+            if(lowQuestion.includes("html")) aiResponse = "HTML (HyperText Markup Language) web pages ka structure banane ke liye use hoti hai.";
+            else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway")) aiResponse = "NTPC ke liye Math, Reasoning aur GK strong karein!";
             
-            if(lowQuestion.includes("html")) {
-                aiResponse = "HTML (HyperText Markup Language) web pages ka structure banane ke liye use hoti hai. Isme tags (jaise &lt;div&gt;, &lt;p&gt;) ka use hota hai.";
-            } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
-                aiResponse = "RRB NTPC preparation ke liye aapko Mathematics, General Reasoning, aur General Awareness par zyada dhyan dena chahiye. Sahi strategy ke liye hamara Subjects section check karein!";
-            } else if(lowQuestion.includes("css")) {
-                aiResponse = "CSS (Cascading Style Sheets) web pages ko design aur sundar banane ke liye use hoti hai. Jaise humne apni website par Glassmorphism aur Neon Glow lagaya hai!";
-            } else if(lowQuestion.includes("javascript") || lowQuestion.includes("js")) {
-                aiResponse = "JavaScript ek programming language hai jo website ko interactive banati hai, jaise ye chat system, study timer aur quiz jo humne abhi banaya hai!";
-            } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi")) {
-                aiResponse = "Hello Pradeep Meena! Main Pradeep AI hoon. Aaj aap mujhse kya seekhna chahte hain?";
-            }
-
-            chatHistory.innerHTML += `
-                <div style="margin-bottom: 15px;">
-                    <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                        🤖 <b>AI (Smart Assistant):</b> ${aiResponse}
-                    </div>
-                </div>`;
+            chatHistory.innerHTML += `<div style="margin-bottom: 15px;"><div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">🤖 <b>AI:</b> ${aiResponse}</div></div>`;
         }
-        
-        chatScreen.scrollTop = chatScreen.scrollHeight; // Final scroll down
+        chatScreen.scrollTop = chatScreen.scrollHeight;
     }
 
-    // TYPING SPEED
     function checkTypingSpeed() {
         let target = document.getElementById("typingText").innerText;
         let input = document.getElementById("typingInput").value;
@@ -516,32 +461,21 @@ function handleLogout() {
         else result.innerHTML = "Doesn't match. Try again! ❌";
     }
 
-    /* UPGRADED QUIZ SYSTEM WITH EXPLANATION */
     function checkQuizUpgrade() {
         let answer = document.querySelector('input[name="q1"]:checked');
         let resultBox = document.getElementById("quizResultUpgrade");
         let resultTitle = document.getElementById("resultTitle");
         let resultExplain = document.getElementById("resultExplain");
-
-        if (answer == null) {
-            alert("Please select an answer first!");
-            return;
-        }
-
+        if (answer == null) { alert("Please select an answer first!"); return; }
         resultBox.style.display = "block";
-
         if (answer.value == "a") {
-            resultBox.style.background = "rgba(34, 197, 94, 0.15)";
-            resultBox.style.border = "1px solid #22c55e";
-            resultTitle.innerHTML = "Correct Answer 🎉";
-            resultTitle.style.color = "#22c55e";
-            resultExplain.innerHTML = "<b>Explanation:</b> HTML ka upyog web pages banane ke liye kiya jata hai. Yeh ek Markup Language hai jo web browsers ko batati hai ki content ko screen par kaise dikhana hai.";
+            resultBox.style.background = "rgba(34, 197, 94, 0.15)"; resultBox.style.border = "1px solid #22c55e";
+            resultTitle.innerHTML = "Correct Answer 🎉"; resultTitle.style.color = "#22c55e";
+            resultExplain.innerHTML = "<b>Explanation:</b> HTML ek Markup Language hai jo browsers ko content render karna sikhati hai.";
         } else {
-            resultBox.style.background = "rgba(239, 68, 68, 0.15)";
-            resultBox.style.border = "1px solid #ef4444";
-            resultTitle.innerHTML = "Wrong Answer ❌";
-            resultTitle.style.color = "#ef4444";
-            resultExplain.innerHTML = "<b>Explanation:</b> Sahi jawab Option (A) hai. High Transfer Machine Language jaisa koi term coding mein nahi hota hai.";
+            resultBox.style.background = "rgba(239, 68, 68, 0.15)"; resultBox.style.border = "1px solid #ef4444";
+            resultTitle.innerHTML = "Wrong Answer ❌"; resultTitle.style.color = "#ef4444";
+            resultExplain.innerHTML = "<b>Explanation:</b> Sahi jawab Option (A) hai.";
         }
     }
 </script>
@@ -562,58 +496,48 @@ function handleLogout() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-  window.signup = function() {
-    // Input fields se spaces hatakar value nikalne ke liye
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+    // DOM Elements ke through Event Listeners lagayein takoki safely functions trigger hon
+    document.getElementById('btn-signup').addEventListener('click', () => {
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
 
-    if (!email || !password) {
-        alert("Kripya Email aur Password dono bharein!");
-        return;
-    }
+        if (!email || !password) { alert("Kripya Email aur Password dono bharein!"); return; }
 
-    // Firebase Authentication method
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        alert("Account successfully bana diya gaya hai! 🎉");
-        document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
-    })
-    .catch((error) => {
-        alert("Signup Error: " + error.message);
-        console.error(error);
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert("Account successfully bana diya gaya hai! 🎉");
+            document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
+        })
+        .catch((error) => { alert("Signup Error: " + error.message); });
     });
-}
 
-window.login = function() {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+    document.getElementById('btn-login').addEventListener('click', () => {
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
 
-    if (!email || !password) {
-        alert("Kripya Email aur Password dono bharein!");
-        return;
-    }
+        if (!email || !password) { alert("Kripya Email aur Password dono bharein!"); return; }
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        alert("Login Successful! Welcome back. 🚀");
-        document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
-    })
-    .catch((error) => {
-        alert("Login Error: " + error.message);
-        console.error(error);
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert("Login Successful! Welcome back. 🚀");
+            document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
+        })
+        .catch((error) => { alert("Login Error: " + error.message); });
     });
-}
 
-window.logout = function() {
-    firebase.auth().signOut().then(() => {
-        alert("Logged Out Successfully.");
-        document.getElementById('studentEmail').innerText = "Login to Dashboard";
-        document.getElementById('email').value = "";
-        document.getElementById('password').value = "";
-    }).catch((error) => {
-        alert("Logout Error: " + error.message);
+    document.getElementById('btn-logout').addEventListener('click', () => {
+        signOut(auth).then(() => {
+            alert("Logged Out Successfully.");
+            document.getElementById('studentEmail').innerText = "Login to Dashboard";
+            document.getElementById('loginEmail').value = "";
+            document.getElementById('loginPassword').value = "";
+        }).catch((error) => { alert("Logout Error: " + error.message); });
     });
-}
+
+    // Login persistent rakhne ke liye auth state state tracking
+    onAuthStateChanged(auth, (user) => {
+        if (user) { document.getElementById('studentEmail').innerText = "Welcome: " + user.email; }
+    });
 </script>
 </body>
 </html>
