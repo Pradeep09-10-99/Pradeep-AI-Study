@@ -195,7 +195,6 @@
         <div class="feature-card"><h2 id="success">0%</h2><p>Success Rate</p></div>
     </div>
 </section>
-
 <section id="login">
     <h1 class="section-title">Student Portal</h1>
     <div class="login-box" style="max-width: 450px; margin:auto; border: 1px solid rgba(0, 252, 254, 0.3); box-shadow: 0 0 20px rgba(0, 252, 254, 0.1);">
@@ -205,87 +204,74 @@
         
         <div style="text-align: left; position: relative;">
             <span style="position: absolute; left: 15px; top: 15px; color: cyan;"><i class="fa-solid fa-envelope"></i></span>
-            <input type="email" id="email" placeholder="Email Address" style="padding-left: 45px;">
+            <input type="email" id="loginEmail" placeholder="Email Address" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white; width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); padding: 12px 12px 12px 45px; margin-bottom: 15px;">
         </div>
         
         <div style="text-align: left; position: relative;">
             <span style="position: absolute; left: 15px; top: 15px; color: cyan;"><i class="fa-solid fa-lock"></i></span>
-            <input type="password" id="password" placeholder="Password" style="padding-left: 45px;">
+            <input type="password" id="loginPassword" placeholder="Password" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white; width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); padding: 12px 12px 12px 45px; margin-bottom: 20px;">
         </div>
         
-        <button onclick="window.login()" style="background: cyan; color: #0f172a; font-weight: bold; font-size: 16px;">Sign In <i class="fa-solid fa-right-to-bracket"></i></button>
+        <button onclick="handleLogin()" style="background: cyan; color: #0f172a; font-weight: bold; font-size: 16px; width: 100%; padding: 12px; border-radius: 8px; border: none; cursor: pointer;">Sign In <i class="fa-solid fa-right-to-bracket"></i></button>
         
         <div style="display: flex; gap: 10px; margin-top: 15px;">
-            <button onclick="window.signup()" style="background:transparent; color:cyan; border:1px solid cyan; margin-top:0; flex: 1;">Create Account</button>
-            <button onclick="window.logout()" style="background:#ef4444; color:white; margin-top:0; flex: 1;">Logout</button>
+            <button onclick="handleSignup()" style="background:transparent; color:cyan; border:1px solid cyan; padding: 10px; border-radius: 8px; cursor: pointer; flex: 1;">Create Account</button>
+            <button onclick="handleLogout()" style="background:#ef4444; color:white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; flex: 1;">Logout</button>
         </div>
     </div>
 </section>
 
-<section id="ntpc-portal" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
-    <h1 class="section-title"><i class="fa-solid fa-graduation-cap" style="color: cyan;"></i> NTPC Exam Special Dashboard</h1>
-    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Railway NTPC exam crack karne ke liye daily focus aur target tools.</p>
-    
-    <div class="feature-container" style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap;">
-        
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px;">
-            <h3 style="color: cyan;"><i class="fa-solid fa-stopwatch"></i> Study Timer</h3>
-            <p style="color: #cbd5e1; font-size: 14px; margin-top: 5px;">Apna focus level badhane ke liye session track karein.</p>
-            <h1 id="time" style="font-size: 42px; margin: 20px 0; font-family: monospace; letter-spacing: 2px; color: white;">00:00:00</h1>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn1" onclick="startTimer()" style="margin-top:0; padding: 12px; flex: 1;">Start Focus</button>
-                <button class="btn2" onclick="stopTimer()" style="margin-top:0; padding: 12px; border: 2px solid #ef4444; color: #ef4444; background: transparent; flex: 1;">Stop</button>
-            </div>
-        </div>
+<script>
+// Naye distinct functions bina window override ke
+function handleSignup() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
 
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px; text-align: left;">
-            <h3 style="color: cyan; margin-bottom: 5px;"><i class="fa-solid fa-list-check"></i> Study Tasks (To-Do)</h3>
-            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 15px;">Aaj aapko kaun-kaun se topics padhne hain?</p>
-            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                <input type="text" id="taskInput" placeholder="E.g., Math Percentage Revision..." style="margin-bottom: 0; padding: 12px;">
-                <button onclick="addTask()" style="width: 90px; margin-top: 0; padding: 12px;">Add</button>
-            </div>
-            <ul id="taskList" class="list-style" style="margin-top: 0; max-height: 150px; overflow-y: auto;"></ul>
-        </div>
+    if (!email || !password) {
+        alert("Kripya Email aur Password dono bharein!");
+        return;
+    }
 
-    </div>
-</section>
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        alert("Account successfully bana diya gaya hai! 🎉");
+        document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
+    })
+    .catch((error) => {
+        alert("Signup Error: " + error.message);
+    });
+}
 
-<section id="features" style="background: rgba(0, 252, 254, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); border-bottom: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
-    <h1 class="section-title"><i class="fa-solid fa-code" style="color: cyan;"></i> Web Development Corner</h1>
-    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Coding coding seekhein aur apni programming speed ko build karein.</p>
-    
-    <div class="feature-container" style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap;">
-        
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px; text-align: left;">
-            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-pen-to-square"></i> Online Practice Quiz</h3>
-            <p style="font-size: 15px; font-weight: bold; margin-bottom: 12px; color: #cbd5e1;">Q. HTML ka full form kya hota hai?</p>
-            
-            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 8px; cursor: pointer;">
-                <input type="radio" name="q1" value="a" style="width: auto; margin-right: 10px;"> Hyper Text Markup Language
-            </label>
-            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 15px; cursor: pointer;">
-                <input type="radio" name="q1" value="b" style="width: auto; margin-right: 10px;"> High Transfer Machine Language
-            </label>
-            
-            <button onclick="checkQuizUpgrade()" style="padding: 12px; margin-top: 5px;">Submit Quiz</button>
-            
-            <div id="quizResultUpgrade" style="margin-top: 15px; padding: 12px; border-radius: 8px; display: none; font-size: 14px;">
-                <h4 id="resultTitle" style="margin-bottom: 5px;"></h4>
-                <p id="resultExplain" style="color: #cbd5e1; line-height: 1.4;"></p>
-            </div>
-        </div>
+function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
 
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px;">
-            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-keyboard"></i> Typing Speed Test</h3>
-            <p id="typingText" style="background:#0f172a; padding:12px; border-radius:8px; margin-bottom:12px; font-size: 14px; color: #cbd5e1; text-align: left;">Pradeep AI Study is the best place to learn coding and AI tools.</p>
-            <textarea id="typingInput" rows="3" placeholder="Upar diye gaye text ko same type karein..." style="font-size: 14px; padding: 12px; margin-bottom: 10px;"></textarea>
-            <button onclick="checkTypingSpeed()" style="padding: 12px;">Check Speed</button>
-            <h4 id="typingResult" style="margin-top:12px; color: cyan;"></h4>
-        </div>
+    if (!email || !password) {
+        alert("Kripya Email aur Password dono bharein!");
+        return;
+    }
 
-    </div>
-</section>
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        alert("Login Successful! Welcome back. 🚀");
+        document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
+    })
+    .catch((error) => {
+        alert("Login Error: " + error.message);
+    });
+}
+
+function handleLogout() {
+    firebase.auth().signOut().then(() => {
+        alert("Logged Out Successfully.");
+        document.getElementById('studentEmail').innerText = "Login to Dashboard";
+        document.getElementById('loginEmail').value = "";
+        document.getElementById('loginPassword').value = "";
+    }).catch((error) => {
+        alert("Logout Error: " + error.message);
+    });
+}
+</script>
 
 <section id="chatbot">
     <h1 class="section-title">Pradeep AI Assistant</h1>
