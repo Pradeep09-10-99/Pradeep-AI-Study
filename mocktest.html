@@ -1,174 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Mock Test - Pradeep AI Study</title>
+    <title>NTPC Mega Mock Test | Pradeep AI Study</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background:#0f172a; color:white; padding: 40px 8%; overflow-x: hidden; }
+        body { background:#0f172a; color:white; padding: 40px 8%; }
         
-        .back-btn { display: inline-block; text-decoration: none; color: cyan; font-weight: bold; margin-bottom: 30px; transition: 0.3s; }
-        .back-btn:hover { transform: translateX(-5px); }
+        .back-home { color: cyan; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block; margin-bottom: 30px; }
+        .back-home:hover { text-shadow: 0 0 10px cyan; }
+
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid rgba(0, 255, 255, 0.15); padding-bottom: 20px; }
+        .title-area h1 { font-size: 36px; color: white; font-weight: 800; background: linear-gradient(135deg, #ffffff 50%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .title-area p { color: #cbd5e1; margin-top: 5px; }
         
-        .test-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0, 255, 255, 0.15); padding-bottom: 20px; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
-        h1 { color: cyan; font-size: 32px; }
-        .timer-box { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ef4444; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+        .timer-box { background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 20px; color: #ef4444; display: flex; align-items: center; gap: 10px; box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); }
 
-        .container { display: flex; gap: 30px; flex-wrap: wrap; }
-        .questions-side { flex: 2; min-width: 350px; display: flex; flex-direction: column; gap: 25px; }
-        .sidebar { flex: 1; min-width: 280px; background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); height: fit-content; position: sticky; top: 40px; }
+        .test-container { display: flex; gap: 30px; flex-wrap: wrap; }
+        .quiz-box { flex: 2; min-width: 320px; background: rgba(255, 255, 255, 0.02); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); }
+        .sidebar { flex: 1; min-width: 280px; background: rgba(255, 255, 255, 0.02); padding: 30px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); height: fit-content; }
 
-        .q-box { background: rgba(255, 255, 255, 0.02); padding: 25px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.06); }
-        .q-tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; }
-        .tag-math { background: #3b82f6; color: white; }
-        .tag-reasoning { background: #a855f7; color: white; }
-        .tag-science { background: #10b981; color: white; }
+        .subject-tag { background: #2563eb; color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+        .question-text { font-size: 20px; font-weight: 600; margin-bottom: 25px; line-height: 1.4; }
+        
+        .options-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .option-label { display: flex; align-items: center; background: rgba(255, 255, 255, 0.04); padding: 16px 20px; border-radius: 10px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s; font-size: 16px; }
+        .option-label:hover { background: rgba(0, 252, 254, 0.05); border-color: rgba(0, 252, 254, 0.3); }
+        .option-label input { margin-right: 15px; transform: scale(1.2); accent-color: cyan; }
 
-        label { display: block; background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.06); }
-        label:hover { background: rgba(0, 252, 254, 0.05); border-color: rgba(0, 252, 254, 0.3); }
-        input[type="radio"] { margin-right: 12px; accent-color: cyan; }
+        .nav-btns { display: flex; justify-content: space-between; }
+        .btn { padding: 12px 28px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; border: 2px solid cyan; font-size: 15px; }
+        .btn-prev { background: transparent; color: cyan; }
+        .btn-next { background: cyan; color: #0f172a; }
+        .btn:hover { transform: scale(1.03); box-shadow: 0 0 15px cyan; }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; box-shadow: none; transform: none; }
 
-        .submit-btn { width: 100%; padding: 15px; background: cyan; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; color: #0f172a; font-size: 16px; transition: 0.4s; box-shadow: 0 0 10px rgba(0,252,254,0.2); }
-        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px cyan; }
+        .sidebar h3 { color: cyan; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .sidebar ul { list-style: none; color: #cbd5e1; font-size: 14px; }
+        .sidebar ul li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .sidebar ul li i { color: cyan; font-size: 12px; }
 
-        /* SCORE MODAL */
-        .result-screen { display: none; text-align: center; padding: 40px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid cyan; box-shadow: 0 0 30px rgba(0,252,254,0.1); margin-top: 20px; }
-        .score-circle { width: 150px; height: 150px; border-radius: 50%; border: 4px solid cyan; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; margin: 25px auto; color: cyan; box-shadow: 0 0 20px rgba(0,252,254,0.2); }
+        .submit-btn { width: 100%; padding: 14px; background: cyan; color: #0f172a; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; margin-top: 25px; cursor: pointer; transition: 0.3s; box-shadow: 0 0 15px rgba(0,252,254,0.2); }
+        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 25px cyan; }
+
+        /* Score Display Style */
+        .result-screen { text-align: center; padding: 40px 20px; }
+        .result-screen h2 { color: cyan; font-size: 32px; margin-bottom: 15px; }
+        .score-circle { width: 150px; height: 150px; border-radius: 50%; border: 4px solid cyan; display: flex; justify-content: center; align-items: center; font-size: 36px; font-weight: bold; margin: 30px auto; box-shadow: 0 0 30px rgba(0,252,254,0.3); color: cyan; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .timer-box { align-self: flex-end; }
+            body { padding: 20px 5%; }
+        }
     </style>
 </head>
 <body>
 
-<a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 
-<div class="test-header">
-    <div>
-        <h1>NTPC Mega Mock Test</h1>
-        <p style="color: #cbd5e1; margin-top: 5px;">Maths, Reasoning, aur Science ka full mix practice set.</p>
-    </div>
-    <div class="timer-box">
-        <i class="fa-solid fa-clock"></i> <span id="mock-timer">10:00</span>
-    </div>
-</div>
+    <header>
+        <div class="title-area">
+            <h1>NTPC Mega Mock Test</h1>
+            <p>Maths, Reasoning, aur Science ka full mix practice set.</p>
+        </div>
+        <div class="timer-box">
+            <i class="fa-solid fa-clock"></i> <span id="countdown">10:00</span>
+        </div>
+    </header>
 
-<div class="container" id="main-test-layout">
-    <div class="questions-side">
-        <div class="q-box">
-            <span class="q-tag tag-math">Mathematics</span>
-            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Q1. Do sankhyaon ka ratio 3:4 hai aur unka HCF 4 hai, toh unka LCM kya hoga?</p>
-            <label><input type="radio" name="mq1" value="w1"> 12</label>
-            <label><input type="radio" name="mq1" value="w2"> 36</label>
-            <label><input type="radio" name="mq1" value="c"> 48</label>
-            <label><input type="radio" name="mq1" value="w3"> 24</label>
+    <div class="test-container" id="main-test-area">
+        <div class="quiz-box">
+            <div id="subject-tag" class="subject-tag">Mathematics</div>
+            <div id="question-container">
+                <p class="question-text" id="question-text">Loading question...</p>
+                <div class="options-container" id="options-container">
+                    </div>
+            </div>
+            <div class="nav-btns">
+                <button class="btn btn-prev" id="prev-btn" onclick="changeQuestion(-1)" disabled>Previous</button>
+                <button class="btn btn-next" id="next-btn" onclick="changeQuestion(1)">Next Question</button>
+            </div>
         </div>
 
-        <div class="q-box">
-            <span class="q-tag tag-reasoning">Reasoning</span>
-            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Q2. Agar 'RAIN' ko '8$#6' aur 'MORE' ko '7@9%' likha jata hai, toh 'REMAIN' ko kya likha jayega?</p>
-            <label><input type="radio" name="mq2" value="c"> 9%7$#6</label>
-            <label><input type="radio" name="mq2" value="w1"> 9%7$6#</label>
-            <label><input type="radio" name="mq2" value="w2"> 8%7$#6</label>
-            <label><input type="radio" name="mq2" value="w3"> 9@7$#6</label>
-        </div>
-
-        <div class="q-box">
-            <span class="q-tag tag-science">General Science</span>
-            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Q3. Manav shareer (Human Body) ki sabse badi granthi (Largest Gland) kaun si hai?</p>
-            <label><input type="radio" name="mq3" value="w1"> Thyroid</label>
-            <label><input type="radio" name="mq3" value="c"> Liver (यकृत)</label>
-            <label><input type="radio" name="mq3" value="w2"> Pancreas</label>
-            <label><input type="radio" name="mq3" value="w3"> Pituitary</label>
-        </div>
-
-        <div class="q-box">
-            <span class="q-tag tag-math">Mathematics</span>
-            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Q4. Kisi vastu ko 10% loss ki jagah 10% profit par bechne se Rs. 60 zyada milte hain. Vastu ka Cost Price (क्रय मूल्य) kya hai?</p>
-            <label><input type="radio" name="mq4" value="w1"> Rs. 250</label>
-            <label><input type="radio" name="mq4" value="c"> Rs. 300</label>
-            <label><input type="radio" name="mq4" value="w2"> Rs. 400</label>
-            <label><input type="radio" name="mq4" value="w3"> Rs. 500</label>
-        </div>
-
-        <div class="q-box">
-            <span class="q-tag tag-science">General Science</span>
-            <p style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Q5. Vaayu me dhvani ki chaal (Speed of Sound in Air) lagbhag kitni hoti hai?</p>
-            <label><input type="radio" name="mq5" value="c"> 332 m/s</label>
-            <label><input type="radio" name="mq5" value="w1"> 1500 m/s</label>
-            <label><input type="radio" name="mq5" value="w2"> 3 x 10⁸ m/s</label>
-            <label><input type="radio" name="mq5" value="w3"> 120 m/s</label>
+        <div class="sidebar">
+            <h3><i class="fa-solid fa-circle-info"></i> Test Instructions</h3>
+            <ul>
+                <li><i class="fa-solid fa-diamond"></i> Total Questions: 5</li>
+                <li><i class="fa-solid fa-diamond"></i> Time Limit: 10 Minutes</li>
+                <li><i class="fa-solid fa-diamond"></i> No Negative marking applied.</li>
+                <li><i class="fa-solid fa-diamond"></i> Ek sahi answer ke +1 marks hain.</li>
+            </ul>
+            <button class="submit-btn" onclick="submitTest()">Finish & Submit Test</button>
         </div>
     </div>
 
-    <div class="sidebar">
-        <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-circle-info"></i> Test Instructions</h3>
-        <ul style="list-style: none; color: #cbd5e1; font-size: 14px; line-height: 1.6; margin-bottom: 25px;">
-            <li>🔹 Total Questions: 5</li>
-            <li>🔹 Time Limit: 10 Minutes</li>
-            <li>🔹 No Negative marking applied.</li>
-        </ul>
-        <button class="submit-btn" onclick="submitMockTest()">Finish & Submit Test</button>
-    </div>
-</div>
+    <script>
+        // NTPC Mix Questions Data
+        const quizData = [
+            {
+                subject: "Mathematics",
+                question: "Do sankhyaon ka ratio 3:4 hai aur unka HCF 4 hai, toh unka LCM kya hoga?",
+                options: ["12", "36", "48", "24"],
+                correct: 2 // 48 is correct (3 * 4 * 4)
+            },
+            {
+                subject: "Reasoning",
+                question: "Agar 'CODING' ko 'DPEJOH' likha jata hai, toh 'ROBOT' ko kya likha jayega?",
+                options: ["SPCPU", "SPCPU", "SPCPA", "SPCPU"], 
+                options_text: ["SPCPU", "SPCPV", "TQCVP", "SAMPV"], // Modifying slightly for better options mapping
+                correct: 1 // SPCPV (+1 logic)
+            },
+            {
+                subject: "Science",
+                question: "Manav sharir (Human Body) ka normal temperature kitna hota hai?",
+                options: ["37°C", "98.6°C", "310 K", "Ye Sabhi"],
+                correct: 3 // All are correct scales
+            },
+            {
+                subject: "Mathematics",
+                question: "Kisi vastu ko 10% labh par ₹110 mein becha jata hai, toh us vastu ka Cost Price (CP) kya hai?",
+                options: ["₹90", "₹100", "₹105", "₹95"],
+                correct: 1 // 100
+            },
+            {
+                subject: "Reasoning",
+                question: "Series ko poora karein: 2, 6, 12, 20, 30, ?",
+                options: ["36", "40", "42", "48"],
+                correct: 2 // 42 (+4, +6, +8, +10, +12)
+            }
+        ];
 
-<div class="result-screen" id="test-result-screen">
-    <h2 style="color: cyan;">Mock Test Result 🎉</h2>
-    <p style="color: #cbd5e1; margin-top: 5px;">Aapne apna exam successfully complete kar liya hai.</p>
-    
-    <div class="score-circle" id="final-score-box">0 / 5</div>
-    
-    <h3 id="performance-text" style="margin-bottom: 25px; color: white;">Good Job!</h3>
-    <button class="submit-btn" style="max-width: 250px; margin: auto;" onclick="location.reload()">Try Again <i class="fa-solid fa-rotate-right"></i></button>
-</div>
+        // Custom corrections for text mapping in reasoning option array
+        quizData[1].options = ["SPCPU", "SPCPV", "TQCVP", "SAMPV"];
 
-<script>
-    // TIMER LOGIC (10 Minutes Count Down)
-    let totalTime = 10 * 60;
-    let testTimer = setInterval(() => {
-        let minutes = Math.floor(totalTime / 60);
-        let seconds = totalTime % 60;
-        
-        document.getElementById("mock-timer").innerHTML = 
-            (minutes < 10 ? '0' + minutes : minutes) + ":" + (seconds < 10 ? '0' + seconds : seconds);
-        
-        if (totalTime <= 0) {
-            clearInterval(testTimer);
-            alert("Time's Up! Aapka test automatically submit ho raha hai.");
-            submitMockTest();
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let totalTime = 600; // 10 minutes in seconds
+        let timerInterval;
+
+        // Start Countdown Timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                let minutes = Math.floor(totalTime / 60);
+                let seconds = totalTime % 60;
+                
+                document.getElementById("countdown").innerHTML = 
+                    (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                
+                if (totalTime <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up! Aapka test automatic submit ho raha hai.");
+                    submitTest();
+                }
+                totalTime--;
+            }, 1000);
         }
-        totalTime--;
-    }, 1000);
 
-    // SCORE CALCULATION LOGIC
-    function submitMockTest() {
-        clearInterval(testTimer); // Timer ko stop karein
-        
-        let score = 0;
-        const correctAnswers = { mq1: 'c', mq2: 'c', mq3: 'c', mq4: 'c', mq5: 'c' };
+        // Load Question Data into UI
+        function loadQuestion(index) {
+            const qData = quizData[index];
+            document.getElementById("subject-tag").innerText = qData.subject;
+            document.getElementById("question-text").innerText = `Q${index + 1}. ${qData.question}`;
+            
+            // Toggle Background colors dynamically based on subject for premium feel
+            if(qData.subject === "Reasoning") {
+                document.getElementById("subject-tag").style.background = "#818cf8";
+            } else if(qData.subject === "Science") {
+                document.getElementById("subject-tag").style.background = "#059669";
+            } else {
+                document.getElementById("subject-tag").style.background = "#2563eb";
+            }
 
-        // Score calculate karein
-        for (let key in correctAnswers) {
-            let selected = document.querySelector(`input[name="${key}"]:checked`);
-            if (selected && selected.value === correctAnswers[key]) {
-                score++;
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = "";
+
+            qData.options.forEach((option, i) => {
+                const checked = userAnswers[index] === i ? "checked" : "";
+                optionsContainer.innerHTML += `
+                    <label class="option-label">
+                        <input type="radio" name="mock-option" value="${i}" ${checked} onchange="saveAnswer(${index}, ${i})">
+                        ${option}
+                    </label>
+                `;
+            });
+
+            // Handle Nav buttons states
+            document.getElementById("prev-btn").disabled = index === 0;
+            if (index === quizData.length - 1) {
+                document.getElementById("next-btn").innerText = "Finish Test";
+                document.getElementById("next-btn").setAttribute("onclick", "submitTest()");
+            } else {
+                document.getElementById("next-btn").innerText = "Next Question";
+                document.getElementById("next-btn").setAttribute("onclick", "changeQuestion(1)");
             }
         }
 
-        // Layout switch karein
-        document.getElementById("main-test-layout").style.display = "none";
-        document.getElementById("test-result-screen").style.display = "block";
-        
-        // Score update karein
-        document.getElementById("final-score-box").innerHTML = score + " / 5";
-        
-        // Performance remarks set karein
-        let remark = document.getElementById("performance-text");
-        if(score === 5) { remark.innerHTML = "Outstanding! 🌟 Aapki taiyari ekdam top level par hai."; remark.style.color = "#22c55e"; }
-        else if(score >= 3) { remark.innerHTML = "Good Effort! 👍 Thodi si mehnat aur aap full marks score kar lenge."; remark.style.color = "cyan"; }
-        else { remark.innerHTML = "Keep Practicing! 📚 Aapko chapters revise karne ki zaroorat hai."; remark.style.color = "#ef4444"; }
-        
-        window.scrollTo(0, 0);
-    }
-</script>
+        function changeQuestion(step) {
+            currentQuestionIndex += step;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function saveAnswer(questionIndex, optionIndex) {
+            userAnswers[questionIndex] = optionIndex;
+        }
+
+        // Calculate and display results
+        function submitTest() {
+            clearInterval(timerInterval);
+            let score = 0;
+            
+            quizData.forEach((q, index) => {
+                if (userAnswers[index] === q.correct) {
+                    score++;
+                }
+            });
+
+            // Replace Test layout with Results view
+            const mainArea = document.getElementById("main-test-area");
+            mainArea.innerHTML = `
+                <div class="quiz-box result-screen" style="max-width: 600px; margin: 0 auto; flex: none;">
+                    <h2>🎉 Mock Test Completed!</h2>
+                    <p style="color:#cbd5e1;">Pradeep AI Study portal par test dene ke liye dhanyawad.</p>
+                    <div class="score-circle">${score}/${quizData.length}</div>
+                    <p style="font-size:18px; margin-bottom: 25px;">Aapka accuracy level <b>${(score/quizData.length)*100}%</b> raha.</p>
+                    <button class="btn btn-next" onclick="location.reload()">Re-take Test</button>
+                    <a href="index.html" class="btn btn-prev" style="text-decoration:none; margin-left: 10px; display:inline-block;">Home Page</a>
+                </div>
+            `;
+        }
+
+        // Init Setup
+        window.onload = () => {
+            startTimer();
+            loadQuestion(0);
+        };
+    </script>
 </body>
 </html>
