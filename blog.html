@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Educational Blogs | Pradeep AI Study</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background:#0f172a; color:white; padding: 40px 8%; }
+        
+        .back-home { color: cyan; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block; margin-bottom: 30px; }
+        .back-home:hover { text-shadow: 0 0 10px cyan; }
+
+        header { margin-bottom: 50px; border-bottom: 1px solid rgba(0, 255, 255, 0.15); padding-bottom: 20px; text-align: center; }
+        header h1 { font-size: 40px; font-weight: 800; background: linear-gradient(135deg, #ffffff 40%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header p { color: #cbd5e1; margin-top: 10px; font-size: 16px; }
+
+        /* Blog Layout */
+        .blog-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        /* Glassmorphism Blog Card */
+        .blog-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border-radius: 16px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover { 
+            transform: translateY(-8px); 
+            background: rgba(0, 252, 254, 0.03); 
+            border-color: rgba(0, 252, 254, 0.4); 
+            box-shadow: 0 10px 25px rgba(0, 252, 254, 0.15); 
+        }
+
+        .blog-img-mock { height: 200px; background: linear-gradient(135deg, #1e293b, #0f172a); display: flex; align-items: center; justify-content: center; font-size: 50px; color: cyan; border-bottom: 1px solid rgba(0, 255, 255, 0.1); }
+        
+        .blog-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .blog-tag { background: rgba(0, 252, 254, 0.1); color: cyan; padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: bold; display: inline-block; width: fit-content; margin-bottom: 15px; }
+        .blog-title { font-size: 22px; color: white; margin-bottom: 12px; font-weight: 700; line-height: 1.3; }
+        .blog-desc { color: #cbd5e1; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+        
+        .blog-meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
+        .read-btn { color: cyan; text-decoration: none; font-weight: bold; font-size: 14px; transition: 0.3s; display: flex; align-items: center; gap: 5px; }
+        .read-btn:hover { text-shadow: 0 0 8px cyan; }
+
+        @media (max-width: 768px) {
+            body { padding: 20px 5%; }
+            header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
+    <header>
+        <h1>Knowledge Hub & Blogs 📝</h1>
+        <p>NTPC Exam Tricks, Web Development Tutorials aur AI Technology se jude latest articles yahan padhein.</p>
+    </header>
+
+    <div class="blog-container">
+        
+        <article class="blog-card">
+            <div class="blog-img-mock"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="blog-content">
+                <div>
+                    <span class="blog-tag">NTPC Preparation</span>
+                    <h3 class="blog-title">RRB NTPC 2026: First Attempt Mein Exam Crack Karne Ki Strategy</h3>
+                    <p class="blog-desc">Maths, Reasoning aur General Science par pakad kaise banayein? Janiye best time table aur high-scoring topics ki poori list...</p>
+                </div>
+                <div class="blog-meta">
+                    <span><i class="fa-solid fa-calendar-days"></i> May 2026</span>
+                    <a href="#" class="read-btn">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <div class="blog-img-mock"><i class="fa-solid fa-code"></i></div>
+            <div class="blog-content">
+                <div>
+                    <span class="blog-tag">Web Development</span>
+                    <h3 class="blog-title">Top 10 HTML & CSS Shortcuts Jo Har Coder Ko Pata Hone Chahiye</h3>
+                    <p class="blog-desc">Apni coding speed ko 2x badhayein! In simple tricks aur responsive design frameworks ka use karke aap ek professional web page miniton mein bana sakte hain.</p>
+                </div>
+                <div class="blog-meta">
+                    <span><i class="fa-solid fa-calendar-days"></i> May 2026</span>
+                    <a href="#" class="read-btn">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </article>
+
+        <article class="blog-card">
+            <div class="blog-img-mock"><i class="fa-solid fa-robot"></i></div>
+            <div class="blog-content">
+                <div>
+                    <span class="blog-tag">Artificial Intelligence</span>
+                    <h3 class="blog-title">AI Tools Ka Sahi Use Karke Apni Study Speed Kaise Badhayein</h3>
+                    <p class="blog-desc">Kya aapko pata hai AI aapka personal tutor ban sakta hai? Janiye hamare Pradeep AI Assistant jaise tools ka fayda uthakar complex doubts ko turant kaise solve karein.</p>
+                </div>
+                <div class="blog-meta">
+                    <span><i class="fa-solid fa-calendar-days"></i> May 2026</span>
+                    <a href="#" class="read-btn">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+</body>
+</html>
