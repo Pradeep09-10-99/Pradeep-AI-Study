@@ -492,92 +492,119 @@
         }
     }
 
-    async function askAIUpgrade() {
-        let qInput = document.getElementById("userQuestion");
-        let chatHistory = document.getElementById("chatHistory");
-        let chatScreen = document.getElementById("chatScreen");
-        let question = qInput.value.trim();
+   // Pichli baaton ko yaad rakhne ke liye Memory Array
+let chatMemory = [];
 
-        if (!question) return;
+async function askAIUpgrade() {
+    let qInput = document.getElementById("userQuestion");
+    let chatHistory = document.getElementById("chatHistory");
+    let chatScreen = document.getElementById("chatScreen");
+    let question = qInput.value.trim();
 
-        chatHistory.innerHTML += `
-            <div style="text-align: right; margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
-                    <b>Aap:</b> ${question}
-                </div>
-            </div>`;
+    if (!question) return;
+
+    // 1. User ka message screen par add karein
+    chatHistory.innerHTML += `
+        <div style="text-align: right; margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
+                <b>Aap:</b> ${question}
+            </div>
+        </div>`;
+    
+    qInput.value = ""; 
+    chatScreen.scrollTop = chatScreen.scrollHeight;
+
+    // 2. Memory mein User ka message save karein
+    chatMemory.push({ role: "user", content: question });
+
+    // Memory ko bohot bada hone se rokne ke liye last 10 messages hi rakhein
+    if (chatMemory.length > 10) { chatMemory.shift(); }
+
+    // 3. Thinking State Loader
+    let loadingId = "loader_" + Date.now();
+    let uniqueResponseId = "response_" + Date.now();
+    
+    chatHistory.innerHTML += `
+        <div id="${loadingId}" style="margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
+                🤖 <b>Pradeep AI:</b> Soch raha hoon... 🤔
+            </div>
+        </div>`;
+    chatScreen.scrollTop = chatScreen.scrollHeight;
+
+    // System Prompt - AI ka behavior set karne ke liye
+    const systemMessage = { 
+        role: "system", 
+        content: "You are Pradeep AI, the official brilliant AI tutor of 'Pradeep AI Study' portal, created by Pradeep Meena. You teach Web Development and help with Railway NTPC exams. Always reply in a very friendly, encouraging, clear Hinglish with study emojis. Keep your responses structured and very engaging." 
+    };
+
+    // API ke liye poora conversation database taiyar karna (System + Memory)
+    let apiMessages = [systemMessage, ...chatMemory];
+
+    try {
+        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: { 
+                "Authorization": "Bearer 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", 
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({ 
+                model: "meta-llama/llama-3-8b-instruct:free",
+                messages: apiMessages,
+                temperature: 0.7
+            })
+        });
         
-        qInput.value = ""; 
-        chatScreen.scrollTop = chatScreen.scrollHeight;
+        const data = await res.json();
+        document.getElementById(loadingId).remove();
 
-        let loadingId = "loader_" + Date.now();
-        chatHistory.innerHTML += `
-            <div id="${loadingId}" style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
-                    🤖 <b>Pradeep AI:</b> Soch raha hoon... 🤔
-                </div>
-            </div>`;
-        chatScreen.scrollTop = chatScreen.scrollHeight;
+        if (data.choices && data.choices[0]) {
+            let aiResponse = data.choices[0].message.content;
 
-        const systemPrompt = "You are Pradeep AI, the official and brilliant AI tutor of 'Pradeep AI Study' portal. Created by Pradeep Meena, you help students prepare for Railway NTPC, Group D exams, and teach Web Development (HTML, CSS, JavaScript). Always reply in a friendly, encouraging, and clear Hinglish language with emojis. Keep your responses crisp and study-focused.";
+            // AI ka jawab memory mein save karein taaki agli baar yaad rahe
+            chatMemory.push({ role: "assistant", content: aiResponse });
 
-        try {
-            // Secure placeholder value given to prevent direct key exposure issues on GitHub leaks
-            const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                method: "POST",
-                headers: { 
-                    "Authorization": "Bearer SECURE_API_KEY_PLACEHOLDER", 
-                    "Content-Type": "application/json" 
-                },
-                body: JSON.stringify({ 
-                    model: "meta-llama/llama-3-8b-instruct:free",
-                    messages: [
-                        { role: "system", content: systemPrompt },
-                        { role: "user", content: question }
-                    ] 
-                })
-            });
-            
-            const data = await res.json();
-            document.getElementById(loadingId).remove();
-
-            if (data.choices && data.choices[0]) {
-                let aiResponse = data.choices[0].message.content;
-                chatHistory.innerHTML += `
-                    <div style="margin-bottom: 15px;">
-                        <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                            🤖 <b>Pradeep AI:</b> ${aiResponse}
-                        </div>
-                    </div>`;
-            } else { 
-                throw new Error("API Limit"); 
-            }
-
-        } catch(e) {
-            if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
-            
-            let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
-            let lowQuestion = question.toLowerCase();
-            
-            if(lowQuestion.includes("html")) {
-                aiResponse = "HTML (HyperText Markup Language) web pages ka structure taiyar karti hai. Iske bina koi website nahi ban sakti! 🌐";
-            } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
-                aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
-            } else if(lowQuestion.includes("css")) {
-                aiResponse = "CSS (Cascading Style Sheets) hamari website ka makeup hai! Jaise humne ye neon glow lagaya hai, ye sab CSS ka kamaal hai. ✨";
-            } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun")) {
-                aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
-            }
-
+            // Blank response box structure create karna
             chatHistory.innerHTML += `
                 <div style="margin-bottom: 15px;">
                     <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                        🤖 <b>Pradeep AI:</b> ${aiResponse}
+                        🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
                     </div>
                 </div>`;
+            
+            // ChatGPT jaisa automatic typing effect chalana
+            let textIndex = 0;
+            let responseSpan = document.getElementById(uniqueResponseId);
+            
+            function streamType() {
+                if (textIndex < aiResponse.length) {
+                    responseSpan.innerHTML += aiResponse.charAt(textIndex);
+                    textIndex++;
+                    chatScreen.scrollTop = chatScreen.scrollHeight; // Auto scroll down
+                    setTimeout(streamType, 15); // Typing speed adjustment (15ms)
+                }
+            }
+            streamType();
+
+        } else { 
+            throw new Error("API Limit"); 
         }
+
+    } catch(e) {
+        // Error broad/local backup handles safely if API breaks
+        if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
+        
+        let aiResponse = "Maaf kijiyega, abhi mere network mein thoda traffic hai. Kripya thodi der baad dobara poochiye! Tab tak aap Mega Mock Test practice kar sakte hain. 🎯";
+        
+        chatHistory.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(248, 113, 113, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid #f87171; line-height: 1.5; color: #f87171;">
+                    🤖 <b>Pradeep AI:</b> ${aiResponse}
+                </div>
+            </div>`;
         chatScreen.scrollTop = chatScreen.scrollHeight;
     }
+}
 </script>
 
 <script type="module">
