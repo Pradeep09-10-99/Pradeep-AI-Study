@@ -386,29 +386,41 @@
 <button class="mode-btn" onclick="toggleMode()">🌓</button>
 
 <script>
-    window.onload = () => document.getElementById("loader").style.display = "none";
-    function toggleMenu() { document.getElementById("nav-links").classList.toggle("active"); }
+    // Safe Loader Hide Function
+    window.onload = () => {
+        let loader = document.getElementById("loader");
+        if(loader) loader.style.display = "none";
+    };
+
+    function toggleMenu() { 
+        let navLinks = document.getElementById("nav-links");
+        if(navLinks) navLinks.classList.toggle("active"); 
+    }
+    
     function toggleMode() { document.body.classList.toggle("light-mode"); }
 
     window.onscroll = () => {
         let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
+        let progressBar = document.getElementById("progress-bar");
+        if(progressBar) progressBar.style.width = (winScroll / height) * 100 + "%";
         if (winScroll > 800) startStats();
     };
 
-    const texts = ["Learn Coding", "Master AI Tools", "NTPC Preparation"];
+    const texts = ["Learn Coding ", "Master AI Tools ", "NTPC Preparation "];
     let tCount = 0, tIndex = 0, isDeleting = false;
     function typeEffect() {
         const current = texts[tCount % texts.length];
         if (isDeleting) tIndex--; else tIndex++;
-        document.getElementById("typing").innerHTML = current.substring(0, tIndex);
+        let typingElement = document.getElementById("typing");
+        if(typingElement) typingElement.innerHTML = current.substring(0, tIndex);
         let speed = isDeleting ? 50 : 150;
         if (!isDeleting && tIndex === current.length) { speed = 2000; isDeleting = true; }
         else if (isDeleting && tIndex === 0) { isDeleting = false; tCount++; speed = 500; }
         setTimeout(typeEffect, speed);
     }
-    typeEffect();
+    // Isko safely run karne ke liye checks ke sath call kiya
+    document.addEventListener("DOMContentLoaded", () => { typeEffect(); });
 
     let started = false;
     function startStats() {
@@ -418,6 +430,7 @@
         animateValue("courses", 0, 50, 2000);
         animateValue("success", 0, 95, 2000, "%");
     }
+    
     function animateValue(id, start, end, duration, suffix="") {
         let obj = document.getElementById(id);
         if(!obj) return;
@@ -436,18 +449,21 @@
         if(timer) return;
         timer = setInterval(() => {
             sec++; if(sec==60){sec=0; min++;} if(min==60){min=0; hrs++;}
-            document.getElementById("time").innerHTML = 
-                (hrs<10?'0'+hrs:hrs)+":"+(min<10?'0'+min:min)+":"+(sec<10?'0'+sec:sec);
+            let timeElement = document.getElementById("time");
+            if(timeElement) {
+                timeElement.innerHTML = (hrs<10?'0'+hrs:hrs)+":"+(min<10?'0'+min:min)+":"+(sec<10?'0'+sec:sec);
+            }
         }, 1000);
     }
     function stopTimer() { clearInterval(timer); timer=null; }
 
     function addTask() {
         let input = document.getElementById("taskInput");
-        if (!input.value) return;
+        let taskList = document.getElementById("taskList");
+        if (!input || !input.value || !taskList) return;
         let li = document.createElement("li");
         li.innerHTML = "✅ " + input.value;
-        document.getElementById("taskList").appendChild(li);
+        taskList.appendChild(li);
         input.value = "";
     }
 
@@ -456,6 +472,8 @@
         let resultDiv = document.getElementById("quizResultUpgrade");
         let title = document.getElementById("resultTitle");
         let explain = document.getElementById("resultExplain");
+        
+        if(!resultDiv || !title || !explain) return;
         
         let selected = "";
         for(let i=0; i<q.length; i++) { if(q[i].checked) selected = q[i].value; }
@@ -477,9 +495,14 @@
     }
 
     function checkTypingSpeed() {
-        let input = document.getElementById("typingInput").value.trim();
-        let target = document.getElementById("typingText").innerText.trim();
+        let inputElement = document.getElementById("typingInput");
+        let targetElement = document.getElementById("typingText");
         let result = document.getElementById("typingResult");
+        
+        if(!inputElement || !targetElement || !result) return;
+        
+        let input = inputElement.value.trim();
+        let target = targetElement.innerText.trim();
         
         if(!input) { result.innerHTML = "Kripya niche box mein type karein!"; return; }
         
@@ -492,126 +515,60 @@
         }
     }
 
-   // Pichli baaton ko yaad rakhne ke liye Memory Array
-let chatMemory = [];
-
-let chatMemory = [];
-
-async function askAIUpgrade() {
-    let qInput = document.getElementById("userQuestion");
-    let chatHistory = document.getElementById("chatHistory");
-    let chatScreen = document.getElementById("chatScreen");
-    let question = qInput.value.trim();
-
-    if (!question) return;
-
-    // 1. User Message Display
-    chatHistory.innerHTML += `
-        <div style="text-align: right; margin-bottom: 15px;">
-            <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
-                <b>Aap:</b> ${question}
-            </div>
-        </div>`;
-    
-    qInput.value = ""; 
-    chatScreen.scrollTop = chatScreen.scrollHeight;
-
-    // 2. Setup Unique ID for Typing Effect
-    let uniqueResponseId = "response_" + Date.now();
-    
-    // Smart Local Chatbot Logic (Yeh bina internet aur bina kisi API key ke 100% chalega)
-    let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
-    let lowQuestion = question.toLowerCase();
-    
-    if(lowQuestion.includes("html")) {
-        aiResponse = "HTML (HyperText Markup Language) web pages ka main structure tayaar karti hai. Iske bina koi website nahi ban sakti! 🌐";
-    } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
-        aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
-    } else if(lowQuestion.includes("css")) {
-        aiResponse = "CSS (Cascading Style Sheets) hamari website ka design aur makeup hai! Jaise humne ye glowing neon design lagaya hai, ye sab CSS ka kamaal hai. ✨";
-    } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun") || lowQuestion.includes("hey")) {
-        aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
-    }
-
-    // Response div ko screen par jodna
-    chatHistory.innerHTML += `
-        <div style="margin-bottom: 15px;">
-            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
-            </div>
-        </div>`;
+    // 100% Safe Local Chatbot Logic with Smooth ChatGPT Typing Effect
+    function askAIUpgrade() {
+        let qInput = document.getElementById("userQuestion");
+        let chatHistory = document.getElementById("chatHistory");
+        let chatScreen = document.getElementById("chatScreen");
         
-    // ChatGPT jaisa smooth typing text render loop
-    let textIndex = 0;
-    let responseSpan = document.getElementById(uniqueResponseId);
-    
-    function streamTypeLocal() {
-        if (textIndex < aiResponse.length) {
-            responseSpan.innerHTML += aiResponse.charAt(textIndex);
-            textIndex++;
-            chatScreen.scrollTop = chatScreen.scrollHeight;
-            setTimeout(streamTypeLocal, 15);
+        if(!qInput || !chatHistory || !chatScreen) return;
+        let question = qInput.value.trim();
+        if (!question) return;
+
+        // User Message Render
+        chatHistory.innerHTML += `
+            <div style="text-align: right; margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
+                    <b>Aap:</b> ${question}
+                </div>
+            </div>`;
+        
+        qInput.value = ""; 
+        chatScreen.scrollTop = chatScreen.scrollHeight;
+
+        let uniqueResponseId = "response_" + Date.now();
+        let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
+        let lowQuestion = question.toLowerCase();
+        
+        if(lowQuestion.includes("html")) {
+            aiResponse = "HTML (HyperText Markup Language) web pages ka main structure tayaar karti hai. Iske bina koi website nahi ban sakti! 🌐";
+        } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
+            aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
+        } else if(lowQuestion.includes("css")) {
+            aiResponse = "CSS (Cascading Style Sheets) hamari website ka design aur makeup hai! Jaise humne ye glowing neon design lagaya hai, ye sab CSS ka kamaal hai. ✨";
+        } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun") || lowQuestion.includes("hey")) {
+            aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
         }
+
+        chatHistory.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                    🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
+                </div>
+            </div>`;
+            
+        let textIndex = 0;
+        function streamTypeLocal() {
+            let responseSpan = document.getElementById(uniqueResponseId);
+            if (responseSpan && textIndex < aiResponse.length) {
+                responseSpan.innerHTML += aiResponse.charAt(textIndex);
+                textIndex++;
+                chatScreen.scrollTop = chatScreen.scrollHeight;
+                setTimeout(streamTypeLocal, 15);
+            }
+        }
+        streamTypeLocal();
     }
-    streamTypeLocal();
-}
-</script>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    // Secured Config Object Placeholder for safety
-    const firebaseConfig = {
-        apiKey: "SECURE_FIREBASE_KEY_PLACEHOLDER",
-        authDomain: "pradeep-ai-study.firebaseapp.com",
-        projectId: "pradeep-ai-study",
-        storageBucket: "pradeep-ai-study.firebasestorage.app",
-        messagingSenderId: "688622064792",
-        appId: "1:688622064792:web:75daa8c6cf11638beeeced"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    document.getElementById('btn-signup').addEventListener('click', () => {
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value;
-        if (!email || !password) { alert("Kripya Email aur Password dono bharein!"); return; }
-
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            alert("Account successfully bana diya gaya hai! 🎉");
-            document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
-        })
-        .catch((error) => { alert("Signup Error: " + error.message); });
-    });
-
-    document.getElementById('btn-login').addEventListener('click', () => {
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value;
-        if (!email || !password) { alert("Kripya Email aur Password dono bharein!"); return; }
-
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            alert("Login Successful! Welcome back. 🚀");
-            document.getElementById('studentEmail').innerText = "Welcome: " + userCredential.user.email;
-        })
-        .catch((error) => { alert("Login Error: " + error.message); });
-    });
-
-    document.getElementById('btn-logout').addEventListener('click', () => {
-        signOut(auth).then(() => {
-            alert("Logged Out Successfully.");
-            document.getElementById('studentEmail').innerText = "Login to Dashboard";
-            document.getElementById('loginEmail').value = "";
-            document.getElementById('loginPassword').value = "";
-        }).catch((error) => { alert("Logout Error: " + error.message); });
-    });
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) { document.getElementById('studentEmail').innerText = "Welcome: " + user.email; }
-    });
 </script>
 </body>
 </html>
