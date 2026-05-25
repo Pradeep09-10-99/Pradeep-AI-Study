@@ -515,60 +515,114 @@
         }
     }
 
-    // 100% Safe Local Chatbot Logic with Smooth ChatGPT Typing Effect
-    function askAIUpgrade() {
-        let qInput = document.getElementById("userQuestion");
-        let chatHistory = document.getElementById("chatHistory");
-        let chatScreen = document.getElementById("chatScreen");
-        
-        if(!qInput || !chatHistory || !chatScreen) return;
-        let question = qInput.value.trim();
-        if (!question) return;
+  // Pichli baaton ko yaad rakhne ke liye Global Memory Array
+let chatMemory = [];
 
-        // User Message Render
-        chatHistory.innerHTML += `
-            <div style="text-align: right; margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
-                    <b>Aap:</b> ${question}
-                </div>
-            </div>`;
-        
-        qInput.value = ""; 
-        chatScreen.scrollTop = chatScreen.scrollHeight;
+async function askAIUpgrade() {
+    let qInput = document.getElementById("userQuestion");
+    let chatHistory = document.getElementById("chatHistory");
+    let chatScreen = document.getElementById("chatScreen");
+    
+    if(!qInput || !chatHistory || !chatScreen) return;
+    let question = qInput.value.trim();
+    if (!question) return;
 
-        let uniqueResponseId = "response_" + Date.now();
-        let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
-        let lowQuestion = question.toLowerCase();
+    // 1. User ka message screen par dikhayein
+    chatHistory.innerHTML += `
+        <div style="text-align: right; margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
+                <b>Aap:</b> ${question}
+            </div>
+        </div>`;
+    
+    qInput.value = ""; 
+    chatScreen.scrollTop = chatScreen.scrollHeight;
+
+    // 2. Memory mein current message jodein (Last 10 messages tak yaad rakhega)
+    chatMemory.push({ role: "user", content: question });
+    if (chatMemory.length > 10) { chatMemory.shift(); }
+
+    // 3. Dynamic Loader elements tayaar karein
+    let loadingId = "loader_" + Date.now();
+    let uniqueResponseId = "response_" + Date.now();
+    
+    chatHistory.innerHTML += `
+        <div id="${loadingId}" style="margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
+                🤖 <b>Pradeep AI:</b> Soch raha hoon... 🤔
+            </div>
+        </div>`;
+    chatScreen.scrollTop = chatScreen.scrollHeight;
+
+    // System instruction: AI ko batana ki use kaise behave karna hai
+    const systemPrompt = "You are Pradeep AI, a world-class smart AI tutor created by Pradeep Meena for the 'Pradeep AI Study' portal. You have absolute knowledge of everything in the universe, especially Railway NTPC preparation and Web Development. Always reply in beautiful, easy-to-understand Hinglish with appropriate study emojis. Never say you don't know.";
+
+    let apiMessages = [{ role: "system", content: systemPrompt }, ...chatMemory];
+
+    try {
+        // === LIVE NETWORK CALL TO CLOUD AI ===
+        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: { 
+                // APNI NAYI KEY KO NICHE VALU MEIN PASTE KAREIN
+                "Authorization": "Bearer YAHAN_APNI_NAYI_OPENROUTER_KEY_DALEIN", 
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ 
+                model: "meta-llama/llama-3-8b-instruct:free",
+                messages: apiMessages,
+                temperature: 0.7
+            })
+        });
         
-        if(lowQuestion.includes("html")) {
-            aiResponse = "HTML (HyperText Markup Language) web pages ka main structure tayaar karti hai. Iske bina koi website nahi ban sakti! 🌐";
-        } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
-            aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
-        } else if(lowQuestion.includes("css")) {
-            aiResponse = "CSS (Cascading Style Sheets) hamari website ka design aur makeup hai! Jaise humne ye glowing neon design lagaya hai, ye sab CSS ka kamaal hai. ✨";
-        } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun") || lowQuestion.includes("hey")) {
-            aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
+        if (!res.ok) throw new Error("API_ERROR");
+        const data = await res.json();
+        
+        // Loader hatayein
+        if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
+
+        if (data.choices && data.choices[0]) {
+            let aiResponse = data.choices[0].message.content;
+            
+            // AI ke jawab ko memory mein jodein
+            chatMemory.push({ role: "assistant", content: aiResponse });
+
+            // Blank response handler placeholder
+            chatHistory.innerHTML += `
+                <div style="margin-bottom: 15px;">
+                    <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                        🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
+                    </div>
+                </div>`;
+            
+            // Real-time dynamic typing speed loop
+            let textIndex = 0;
+            let responseSpan = document.getElementById(uniqueResponseId);
+            
+            function streamType() {
+                if (responseSpan && textIndex < aiResponse.length) {
+                    responseSpan.innerHTML += aiResponse.charAt(textIndex);
+                    textIndex++;
+                    chatScreen.scrollTop = chatScreen.scrollHeight;
+                    setTimeout(streamType, 15); // 15ms par character speed
+                }
+            }
+            streamType();
         }
 
+    } catch(e) {
+        // Back-end fallback interface agar cloud network me dikkat aaye
+        if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
+        
         chatHistory.innerHTML += `
             <div style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                    🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
+                <div style="display: inline-block; background: rgba(248, 113, 113, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid #f87171; line-height: 1.5; color: #f87171;">
+                    🤖 <b>Pradeep AI:</b> Server temporary busy hai bhaiya! Kripya 1 minute baad dobara koshish karein ya tab tak mock test solve karein. 🎯
                 </div>
             </div>`;
-            
-        let textIndex = 0;
-        function streamTypeLocal() {
-            let responseSpan = document.getElementById(uniqueResponseId);
-            if (responseSpan && textIndex < aiResponse.length) {
-                responseSpan.innerHTML += aiResponse.charAt(textIndex);
-                textIndex++;
-                chatScreen.scrollTop = chatScreen.scrollHeight;
-                setTimeout(streamTypeLocal, 15);
-            }
-        }
-        streamTypeLocal();
+        chatScreen.scrollTop = chatScreen.scrollHeight;
     }
+}
 </script>
 </body>
 </html>
