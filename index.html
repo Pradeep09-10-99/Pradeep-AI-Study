@@ -495,6 +495,8 @@
    // Pichli baaton ko yaad rakhne ke liye Memory Array
 let chatMemory = [];
 
+let chatMemory = [];
+
 async function askAIUpgrade() {
     let qInput = document.getElementById("userQuestion");
     let chatHistory = document.getElementById("chatHistory");
@@ -503,7 +505,7 @@ async function askAIUpgrade() {
 
     if (!question) return;
 
-    // 1. User ka message screen par add karein
+    // 1. User Message Display
     chatHistory.innerHTML += `
         <div style="text-align: right; margin-bottom: 15px;">
             <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
@@ -514,13 +516,10 @@ async function askAIUpgrade() {
     qInput.value = ""; 
     chatScreen.scrollTop = chatScreen.scrollHeight;
 
-    // 2. Memory mein User ka message save karein
     chatMemory.push({ role: "user", content: question });
-
-    // Memory ko bohot bada hone se rokne ke liye last 10 messages hi rakhein
     if (chatMemory.length > 10) { chatMemory.shift(); }
 
-    // 3. Thinking State Loader
+    // 2. Loader State
     let loadingId = "loader_" + Date.now();
     let uniqueResponseId = "response_" + Date.now();
     
@@ -532,13 +531,11 @@ async function askAIUpgrade() {
         </div>`;
     chatScreen.scrollTop = chatScreen.scrollHeight;
 
-    // System Prompt - AI ka behavior set karne ke liye
     const systemMessage = { 
         role: "system", 
-        content: "You are Pradeep AI, the official brilliant AI tutor of 'Pradeep AI Study' portal, created by Pradeep Meena. You teach Web Development and help with Railway NTPC exams. Always reply in a very friendly, encouraging, clear Hinglish with study emojis. Keep your responses structured and very engaging." 
+        content: "You are Pradeep AI, the brilliant AI tutor of Pradeep AI Study portal, created by Pradeep Meena. Always reply in clear, friendly Hinglish with emojis." 
     };
 
-    // API ke liye poora conversation database taiyar karna (System + Memory)
     let apiMessages = [systemMessage, ...chatMemory];
 
     try {
@@ -546,25 +543,25 @@ async function askAIUpgrade() {
             method: "POST",
             headers: { 
                 "Authorization": "Bearer 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", 
-                "Content-Type": "application/json" 
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({ 
-                model: "meta-llama/llama-3-8b-instruct:free",
+                model: "google/gemma-2-9b-it:free", // Naya highly-stable free model ID
                 messages: apiMessages,
-                temperature: 0.7
+                temperature: 0.6
             })
         });
         
+        if (!res.ok) { throw new Error("API Connection Failed"); }
+        
         const data = await res.json();
-        document.getElementById(loadingId).remove();
+        
+        if (document.getElementById(loadingId)) document.getElementById(loadingId).remove();
 
         if (data.choices && data.choices[0]) {
             let aiResponse = data.choices[0].message.content;
-
-            // AI ka jawab memory mein save karein taaki agli baar yaad rahe
             chatMemory.push({ role: "assistant", content: aiResponse });
 
-            // Blank response box structure create karna
             chatHistory.innerHTML += `
                 <div style="margin-bottom: 15px;">
                     <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
@@ -572,7 +569,7 @@ async function askAIUpgrade() {
                     </div>
                 </div>`;
             
-            // ChatGPT jaisa automatic typing effect chalana
+            // ChatGPT dynamic typing loop
             let textIndex = 0;
             let responseSpan = document.getElementById(uniqueResponseId);
             
@@ -580,29 +577,51 @@ async function askAIUpgrade() {
                 if (textIndex < aiResponse.length) {
                     responseSpan.innerHTML += aiResponse.charAt(textIndex);
                     textIndex++;
-                    chatScreen.scrollTop = chatScreen.scrollHeight; // Auto scroll down
-                    setTimeout(streamType, 15); // Typing speed adjustment (15ms)
+                    chatScreen.scrollTop = chatScreen.scrollHeight;
+                    setTimeout(streamType, 12);
                 }
             }
             streamType();
 
         } else { 
-            throw new Error("API Limit"); 
+            throw new Error("Empty JSON Response"); 
         }
 
     } catch(e) {
-        // Error broad/local backup handles safely if API breaks
+        // Smart Local Chatbot Fallback - Taaki load agar fail ho tab bhi smart reply aaye!
         if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
         
-        let aiResponse = "Maaf kijiyega, abhi mere network mein thoda traffic hai. Kripya thodi der baad dobara poochiye! Tab tak aap Mega Mock Test practice kar sakte hain. 🎯";
+        let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
+        let lowQuestion = question.toLowerCase();
         
+        if(lowQuestion.includes("html")) {
+            aiResponse = "HTML (HyperText Markup Language) web pages ka main structure tayaar karti hai. Iske bina koi website nahi ban sakti! 🌐";
+        } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
+            aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
+        } else if(lowQuestion.includes("css")) {
+            aiResponse = "CSS (Cascading Style Sheets) hamari website ka design aur makeup hai! Jaise humne ye glowing neon design lagaya hai, ye sab CSS ka kamaal hai. ✨";
+        } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun") || lowQuestion.includes("hey")) {
+            aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
+        }
+
         chatHistory.innerHTML += `
             <div style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(248, 113, 113, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid #f87171; line-height: 1.5; color: #f87171;">
-                    🤖 <b>Pradeep AI:</b> ${aiResponse}
+                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                    🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
                 </div>
             </div>`;
-        chatScreen.scrollTop = chatScreen.scrollHeight;
+            
+        let textIndex = 0;
+        let responseSpan = document.getElementById(uniqueResponseId);
+        function streamTypeLocal() {
+            if (textIndex < aiResponse.length) {
+                responseSpan.innerHTML += aiResponse.charAt(textIndex);
+                textIndex++;
+                chatScreen.scrollTop = chatScreen.scrollHeight;
+                setTimeout(streamTypeLocal, 15);
+            }
+        }
+        streamTypeLocal();
     }
 }
 </script>
