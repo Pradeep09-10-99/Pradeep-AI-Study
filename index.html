@@ -516,113 +516,44 @@ async function askAIUpgrade() {
     qInput.value = ""; 
     chatScreen.scrollTop = chatScreen.scrollHeight;
 
-    chatMemory.push({ role: "user", content: question });
-    if (chatMemory.length > 10) { chatMemory.shift(); }
-
-    // 2. Loader State
-    let loadingId = "loader_" + Date.now();
+    // 2. Setup Unique ID for Typing Effect
     let uniqueResponseId = "response_" + Date.now();
     
+    // Smart Local Chatbot Logic (Yeh bina internet aur bina kisi API key ke 100% chalega)
+    let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
+    let lowQuestion = question.toLowerCase();
+    
+    if(lowQuestion.includes("html")) {
+        aiResponse = "HTML (HyperText Markup Language) web pages ka main structure tayaar karti hai. Iske bina koi website nahi ban sakti! 🌐";
+    } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
+        aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
+    } else if(lowQuestion.includes("css")) {
+        aiResponse = "CSS (Cascading Style Sheets) hamari website ka design aur makeup hai! Jaise humne ye glowing neon design lagaya hai, ye sab CSS ka kamaal hai. ✨";
+    } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun") || lowQuestion.includes("hey")) {
+        aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
+    }
+
+    // Response div ko screen par jodna
     chatHistory.innerHTML += `
-        <div id="${loadingId}" style="margin-bottom: 15px;">
-            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); color: cyan;">
-                🤖 <b>Pradeep AI:</b> Soch raha hoon... 🤔
+        <div style="margin-bottom: 15px;">
+            <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
+                🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
             </div>
         </div>`;
-    chatScreen.scrollTop = chatScreen.scrollHeight;
-
-    const systemMessage = { 
-        role: "system", 
-        content: "You are Pradeep AI, the brilliant AI tutor of Pradeep AI Study portal, created by Pradeep Meena. Always reply in clear, friendly Hinglish with emojis." 
-    };
-
-    let apiMessages = [systemMessage, ...chatMemory];
-
-    try {
-        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-            method: "POST",
-            headers: { 
-                "Authorization": "Bearer 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", 
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ 
-                model: "google/gemma-2-9b-it:free", // Naya highly-stable free model ID
-                messages: apiMessages,
-                temperature: 0.6
-            })
-        });
         
-        if (!res.ok) { throw new Error("API Connection Failed"); }
-        
-        const data = await res.json();
-        
-        if (document.getElementById(loadingId)) document.getElementById(loadingId).remove();
-
-        if (data.choices && data.choices[0]) {
-            let aiResponse = data.choices[0].message.content;
-            chatMemory.push({ role: "assistant", content: aiResponse });
-
-            chatHistory.innerHTML += `
-                <div style="margin-bottom: 15px;">
-                    <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                        🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
-                    </div>
-                </div>`;
-            
-            // ChatGPT dynamic typing loop
-            let textIndex = 0;
-            let responseSpan = document.getElementById(uniqueResponseId);
-            
-            function streamType() {
-                if (textIndex < aiResponse.length) {
-                    responseSpan.innerHTML += aiResponse.charAt(textIndex);
-                    textIndex++;
-                    chatScreen.scrollTop = chatScreen.scrollHeight;
-                    setTimeout(streamType, 12);
-                }
-            }
-            streamType();
-
-        } else { 
-            throw new Error("Empty JSON Response"); 
+    // ChatGPT jaisa smooth typing text render loop
+    let textIndex = 0;
+    let responseSpan = document.getElementById(uniqueResponseId);
+    
+    function streamTypeLocal() {
+        if (textIndex < aiResponse.length) {
+            responseSpan.innerHTML += aiResponse.charAt(textIndex);
+            textIndex++;
+            chatScreen.scrollTop = chatScreen.scrollHeight;
+            setTimeout(streamTypeLocal, 15);
         }
-
-    } catch(e) {
-        // Smart Local Chatbot Fallback - Taaki load agar fail ho tab bhi smart reply aaye!
-        if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
-        
-        let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
-        let lowQuestion = question.toLowerCase();
-        
-        if(lowQuestion.includes("html")) {
-            aiResponse = "HTML (HyperText Markup Language) web pages ka main structure tayaar karti hai. Iske bina koi website nahi ban sakti! 🌐";
-        } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
-            aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
-        } else if(lowQuestion.includes("css")) {
-            aiResponse = "CSS (Cascading Style Sheets) hamari website ka design aur makeup hai! Jaise humne ye glowing neon design lagaya hai, ye sab CSS ka kamaal hai. ✨";
-        } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun") || lowQuestion.includes("hey")) {
-            aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
-        }
-
-        chatHistory.innerHTML += `
-            <div style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                    🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
-                </div>
-            </div>`;
-            
-        let textIndex = 0;
-        let responseSpan = document.getElementById(uniqueResponseId);
-        function streamTypeLocal() {
-            if (textIndex < aiResponse.length) {
-                responseSpan.innerHTML += aiResponse.charAt(textIndex);
-                textIndex++;
-                chatScreen.scrollTop = chatScreen.scrollHeight;
-                setTimeout(streamTypeLocal, 15);
-            }
-        }
-        streamTypeLocal();
     }
+    streamTypeLocal();
 }
 </script>
 
