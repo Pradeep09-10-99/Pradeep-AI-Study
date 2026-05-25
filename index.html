@@ -526,7 +526,7 @@ async function askAIUpgrade() {
     let question = qInput.value.trim();
     if (!question) return;
 
-    // 1. User Message Display
+    // 1. User Message Screen Par Dikhayein
     chatHistory.innerHTML += `
         <div style="text-align: right; margin-bottom: 15px;">
             <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left; border: 1px solid rgba(255,255,255,0.1);">
@@ -537,7 +537,7 @@ async function askAIUpgrade() {
     qInput.value = ""; 
     chatScreen.scrollTop = chatScreen.scrollHeight;
 
-    // Gemini exact format mapping for user history
+    // History tracker for dynamic context
     chatMemory.push({ role: "user", parts: [{ text: question }] });
     if (chatMemory.length > 8) { chatMemory.shift(); }
 
@@ -552,19 +552,16 @@ async function askAIUpgrade() {
         </div>`;
     chatScreen.scrollTop = chatScreen.scrollHeight;
 
-    // SECURITY DECRYPTION SETUP
-    // === AAPKI BASE64 STRINGS IS BOX MEIN RAHENGI ===
-    const obfuscatedKey = "QUl6YVN5QVhfMUJ2eUpLRkxqWFBPX0g2R3VXYWN2SFRMS3FtVEJV"; // Iske andar apna pura encoded code rehne dein
-    const decryptedKey = atob(obfuscatedKey.trim()); 
+    // === DIRECT API KEY SETUP ===
+    // Isme beech mein apni real AIzaSy... vaali key bina kisi quotes ya mistake ke daalna
+    const realGeminiKey = "AIzaSyB0IzXy5xOeJJqNk7lEoq4Wmz6qLQUVnnc"; 
 
-    // Correct Gemini endpoint url structure
-    const apiURL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${decryptedKey}`;
+    const apiURL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${realGeminiKey}`;
 
-    // Standard Gemini Payload Format with System Instruction handled inside systemInstruction property
     const payload = {
         contents: chatMemory,
         systemInstruction: {
-            parts: [{ text: "You are Pradeep AI, a world-class smart AI tutor created by Pradeep Meena for the 'Pradeep AI Study' portal. You help with Railway NTPC preparation and Web Development. Always reply in beautiful, encouraging Hinglish with study emojis. Keep it concise." }]
+            parts: [{ text: "You are Pradeep AI, a world-class smart AI tutor created by Pradeep Meena. Answer anything asked across the universe dynamically. Use friendly Hinglish with study emojis." }]
         }
     };
 
@@ -582,8 +579,6 @@ async function askAIUpgrade() {
 
         if (data.candidates && data.candidates[0].content.parts[0].text) {
             let aiResponse = data.candidates[0].content.parts[0].text;
-            
-            // Saving response back to model context tracker safely
             chatMemory.push({ role: "model", parts: [{ text: aiResponse }] });
 
             chatHistory.innerHTML += `
@@ -593,10 +588,8 @@ async function askAIUpgrade() {
                     </div>
                 </div>`;
             
-            // Dynamic text processing engine (ChatGPT Style)
             let textIndex = 0;
             let responseSpan = document.getElementById(uniqueResponseId);
-            
             function streamType() {
                 if (responseSpan && textIndex < aiResponse.length) {
                     responseSpan.innerHTML += aiResponse.charAt(textIndex);
@@ -606,45 +599,19 @@ async function askAIUpgrade() {
                 }
             }
             streamType();
-        } else {
-            throw new Error("EMPTY_TEXT");
         }
 
     } catch(e) {
         if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
         
-        // Smart Local Backup is always active to ensure website never breaks down
-        let aiResponse = "Mujhe is baare mein thoda aur batayein! Main aapko Coding, Web Development aur NTPC preparation mein madad kar sakta hoon.";
-        let lowQuestion = question.toLowerCase();
-        
-        if(lowQuestion.includes("html")) {
-            aiResponse = "HTML (HyperText Markup Language) web pages ka main structure tayaar karti hai. Iske bina koi website nahi ban sakti! 🌐";
-        } else if(lowQuestion.includes("ntpc") || lowQuestion.includes("railway") || lowQuestion.includes("exam")) {
-            aiResponse = "RRB NTPC ke liye Maths, Reasoning aur Science par focus karein. Hamare portal par in teeno ke premium practice sets live hain! 🎯";
-        } else if(lowQuestion.includes("css")) {
-            aiResponse = "CSS (Cascading Style Sheets) hamari website ka design aur makeup hai! Jaise humne ye glowing neon design lagaya hai, ye sab CSS ka kamaal hai. ✨";
-        } else if(lowQuestion.includes("hello") || lowQuestion.includes("hi") || lowQuestion.includes("kaun") || lowQuestion.includes("hey")) {
-            aiResponse = "Hello! Main Pradeep AI Study ka official digital assistant hoon. Pradeep Meena ji ne mujhe aap jaise students ki help ke liye design kiya hai. Batayein aaj kya padhna hai? 😊";
-        }
-
+        // Critical interface warning if connection breaks
         chatHistory.innerHTML += `
             <div style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2); line-height: 1.5;">
-                    🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}"></span>
+                <div style="display: inline-block; background: rgba(248, 113, 113, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid #f87171; line-height: 1.5; color: #f87171;">
+                    🤖 <b>Pradeep AI:</b> Connection block ho raha hai bhaiya! Kripya code mein apni real Gemini key verify karein.
                 </div>
             </div>`;
-            
-        let textIndex = 0;
-        let responseSpan = document.getElementById(uniqueResponseId);
-        function streamTypeLocal() {
-            if (responseSpan && textIndex < aiResponse.length) {
-                responseSpan.innerHTML += aiResponse.charAt(textIndex);
-                textIndex++;
-                chatScreen.scrollTop = chatScreen.scrollHeight;
-                setTimeout(streamTypeLocal, 15);
-            }
-        }
-        streamTypeLocal();
+        chatScreen.scrollTop = chatScreen.scrollHeight;
     }
 }
 </script>
