@@ -549,7 +549,7 @@ async function askAIUpgrade() {
     chatScreen.scrollTop = chatScreen.scrollHeight;
 
     try {
-        // Direct hit to Netlify Serverless Backend
+        // Netlify Serverless Backend Call
         const res = await fetch("/.netlify/functions/chatbot", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -557,7 +557,17 @@ async function askAIUpgrade() {
         });
         
         const data = await res.json();
-        let aiResponse = data.candidates[0].content.parts[0].text;
+        let aiResponse = "";
+
+        // Safe Parsing: Check karein ki response Gemini ka valid structure hai ya function ka custom error
+        if (data && data.candidates && data.candidates[0] && data.candidates[0].content) {
+            aiResponse = data.candidates[0].content.parts[0].text;
+        } else if (data && data.error) {
+            aiResponse = `⚠️ Backend Error: ${data.error}`;
+        } else {
+            aiResponse = "Kuch ajeeb response aaya hai, kripya console check karein.";
+            console.log("Unexpected data structure:", data);
+        }
         
         chatMemory.push({ role: "model", parts: [{ text: aiResponse }] });
 
@@ -568,7 +578,9 @@ async function askAIUpgrade() {
         function streamType() {
             let currentSpan = document.getElementById(uniqueResponseId);
             if (currentSpan && textIndex < aiResponse.length) {
-                currentSpan.innerHTML += aiResponse.charAt(textIndex);
+                // Formatting handler: thoda clear text show karne ke liye line breaks replace karein
+                let char = aiResponse.charAt(textIndex);
+                currentSpan.innerHTML += char === '\n' ? '<br>' : char;
                 textIndex++;
                 chatScreen.scrollTop = chatScreen.scrollHeight;
                 setTimeout(streamType, 12);
@@ -577,8 +589,11 @@ async function askAIUpgrade() {
         streamType();
 
     } catch(e) {
+        console.error("Fetch API Main Error:", e);
         let responseSpan = document.getElementById(uniqueResponseId);
-        if(responseSpan) responseSpan.innerHTML = "Bhaiya, backend connect nahi ho paa raha hai. Ek baar Netlify deploy check karein!";
+        if(responseSpan) {
+            responseSpan.innerHTML = `Bhaiya, request fail ho gayi. Reason: ${e.message}. Ek baar Netlify dashboard par Environment Variables check karein!`;
+        }
     }
 }
 </script>
