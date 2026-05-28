@@ -596,6 +596,43 @@ async function askAIUpgrade() {
         }
     }
 }
+ <script>
+        async function askPradeepAI() {
+            // HTML se input aur chat box dhoondna
+            const userInput = document.getElementById("ai-input-box").value; 
+            const chatDisplay = document.getElementById("ai-chat-display"); 
+            
+            if (!userInput) return; // Agar input khali hai toh kuch mat karo
+
+            // User ka sawaal aur "Thinking" message screen par dikhana
+            chatDisplay.innerHTML += `<p><strong>Aap:</strong> ${userInput}</p>`;
+            chatDisplay.innerHTML += `<p id="loading-msg"><em>Pradeep AI soch raha hai...</em></p>`;
+
+            try {
+                // Secure Netlify Function ko call lagana (API key yahan nahi dikhegi)
+                const response = await fetch("/.netlify/functions/chat", {
+                    method: "POST",
+                    body: JSON.stringify({ message: userInput })
+                });
+                
+                const data = await response.json();
+                
+                // Purana loading text hatakar AI ka real reply dikhana
+                document.getElementById("loading-msg").remove();
+                chatDisplay.innerHTML += `<p><strong>🤖 Pradeep AI:</strong> ${data.reply}</p>`;
+                
+                // Agle sawaal ke liye input box ko wapas khali kar dena
+                document.getElementById("ai-input-box").value = "";
+                
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("loading-msg").remove();
+                chatDisplay.innerHTML += `<p><em>Oops! AI server se connect nahi ho paya. Dobara try karein.</em></p>`;
+            }
+        }
+    </script>
+</body>
+</html>   
 </script>
 </body>
 </html>
