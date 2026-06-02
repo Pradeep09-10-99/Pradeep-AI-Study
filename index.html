@@ -549,11 +549,11 @@
 
         try {
            // Naya Code
-const res = await fetch("https://aapki-netlify-site-ka-naam.netlify.app/.netlify/functions/chatbot", { ... })
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ contents: chatMemory })
-            });
+const res = await fetch("https://charming-mousse-1eac53.netlify.app/.netlify/functions/chatbot", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ contents: chatMemory })
+});
             
             const data = await res.json();
             let aiResponse = "";
