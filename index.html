@@ -548,7 +548,8 @@
         chatScreen.scrollTop = chatScreen.scrollHeight;
 
         try {
-            const res = await fetch("/.netlify/functions/chatbot", {
+           // Naya Code
+const res = await fetch("https://aapki-netlify-site-ka-naam.netlify.app/.netlify/functions/chatbot", { ... })
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ contents: chatMemory })
