@@ -1,48 +1,50 @@
-const fetch = require('node-fetch');
-
 exports.handler = async function(event, context) {
-    if (event.httpMethod === "OPTIONS") {
-        return {
-            statusCode: 200,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Allow-Methods": "POST, OPTIONS"
-            },
-            body: ""
-        };
+  // CORS Headers taaki browser ise block na kare
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTION'
+  };
+
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
+  try {
+    // Netlify ke environment variables se API Key nikalna
+    const API_KEY = process.env.GEMINI_API_KEY;
+    
+    if (!API_KEY) {
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ error: "API Key Netlify par set nahi hai!" })
+      };
     }
 
-    if (event.httpMethod !== "POST") {
-        return { statusCode: 405, body: "Method Not Allowed" };
-    }
+    const body = JSON.parse(event.body);
+    const contents = body.contents; 
 
-    try {
-        const { contents } = JSON.parse(event.body);
-        const apiKey = process.env.GEMINI_API_KEY; 
-        const apiURL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Google Gemini API ko direct call karna
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: contents })
+    });
 
-        const res = await fetch(apiURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ contents })
-        });
+    const data = await response.json();
 
-        const data = await res.json();
-        return {
-            statusCode: 200,
-            headers: { 
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type"
-            },
-            body: JSON.stringify(data)
-        };
-    } catch (error) {
-        return { 
-            statusCode: 500, 
-            headers: { "Access-Control-Allow-Origin": "*" },
-            body: JSON.stringify({ error: error.message }) 
-        };
-    }
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify(data)
+    };
+
+  } catch (error) {
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ error: error.message })
+    };
+  }
 };
