@@ -11,9 +11,8 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    // Netlify ke environment variables se API Key nikalna
-    const API_KEY = process.env.GEMINI_API_KEY;
-    
+    // Netlify environment variable se API key fetch hogi (Frontend par kisi ko nahi dikhegi)
+const apiKey = "AIzaSyAX_1BvyJKFLjXPO_H6GuWacvHTLKqmTBU";
     if (!API_KEY) {
       return {
         statusCode: 500,
