@@ -9,7 +9,7 @@ export const handler = async (event) => {
     const userMessage = body.message;
     
     // Netlify environment variable se API key fetch hogi (Frontend par kisi ko nahi dikhegi)
-    const apiKey = process.env.GEMINI_API_KEY; 
+    const apiKey = AIzaSyAX_1BvyJKFLjXPO_H6GuWacvHTLKqmTBU; 
 
     // Google Gemini API ko request bhejna
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
