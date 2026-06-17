@@ -479,3 +479,255 @@
 
     <div style="text-align: center; margin-top: 40px;">
         <a href="
+http://www.youtube.com/channel/UC1nPQfCaMBT0yreHuA3cHdQ" target="_blank" style="display: inline-block; background: #ff0000; color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,0,0,0.2);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <i class="fa-brands fa-youtube" style="margin-right: 8px;"></i> Subscribe Our Channel
+        </a>
+    </div>
+</section>
+
+<footer>
+    <h3>© 2026 Pradeep AI Study | All Rights Reserved</h3>
+    
+    <div style="margin-top: 15px; font-size: 14px; letter-spacing: 0.5px;">
+        <a href="privacy.html" style="color: cyan; text-decoration: none; transition: 0.3s;" onmouseover="this.style.textShadow='0 0 8px cyan'" onmouseout="this.style.textShadow='none'">Privacy Policy</a> 
+        <span style="color: rgba(255,255,255,0.2); margin: 0 10px;">|</span> 
+        <a href="terms.html" style="color: cyan; text-decoration: none; transition: 0.3s;" onmouseover="this.style.textShadow='0 0 8px cyan'" onmouseout="this.style.textShadow='none'">Terms & Conditions</a>
+    </div>
+
+    <div class="social-icons" style="margin-top: 20px;">
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-github"></i>
+    </div>
+</footer>
+
+<button class="mode-btn" onclick="toggleMode()">🌓</button>
+
+<!-- ================= JAVASCRIPT SECTION ================= -->
+<script>
+    // 1. Foolproof Loader Hide Function (Isse site kabhi nahi atkegi)
+    window.addEventListener('load', hideLoader);
+    setTimeout(hideLoader, 1000); // Failsafe: 1 second baad forcefully hata dega
+
+    function hideLoader() {
+        let loader = document.getElementById("loader");
+        if(loader) loader.style.display = "none";
+    }
+
+    // Menu & Dark Mode
+    function toggleMenu() { 
+        let navLinks = document.getElementById("nav-links");
+        if(navLinks) navLinks.classList.toggle("active"); 
+    }
+    function toggleMode() { document.body.classList.toggle("light-mode"); }
+
+    // Scroll Progress Bar & Stats Animation Trigger
+    window.onscroll = () => {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let progressBar = document.getElementById("progress-bar");
+        if(progressBar) progressBar.style.width = (winScroll / height) * 100 + "%";
+        if (winScroll > 800) startStats();
+    };
+
+    // Hero Section Typing Effect
+    const texts = ["Learn Coding ", "Master AI Tools ", "NTPC Preparation "];
+    let tCount = 0, tIndex = 0, isDeleting = false;
+    function typeEffect() {
+        const current = texts[tCount % texts.length];
+        if (isDeleting) tIndex--; else tIndex++;
+        let typingElement = document.getElementById("typing");
+        if(typingElement) typingElement.innerHTML = current.substring(0, tIndex);
+        let speed = isDeleting ? 50 : 150;
+        if (!isDeleting && tIndex === current.length) { speed = 2000; isDeleting = true; }
+        else if (isDeleting && tIndex === 0) { isDeleting = false; tCount++; speed = 500; }
+        setTimeout(typeEffect, speed);
+    }
+    document.addEventListener("DOMContentLoaded", () => { typeEffect(); });
+
+    // Mega Quiz Demo Function
+    function startMegaQuiz(topic) {
+        let score = Math.floor(Math.random() * 5) + 6;
+        let resultDiv = document.getElementById("mega-quiz-result");
+        let scoreSpan = document.getElementById("mega-score");
+        if (scoreSpan && resultDiv) {
+            scoreSpan.innerText = score;
+            resultDiv.style.display = "block";
+            alert("Starting " + topic + " Quiz! Demo result processing...");
+        }
+    }
+
+    // Achievements Counters
+    let started = false;
+    function startStats() {
+        if (started) return;
+        started = true;
+        animateValue("students", 0, 500, 2000);
+        animateValue("courses", 0, 50, 2000);
+        animateValue("success", 0, 95, 2000, "%");
+    }
+    function animateValue(id, start, end, duration, suffix="") {
+        let obj = document.getElementById(id);
+        if(!obj) return;
+        let range = end - start;
+        let startTime = new Date().getTime();
+        let timer = setInterval(() => {
+            let timePassed = new Date().getTime() - startTime;
+            let progress = Math.min(timePassed / duration, 1);
+            obj.innerHTML = Math.floor(progress * range + start) + suffix;
+            if (progress === 1) clearInterval(timer);
+        }, 10);
+    }
+
+    // Study Timer Logic
+    let studyTimer, sec=0, min=0, hrs=0;
+    function startTimer() {
+        if(studyTimer) return;
+        studyTimer = setInterval(() => {
+            sec++; if(sec==60){sec=0; min++;} if(min==60){min=0; hrs++;}
+            let timeElement = document.getElementById("time");
+            if(timeElement) {
+                timeElement.innerHTML = (hrs<10?'0'+hrs:hrs)+":"+(min<10?'0'+min:min)+":"+(sec<10?'0'+sec:sec);
+            }
+        }, 1000);
+    }
+    function stopTimer() { clearInterval(studyTimer); studyTimer=null; }
+
+    // To-Do List Logic
+    function addTask() {
+        let input = document.getElementById("taskInput");
+        let taskList = document.getElementById("taskList");
+        if (!input || !input.value || !taskList) return;
+        let li = document.createElement("li");
+        li.innerHTML = "✅ " + input.value;
+        taskList.appendChild(li);
+        input.value = "";
+    }
+
+    // Web Dev Quiz Logic
+    function checkQuizUpgrade() {
+        let q = document.getElementsByName("q1");
+        let resultDiv = document.getElementById("quizResultUpgrade");
+        let title = document.getElementById("resultTitle");
+        let explain = document.getElementById("resultExplain");
+        if(!resultDiv || !title || !explain) return;
+        
+        let selected = "";
+        for(let i=0; i<q.length; i++) { if(q[i].checked) selected = q[i].value; }
+        
+        resultDiv.style.display = "block";
+        if(selected === "a") {
+            resultDiv.style.background = "rgba(74, 222, 128, 0.1)";
+            resultDiv.style.border = "1px solid #4ade80";
+            title.style.color = "#4ade80";
+            title.innerHTML = "Correct Answer! 🎉";
+            explain.innerHTML = "HTML ka full form 'Hyper Text Markup Language' hota hai. Yeh web page ka structure banati hai.";
+        } else {
+            resultDiv.style.background = "rgba(248, 113, 113, 0.1)";
+            resultDiv.style.border = "1px solid #f87171";
+            title.style.color = "#f87171";
+            title.innerHTML = "Wrong Answer! ❌";
+            explain.innerHTML = "Sahi jawab option (A) hai. High Transfer ya Machine Language galat options hain.";
+        }
+    }
+
+    // Typing Speed Logic
+    function checkTypingSpeed() {
+        let inputElement = document.getElementById("typingInput");
+        let targetElement = document.getElementById("typingText");
+        let result = document.getElementById("typingResult");
+        if(!inputElement || !targetElement || !result) return;
+        
+        let input = inputElement.value.trim();
+        let target = targetElement.innerText.trim();
+        if(!input) { result.innerHTML = "Kripya niche box mein type karein!"; return; }
+        
+        if(input === target) {
+            result.style.color = "#4ade80";
+            result.innerHTML = "Perfect Match! Aapki typing speed aur accuracy lajawab hai. ⚡";
+        } else {
+            result.style.color = "#fb923c";
+            result.innerHTML = "Text match nahi hua. Kripya spellings aur capital letters check karein.";
+        }
+    }
+
+    // AI Chatbot Logic
+    let chatMemory = [];
+    async function askAIUpgrade() {
+        let qInput = document.getElementById("userQuestion");
+        let chatHistory = document.getElementById("chatHistory");
+        let chatScreen = document.getElementById("chatScreen");
+        if(!qInput || !chatHistory || !chatScreen) return;
+        
+        let question = qInput.value.trim();
+        if (!question) return;
+
+        chatHistory.innerHTML += `
+            <div style="text-align: right; margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left;">
+                    <b>Aap:</b> ${question}
+                </div>
+            </div>`;
+        
+        qInput.value = ""; 
+        chatScreen.scrollTop = chatScreen.scrollHeight;
+
+        chatMemory.push({ role: "user", parts: [{ text: question }] });
+        if (chatMemory.length > 10) { chatMemory.shift(); }
+
+        let uniqueResponseId = "response_" + Date.now();
+        chatHistory.innerHTML += `
+            <div style="margin-bottom: 15px;">
+                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2);">
+                    🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}">Soch raha hoon... 🤔</span>
+                </div>
+            </div>`;
+        chatScreen.scrollTop = chatScreen.scrollHeight;
+
+        try {
+            const res = await fetch("https://charming-mousse-1eac53.netlify.app/.netlify/functions/chatbot", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: chatMemory })
+            });
+            
+            const data = await res.json();
+            let aiResponse = "";
+
+            if (data && data.candidates && data.candidates[0] && data.candidates[0].content) {
+                aiResponse = data.candidates[0].content.parts[0].text;
+            } else if (data && data.error) {
+                aiResponse = `⚠️ Backend Error: ${data.error}`;
+            } else {
+                aiResponse = "Kuch ajeeb error hai, baad me try karein.";
+            }
+            
+            chatMemory.push({ role: "model", parts: [{ text: aiResponse }] });
+
+            let responseSpan = document.getElementById(uniqueResponseId);
+            if(responseSpan) {
+                responseSpan.innerHTML = ""; 
+                let textIndex = 0;
+                function streamType() {
+                    if (textIndex < aiResponse.length) {
+                        let char = aiResponse.charAt(textIndex);
+                        responseSpan.innerHTML += char === '\n' ? '<br>' : char;
+                        textIndex++;
+                        chatScreen.scrollTop = chatScreen.scrollHeight;
+                        setTimeout(streamType, 12);
+                    }
+                }
+                streamType();
+            }
+
+        } catch(e) {
+            console.error("Error:", e);
+            let responseSpan = document.getElementById(uniqueResponseId);
+            if(responseSpan) {
+                responseSpan.innerHTML = `⚠️ Network Error. Check connection or API keys.`;
+            }
+        }
+    }
+</script>
+</body>
+</html>
