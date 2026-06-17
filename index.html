@@ -65,8 +65,8 @@
         .hero-content h2 { color:cyan; font-size:32px; min-height:40px; margin-bottom:20px; }
         .hero-btns { display:flex; gap:15px; margin-top:30px; }
         .btn1, .btn2 { padding:12px 30px; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.4s; border:2px solid cyan; }
-        .btn1 { background:cyan; color:#0f172a; }
-        .btn2 { background:transparent; color:cyan; }
+        .btn1 { background:cyan; color:#0f172a; text-decoration: none; display: inline-block; text-align: center;}
+        .btn2 { background:transparent; color:cyan; text-decoration: none; display: inline-block; text-align: center;}
         .btn1:hover, .btn2:hover { transform:scale(1.05); box-shadow:0 0 15px cyan; }
         .hero-image img { width: 350px; height: 350px; border-radius: 50%; object-fit: cover; border: 4px solid cyan; filter: drop-shadow(0 0 20px cyan); display: block; animation:float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-20px); } }
@@ -101,6 +101,12 @@
         /* LISTS */
         ul.list-style { text-align:left; list-style:none; margin-top:20px; }
         ul.list-style li { background:rgba(255,255,255,0.05); padding:12px; margin-bottom:10px; border-radius:8px; border-left:4px solid cyan; }
+
+        /* TABLES */
+        .pyq-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .pyq-table th { padding: 15px; color: cyan; border-bottom: 2px solid cyan; }
+        .pyq-table td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .pyq-table tr:hover { background: rgba(255,255,255,0.05); }
 
         /* FOOTER */
         footer { background:#111827; padding:40px; text-align:center; border-top:1px solid rgba(0,255,255,0.1); }
@@ -140,7 +146,7 @@
     <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="#ntpc-portal">NTPC Dashboard</a></li>
-        <li><a href="blog.html">📝 Blogs</a></li>
+        <li><a href="#notes-library">📚 Notes Library</a></li>
         <li><a href="mocktest.html">🎯 Mega Mock Test</a></li>
         <li><a href="#chatbot" style="color: cyan; border: 1px solid rgba(0,242,254,0.3); padding: 6px 12px; border-radius: 6px; background: rgba(0,242,254,0.05);">AI Assistant</a></li>
     </ul>
@@ -158,6 +164,33 @@
     </div>
     <div class="hero-image">
         <img src="pradeep-profile.jpg" alt="Pradeep Meena">
+    </div>
+</section>
+
+<section id="mega-quiz" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05);">
+    <h1 class="section-title"><i class="fa-solid fa-list-check" style="color: cyan;"></i> Test Your Knowledge</h1>
+    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Apni preparation ka level check karein.</p>
+    
+    <div class="feature-container">
+        <div class="feature-card" style="cursor: pointer;" onclick="startMegaQuiz('Indian Constitution')">
+            <i class="fa-solid fa-landmark"></i>
+            <h2>Constitution Quiz</h2>
+            <p>Test your administrative history knowledge.</p>
+        </div>
+        <div class="feature-card" style="cursor: pointer;" onclick="startMegaQuiz('General Knowledge')">
+            <i class="fa-solid fa-globe"></i>
+            <h2>GK Quiz</h2>
+            <p>General Knowledge & Current Awareness.</p>
+        </div>
+        <div class="feature-card" style="cursor: pointer;" onclick="startMegaQuiz('NTPC Exam')">
+            <i class="fa-solid fa-train"></i>
+            <h2>NTPC Quiz</h2>
+            <p>Targeted Railway questions & PYQs.</p>
+        </div>
+    </div>
+    <div id="mega-quiz-result" class="login-box" style="display:none; max-width: 400px; margin: 30px auto 0;">
+        <h3 style="color: white;">Your Score: <span id="mega-score" style="color: cyan; font-size: 24px;"></span>/10</h3>
+        <p style="color: #cbd5e1; font-size: 14px; margin-top: 5px;">Excellent performance! Keep practicing.</p>
     </div>
 </section>
 
@@ -185,6 +218,90 @@
                 <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Click to Practice 🚀</span>
             </div>
         </a>
+    </div>
+</section>
+
+<section id="current-affairs" style="background: rgba(0, 252, 254, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); border-bottom: 1px solid rgba(0, 255, 255, 0.05);">
+    <h1 class="section-title"><i class="fa-regular fa-newspaper" style="color: cyan;"></i> Daily Current Affairs</h1>
+    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Roz 5-10 important points, NTPC exam preparation ke liye useful.</p>
+    
+    <div class="login-box" style="max-width: 800px; margin: auto; text-align: left;">
+        <ul class="list-style" style="margin-top: 0;">
+            <li><span style="color:cyan; font-weight:bold;">17 June 2026:</span> Cabinet approves new Railway expansion plan. Important for NTPC upcoming phases.</li>
+            <li><span style="color:cyan; font-weight:bold;">16 June 2026:</span> ISRO successfully launches next-gen communication satellite.</li>
+            <li><span style="color:cyan; font-weight:bold;">15 June 2026:</span> RBI updates repo rate guidelines. Expected in Economics section.</li>
+            <li><span style="color:cyan; font-weight:bold;">14 June 2026:</span> Current T20 World Cup updates and awards tally.</li>
+            <li><span style="color:cyan; font-weight:bold;">13 June 2026:</span> Global AI Summit held in New Delhi, focusing on Web Development and Tech Future.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="notes-library">
+    <h1 class="section-title"><i class="fa-solid fa-book-journal-whills" style="color: cyan;"></i> Premium Notes Library</h1>
+    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">PDF Download karein aur niche diye gaye video se clear karein.</p>
+
+    <div class="feature-container">
+        <div class="login-box" style="flex: 1; min-width: 300px; max-width: 350px;">
+            <h3 style="color: white; margin-bottom: 10px;">HTML & CSS Notes</h3>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 15px;">Web development ka complete base.</p>
+            <a href="#" class="btn1" download style="display:block; margin-bottom: 15px; text-decoration: none;">📄 Download PDF</a>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/5EqifYwKgOg" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="login-box" style="flex: 1; min-width: 300px; max-width: 350px;">
+            <h3 style="color: white; margin-bottom: 10px;">JavaScript Notes</h3>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 15px;">Logic building aur API integrations.</p>
+            <a href="#" class="btn1" download style="display:block; margin-bottom: 15px; text-decoration: none;">📄 Download PDF</a>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/hAvvBSbtc28" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="login-box" style="flex: 1; min-width: 300px; max-width: 350px;">
+            <h3 style="color: white; margin-bottom: 10px;">Constitution Notes</h3>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 15px;">1946 Cabinet Mission se aage tak.</p>
+            <a href="#" class="btn1" download style="display:block; margin-bottom: 15px; text-decoration: none;">📄 Download PDF</a>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/5EqifYwKgOg" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="pyq-section" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
+    <h1 class="section-title"><i class="fa-solid fa-file-pdf" style="color: cyan;"></i> Previous Year Papers</h1>
+    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">PDF format me NTPC, SSC, aur Railway papers download karein.</p>
+    
+    <div class="login-box" style="max-width: 800px; margin: auto; overflow-x: auto;">
+        <table class="pyq-table">
+            <tr>
+                <th>Exam Name</th>
+                <th>Year / Shift</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>Railway NTPC CBT-1</td>
+                <td>2021 (All Shifts)</td>
+                <td><a href="#" style="color: cyan; text-decoration: none; font-weight: bold;"><i class="fa-solid fa-download"></i> Download</a></td>
+            </tr>
+            <tr>
+                <td>Railway NTPC CBT-2</td>
+                <td>2022 (All Levels)</td>
+                <td><a href="#" style="color: cyan; text-decoration: none; font-weight: bold;"><i class="fa-solid fa-download"></i> Download</a></td>
+            </tr>
+            <tr>
+                <td>SSC CGL Tier 1</td>
+                <td>2023</td>
+                <td><a href="#" style="color: cyan; text-decoration: none; font-weight: bold;"><i class="fa-solid fa-download"></i> Download</a></td>
+            </tr>
+            <tr>
+                <td>SSC CHSL</td>
+                <td>2023</td>
+                <td><a href="#" style="color: cyan; text-decoration: none; font-weight: bold;"><i class="fa-solid fa-download"></i> Download</a></td>
+            </tr>
+        </table>
     </div>
 </section>
 
@@ -361,268 +478,4 @@
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
-        <a href="http://www.youtube.com/channel/UC1nPQfCaMBT0yreHuA3cHdQ" target="_blank" style="display: inline-block; background: #ff0000; color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,0,0,0.2);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-            <i class="fa-brands fa-youtube" style="margin-right: 8px;"></i> Subscribe Our Channel
-        </a>
-    </div>
-</section>
-
-<footer>
-    <h3>© 2026 Pradeep AI Study | All Rights Reserved</h3>
-    
-    <div style="margin-top: 15px; font-size: 14px; letter-spacing: 0.5px;">
-        <a href="privacy.html" style="color: cyan; text-decoration: none; transition: 0.3s;" onmouseover="this.style.textShadow='0 0 8px cyan'" onmouseout="this.style.textShadow='none'">Privacy Policy</a> 
-        <span style="color: rgba(255,255,255,0.2); margin: 0 10px;">|</span> 
-        <a href="terms.html" style="color: cyan; text-decoration: none; transition: 0.3s;" onmouseover="this.style.textShadow='0 0 8px cyan'" onmouseout="this.style.textShadow='none'">Terms & Conditions</a>
-    </div>
-
-    <div class="social-icons" style="margin-top: 20px;">
-        <i class="fa-brands fa-youtube"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-github"></i>
-    </div>
-</footer>
-
-<button class="mode-btn" onclick="toggleMode()">🌓</button>
-
-<script>
-    // 1. Safe Loader Hide Function (Website Loading Screen)
-    window.onload = () => {
-        let loader = document.getElementById("loader");
-        if(loader) loader.style.display = "none";
-    };
-
-    function toggleMenu() { 
-        let navLinks = document.getElementById("nav-links");
-        if(navLinks) navLinks.classList.toggle("active"); 
-    }
-    
-    function toggleMode() { document.body.classList.toggle("light-mode"); }
-
-    window.onscroll = () => {
-        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let progressBar = document.getElementById("progress-bar");
-        if(progressBar) progressBar.style.width = (winScroll / height) * 100 + "%";
-        if (winScroll > 800) startStats();
-    };
-
-    const texts = ["Learn Coding ", "Master AI Tools ", "NTPC Preparation "];
-    let tCount = 0, tIndex = 0, isDeleting = false;
-    function typeEffect() {
-        const current = texts[tCount % texts.length];
-        if (isDeleting) tIndex--; else tIndex++;
-        let typingElement = document.getElementById("typing");
-        if(typingElement) typingElement.innerHTML = current.substring(0, tIndex);
-        let speed = isDeleting ? 50 : 150;
-        if (!isDeleting && tIndex === current.length) { speed = 2000; isDeleting = true; }
-        else if (isDeleting && tIndex === 0) { isDeleting = false; tCount++; speed = 500; }
-        setTimeout(typeEffect, speed);
-    }
-    document.addEventListener("DOMContentLoaded", () => { typeEffect(); });
-
-    let started = false;
-    function startStats() {
-        if (started) return;
-        started = true;
-        animateValue("students", 0, 500, 2000);
-        animateValue("courses", 0, 50, 2000);
-        animateValue("success", 0, 95, 2000, "%");
-    }
-    
-    function animateValue(id, start, end, duration, suffix="") {
-        let obj = document.getElementById(id);
-        if(!obj) return;
-        let range = end - start;
-        let startTime = new Date().getTime();
-        let timer = setInterval(() => {
-            let timePassed = new Date().getTime() - startTime;
-            let progress = Math.min(timePassed / duration, 1);
-            obj.innerHTML = Math.floor(progress * range + start) + suffix;
-            if (progress === 1) clearInterval(timer);
-        }, 10);
-    }
-
-    let timer, sec=0, min=0, hrs=0;
-    function startTimer() {
-        if(timer) return;
-        timer = setInterval(() => {
-            sec++; if(sec==60){sec=0; min++;} if(min==60){min=0; hrs++;}
-            let timeElement = document.getElementById("time");
-            if(timeElement) {
-                timeElement.innerHTML = (hrs<10?'0'+hrs:hrs)+":"+(min<10?'0'+min:min)+":"+(sec<10?'0'+sec:sec);
-            }
-        }, 1000);
-    }
-    function stopTimer() { clearInterval(timer); timer=null; }
-
-    function addTask() {
-        let input = document.getElementById("taskInput");
-        let taskList = document.getElementById("taskList");
-        if (!input || !input.value || !taskList) return;
-        let li = document.createElement("li");
-        li.innerHTML = "✅ " + input.value;
-        taskList.appendChild(li);
-        input.value = "";
-    }
-
-    function checkQuizUpgrade() {
-        let q = document.getElementsByName("q1");
-        let resultDiv = document.getElementById("quizResultUpgrade");
-        let title = document.getElementById("resultTitle");
-        let explain = document.getElementById("resultExplain");
-        
-        if(!resultDiv || !title || !explain) return;
-        
-        let selected = "";
-        for(let i=0; i<q.length; i++) { if(q[i].checked) selected = q[i].value; }
-        
-        resultDiv.style.display = "block";
-        if(selected === "a") {
-            resultDiv.style.background = "rgba(74, 222, 128, 0.1)";
-            resultDiv.style.border = "1px solid #4ade80";
-            title.style.color = "#4ade80";
-            title.innerHTML = "Correct Answer! 🎉";
-            explain.innerHTML = "HTML ka full form 'Hyper Text Markup Language' hota hai. Yeh kisi bhi web page ka structure banane ke kaam aati hai.";
-        } else {
-            resultDiv.style.background = "rgba(248, 113, 113, 0.1)";
-            resultDiv.style.border = "1px solid #f87171";
-            title.style.color = "#f87171";
-            title.innerHTML = "Wrong Answer! ❌";
-            explain.innerHTML = "Sahi jawab option (A) hai. High Transfer ya Machine Language galat options hain.";
-        }
-    }
-
-    function checkTypingSpeed() {
-        let inputElement = document.getElementById("typingInput");
-        let targetElement = document.getElementById("typingText");
-        let result = document.getElementById("typingResult");
-        
-        if(!inputElement || !targetElement || !result) return;
-        
-        let input = inputElement.value.trim();
-        let target = targetElement.innerText.trim();
-        
-        if(!input) { result.innerHTML = "Kripya niche box mein type karein!"; return; }
-        
-        if(input === target) {
-            result.style.color = "#4ade80";
-            result.innerHTML = "Perfect Match! Aapki typing speed aur accuracy lajawab hai. ⚡";
-        } else {
-            result.style.color = "#fb923c";
-            result.innerHTML = "Text match nahi hua. Kripya spellings aur capital letters check karein.";
-        }
-    }
-
-    let chatMemory = [];
-
-    async function askAIUpgrade() {
-        let qInput = document.getElementById("userQuestion");
-        let chatHistory = document.getElementById("chatHistory");
-        let chatScreen = document.getElementById("chatScreen");
-        if(!qInput || !chatHistory || !chatScreen) return;
-        
-        let question = qInput.value.trim();
-        if (!question) return;
-
-        chatHistory.innerHTML += `
-            <div style="text-align: right; margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(255,255,255,0.08); padding: 10px 15px; border-radius: 12px 12px 0 12px; max-width: 80%; text-align: left;">
-                    <b>Aap:</b> ${question}
-                </div>
-            </div>`;
-        
-        qInput.value = ""; 
-        chatScreen.scrollTop = chatScreen.scrollHeight;
-
-        chatMemory.push({ role: "user", parts: [{ text: question }] });
-        if (chatMemory.length > 10) { chatMemory.shift(); }
-
-        let uniqueResponseId = "response_" + Date.now();
-        chatHistory.innerHTML += `
-            <div style="margin-bottom: 15px;">
-                <div style="display: inline-block; background: rgba(0, 252, 254, 0.05); padding: 10px 15px; border-radius: 12px 12px 12px 0; max-width: 80%; border: 1px solid rgba(0,255,255,0.2);">
-                    🤖 <b>Pradeep AI:</b> <span id="${uniqueResponseId}">Soch raha hoon... 🤔</span>
-                </div>
-            </div>`;
-        chatScreen.scrollTop = chatScreen.scrollHeight;
-
-        try {
-            const res = await fetch("https://charming-mousse-1eac53.netlify.app/.netlify/functions/chatbot", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ contents: chatMemory })
-            });
-            
-            const data = await res.json();
-            let aiResponse = "";
-
-            if (data && data.candidates && data.candidates[0] && data.candidates[0].content) {
-                aiResponse = data.candidates[0].content.parts[0].text;
-            } else if (data && data.error) {
-                aiResponse = `⚠️ Backend Error: ${data.error}`;
-            } else {
-                aiResponse = "Kuch ajeeb response aaya hai, kripya console check karein.";
-                console.log("Unexpected data structure:", data);
-            }
-            
-            chatMemory.push({ role: "model", parts: [{ text: aiResponse }] });
-
-            let responseSpan = document.getElementById(uniqueResponseId);
-            if(responseSpan) responseSpan.innerHTML = ""; 
-
-            let textIndex = 0;
-            function streamType() {
-                let currentSpan = document.getElementById(uniqueResponseId);
-                if (currentSpan && textIndex < aiResponse.length) {
-                    let char = aiResponse.charAt(textIndex);
-                    currentSpan.innerHTML += char === '\n' ? '<br>' : char;
-                    textIndex++;
-                    chatScreen.scrollTop = chatScreen.scrollHeight;
-                    setTimeout(streamType, 12);
-                }
-            }
-            streamType();
-
-        } catch(e) {
-            console.error("Fetch API Main Error:", e);
-            let responseSpan = document.getElementById(uniqueResponseId);
-            if(responseSpan) {
-                responseSpan.innerHTML = `Bhaiya, request fail ho gayi. Reason: ${e.message}. Ek baar Netlify dashboard par Environment Variables check karein!`;
-            }
-        }
-    }
-
-    async function askPradeepAI() {
-        const userInput = document.getElementById("ai-input-box")?.value; 
-        const chatDisplay = document.getElementById("ai-chat-display"); 
-        
-        if (!userInput || !chatDisplay) return; 
-
-        chatDisplay.innerHTML += `<p><strong>Aap:</strong> ${userInput}</p>`;
-        chatDisplay.innerHTML += `<p id="loading-msg"><em>Pradeep AI soch raha hai...</em></p>`;
-
-        try {
-            const response = await fetch("https://charming-mousse-1eac53.netlify.app/.netlify/functions/chat", {
-                method: "POST",
-                body: JSON.stringify({ message: userInput })
-            });
-            
-            const data = await response.json();
-            
-            let loadingMsg = document.getElementById("loading-msg");
-            if(loadingMsg) loadingMsg.remove();
-            
-            chatDisplay.innerHTML += `<p><strong>🤖 Pradeep AI:</strong> ${data.reply}</p>`;
-            document.getElementById("ai-input-box").value = "";
-            
-        } catch (error) {
-            console.error("Error:", error);
-            let loadingMsg = document.getElementById("loading-msg");
-            if(loadingMsg) loadingMsg.remove();
-            chatDisplay.innerHTML += `<p><em>Oops! AI server se connect nahi ho paya. Dobara try karein.</em></p>`;
-        }
-    }
-</script>
-</body>
-</html>
+        <a href="
