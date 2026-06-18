@@ -1,164 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradeep AI Study - Live Quiz</title>
+    <style>
+        /* Base Styling */
+        body { 
+            background: #0f172a; 
+            color: white; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+        /* Glassmorphism Quiz Box */
+        .quiz-box {
+            background: rgba(255, 255, 255, 0.03); 
+            padding: 40px 30px; 
+            border-radius: 16px;
+            text-align: center; 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px); 
+            width: 100%; 
+            max-width: 600px;
+            box-shadow: 0 10px 25px rgba(0, 252, 254, 0.15);
+        }
 
-<title>Quiz - Pradeep AI Study</title>
+        /* Options Button Design */
+        .option-btn {
+            padding: 15px; 
+            background: transparent; 
+            color: #cbd5e1;
+            border: 1px solid #334155; 
+            border-radius: 8px; 
+            text-align: left;
+            cursor: pointer; 
+            transition: 0.3s; 
+            font-size: 16px;
+            font-weight: 500;
+        }
 
-<style>
+        .option-btn:hover:not(:disabled) {
+            background: rgba(0, 252, 254, 0.1); 
+            border-color: cyan; 
+            color: cyan;
+        }
 
-body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
-}
+        /* Next Button Design */
+        .next-btn {
+            margin-top: 25px; 
+            padding: 14px 24px; 
+            background: cyan; 
+            color: #0f172a;
+            font-weight: bold; 
+            border-radius: 8px; 
+            border: none; 
+            cursor: pointer;
+            transition: 0.3s; 
+            font-size: 16px; 
+            width: 100%;
+            display: none; /* Default me hidden rahega */
+        }
 
-nav{
-display:flex;
-justify-content:space-between;
-padding:20px 8%;
-background:#111827;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-}
-
-.quiz{
-padding:80px 8%;
-text-align:center;
-}
-
-.quiz h1{
-font-size:55px;
-color:cyan;
-margin-bottom:40px;
-}
-
-.box{
-max-width:600px;
-margin:auto;
-background:rgba(255,255,255,0.08);
-padding:40px;
-border-radius:20px;
-}
-
-button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-background:cyan;
-color:black;
-font-weight:bold;
-border-radius:10px;
-cursor:pointer;
-}
-
-</style>
-
+        .next-btn:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 0 15px cyan; 
+        }
+    </style>
 </head>
-
 <body>
 
-<nav>
+    <div class="quiz-box">
+        <h3 id="exam-name" style="color: cyan; margin-top: 0; margin-bottom: 15px; font-size: 22px;">Loading...</h3>
+        <p id="question-text" style="font-size: 18px; color: white; margin-bottom: 25px; text-align: left; line-height: 1.5;"></p>
+        
+        <div id="options-container" style="display: flex; flex-direction: column; gap: 12px;">
+            </div>
 
-<h2>Pradeep AI Study</h2>
+        <button class="next-btn" onclick="nextQuestion()" id="next-btn">Next Question ➔</button>
+    </div>
 
-<div>
+    <script src="questions.js"></script>
 
-<a href="index.html">Home</a>
+    <script>
+        let currentQuestionIndex = 0;
 
-<a href="about.html">About</a>
+        function loadQuestion() {
+            // Check karna ki questions.js file sahi se load hui ya nahi
+            if (typeof quizData === 'undefined' || quizData.length === 0) {
+                document.getElementById("question-text").innerText = "Error: questions.js file load nahi hui hai. Kripya GitHub/Folder check karein.";
+                return;
+            }
 
-<a href="courses.html">Courses</a>
+            const currentQ = quizData[currentQuestionIndex];
+            
+            // Exam name aur Question set karna
+            document.getElementById("exam-name").innerText = "📝 " + currentQ.exam;
+            document.getElementById("question-text").innerText = "Q" + (currentQuestionIndex + 1) + ". " + currentQ.question;
 
-<a href="notes.html">Notes</a>
+            // Purane options hata kar naye load karna
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = ""; 
+            document.getElementById("next-btn").style.display = "none"; // Next button hide karo
 
-<a href="quiz.html">Quiz</a>
+            // Options generate karna
+            currentQ.options.forEach((optionText, index) => {
+                const button = document.createElement("button");
+                button.className = "option-btn";
+                button.innerText = optionText;
+                
+                // Jab click ho toh checkAnswer function chale
+                button.onclick = () => checkAnswer(button, index, currentQ.correctAnswer, currentQ.explanation);
+                optionsContainer.appendChild(button);
+            });
+        }
 
-</div>
+        function checkAnswer(selectedButton, selectedIndex, correctIndex, explanation) {
+            const allButtons = document.getElementById("options-container").children;
+            
+            // Ek baar click karne ke baad saare buttons lock kar do (taaki double click na ho)
+            for (let btn of allButtons) {
+                btn.disabled = true;
+                btn.style.cursor = "not-allowed";
+            }
 
-</nav>
+            // Agar jawab SAHI hai (Green color do)
+            if (selectedIndex === correctIndex) {
+                selectedButton.style.background = "rgba(74, 222, 128, 0.2)";
+                selectedButton.style.borderColor = "#4ade80";
+                selectedButton.style.color = "#4ade80";
+            } 
+            // Agar jawab GALAT hai (Red color do, aur Sahi wale ko Green do)
+            else {
+                selectedButton.style.background = "rgba(248, 113, 113, 0.2)";
+                selectedButton.style.borderColor = "#f87171";
+                selectedButton.style.color = "#f87171";
+                
+                allButtons[correctIndex].style.background = "rgba(74, 222, 128, 0.2)";
+                allButtons[correctIndex].style.borderColor = "#4ade80";
+                allButtons[correctIndex].style.color = "#4ade80";
+            }
 
-<section class="quiz">
+            // Chhota sa alert dikhao jisme explanation ho
+            setTimeout(() => {
+                alert((selectedIndex === correctIndex ? "Sahi Jawab! 🎉\n\n" : "Galat Jawab! ❌\n\n") + explanation);
+                document.getElementById("next-btn").style.display = "block"; // Ab Next button dikhao
+            }, 400);
+        }
 
-<h1>Online Quiz</h1>
+        function nextQuestion() {
+            // Agar aur sawal bache hain toh agla load karo
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } 
+            // Agar saare sawal khatam ho gaye
+            else {
+                document.getElementById("options-container").innerHTML = "<h2 style='color:cyan;'>Quiz Khatam! 🚀</h2><p style='color:#cbd5e1;'>Aapne saare sawal pure kar liye hain. Good Job!</p>";
+                document.getElementById("question-text").innerText = "";
+                document.getElementById("exam-name").innerText = "Result";
+                document.getElementById("next-btn").style.display = "none";
+            }
+        }
 
-<div class="box">
-
-<h2>
-1. HTML stands for?
-</h2>
-
-<input type="radio"
-name="q1"
-value="a">
-
-Hyper Text Markup Language
-
-<br><br>
-
-<input type="radio"
-name="q1"
-value="b">
-
-High Transfer Machine Language
-
-<br><br>
-
-<button onclick="checkQuiz()">
-Submit
-</button>
-
-<h2 id="result"></h2>
-
-</div>
-
-</section>
-
-<script>
-
-function checkQuiz(){
-
-let ans =
-document.querySelector(
-'input[name="q1"]:checked'
-);
-
-if(ans == null){
-
-document.getElementById("result")
-.innerHTML =
-"Please select an answer.";
-
-}
-
-else if(ans.value == "a"){
-
-document.getElementById("result")
-.innerHTML =
-"Correct Answer 🎉";
-
-}
-
-else{
-
-document.getElementById("result")
-.innerHTML =
-"Wrong Answer ❌";
-
-}
-
-}
-
-</script>
-
+        // Page load hote hi function run karo
+        window.onload = loadQuestion;
+    </script>
 </body>
 </html>
