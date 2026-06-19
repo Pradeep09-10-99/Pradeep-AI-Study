@@ -163,17 +163,16 @@
    <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
         
-        <!-- Naya Dropdown Menu Yahan Add Hua Hai -->
+        <!-- Dropdown Menu -->
         <li class="dropdown">
             <a href="#" style="cursor: pointer;">Exams ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="#ntpc-portal">Railway (NTPC)</a></li>
+                <li><a href="#subjects">Railway (NTPC)</a></li>
                 <li><a href="#">SSC Exams</a></li>
                 <li><a href="#">Banking (IBPS/SBI)</a></li>
                 <li><a href="#">UPSC CSE</a></li>
             </ul>
         </li>
-        <!-- Dropdown End -->
 
         <li><a href="#notes-library">📚 Notes Library</a></li>
         <li><a href="mocktest.html">🎯 Mega Mock Test</a></li>
@@ -187,7 +186,7 @@
         <h2 id="typing"></h2>
         <p>Learn AI, Coding, Web Development, Programming and NTPC Preparation with our smart tools.</p>
         <div class="hero-btns">
-            <button class="btn1" onclick="location.href='#ntpc-portal'">Start Learning</button>
+            <button class="btn1" onclick="location.href='#subjects'">Start Learning</button>
             <button class="btn2" onclick="location.href='#login'">Join Now</button>
         </div>
     </div>
@@ -221,21 +220,6 @@
                 <span style="color: cyan; font-size: 14px; font-weight: bold; display: block; margin-top: 15px;">Click to Practice 🚀</span>
             </div>
         </a>
-    </div>
-</section>
-
-<section id="current-affairs" style="background: rgba(0, 252, 254, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); border-bottom: 1px solid rgba(0, 255, 255, 0.05);">
-    <h1 class="section-title"><i class="fa-regular fa-newspaper" style="color: cyan;"></i> Daily Current Affairs</h1>
-    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Roz 5-10 important points, NTPC exam preparation ke liye useful.</p>
-    
-    <div class="login-box" style="max-width: 800px; margin: auto; text-align: left;">
-        <ul class="list-style" style="margin-top: 0;">
-            <li><span style="color:cyan; font-weight:bold;">17 June 2026:</span> Cabinet approves new Railway expansion plan. Important for NTPC upcoming phases.</li>
-            <li><span style="color:cyan; font-weight:bold;">16 June 2026:</span> ISRO successfully launches next-gen communication satellite.</li>
-            <li><span style="color:cyan; font-weight:bold;">15 June 2026:</span> RBI updates repo rate guidelines. Expected in Economics section.</li>
-            <li><span style="color:cyan; font-weight:bold;">14 June 2026:</span> Current T20 World Cup updates and awards tally.</li>
-            <li><span style="color:cyan; font-weight:bold;">13 June 2026:</span> Global AI Summit held in New Delhi, focusing on Web Development and Tech Future.</li>
-        </ul>
     </div>
 </section>
 
@@ -331,15 +315,6 @@
     </div>
 </section>
 
-<section>
-    <h1 class="section-title">Our Achievements</h1>
-    <div class="feature-container">
-        <div class="feature-card"><h2 id="students">0</h2><p>Students</p></div>
-        <div class="feature-card"><h2 id="courses">0</h2><p>Courses</p></div>
-        <div class="feature-card"><h2 id="success">0%</h2><p>Success Rate</p></div>
-    </div>
-</section>
-
 <section id="login">
     <h1 class="section-title">Student Portal</h1>
     <div class="login-box" style="max-width: 450px; margin:auto; border: 1px solid rgba(0, 252, 254, 0.3); box-shadow: 0 0 20px rgba(0, 252, 254, 0.1);">
@@ -362,67 +337,6 @@
         <div style="display: flex; gap: 10px; margin-top: 15px;">
             <button id="btn-signup" style="background:transparent; color:cyan; border:1px solid cyan; margin-top:0; flex: 1;">Create Account</button>
             <button id="btn-logout" style="background:#ef4444; color:white; margin-top:0; flex: 1;">Logout</button>
-        </div>
-    </div>
-</section>
-
-<section id="ntpc-portal" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
-    <h1 class="section-title"><i class="fa-solid fa-graduation-cap" style="color: cyan;"></i> NTPC Exam Special Dashboard</h1>
-    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Railway NTPC exam crack karne ke liye daily focus aur target tools.</p>
-    
-    <div class="feature-container">
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px;">
-            <h3 style="color: cyan;"><i class="fa-solid fa-stopwatch"></i> Study Timer</h3>
-            <p style="color: #cbd5e1; font-size: 14px; margin-top: 5px;">Apna focus level badhane ke liye session track karein.</p>
-            <h1 id="time" style="font-size: 42px; margin: 20px 0; font-family: monospace; letter-spacing: 2px; color: white;">00:00:00</h1>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn1" onclick="startTimer()" style="margin-top:0; padding: 12px; flex: 1;">Start Focus</button>
-                <button class="btn2" onclick="stopTimer()" style="margin-top:0; padding: 12px; border: 2px solid #ef4444; color: #ef4444; background: transparent; flex: 1;">Stop</button>
-            </div>
-        </div>
-
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px; text-align: left;">
-            <h3 style="color: cyan; margin-bottom: 5px;"><i class="fa-solid fa-list-check"></i> Study Tasks (To-Do)</h3>
-            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 15px;">Aaj aapko kaun-kaun se topics padhne hain?</p>
-            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                <input type="text" id="taskInput" placeholder="E.g., Math Percentage Revision..." style="margin-bottom: 0; padding: 12px;">
-                <button onclick="addTask()" style="width: 90px; margin-top: 0; padding: 12px; background: cyan; color:#0f172a; border:none; border-radius:10px; font-weight:bold;">Add</button>
-            </div>
-            <ul id="taskList" class="list-style" style="margin-top: 0; max-height: 150px; overflow-y: auto;"></ul>
-        </div>
-    </div>
-</section>
-
-<section id="features" style="background: rgba(0, 252, 254, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05); border-bottom: 1px solid rgba(0, 255, 255, 0.05); padding: 60px 8%;">
-    <h1 class="section-title"><i class="fa-solid fa-code" style="color: cyan;"></i> Web Development Corner</h1>
-    <p style="text-align: center; color: #cbd5e1; margin-top: -40px; margin-bottom: 40px;">Coding seekhein aur apni programming speed ko build karein.</p>
-    
-    <div class="feature-container">
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px; text-align: left;">
-            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-pen-to-square"></i> Online Practice Quiz</h3>
-            <p style="font-size: 15px; font-weight: bold; margin-bottom: 12px; color: #cbd5e1;">Q. HTML ka full form kya hota hai?</p>
-            
-            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 8px; cursor: pointer;">
-                <input type="radio" name="q1" value="a" style="width: auto; margin-right: 10px;"> Hyper Text Markup Language
-            </label>
-            <label style="display: block; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 15px; cursor: pointer;">
-                <input type="radio" name="q1" value="b" style="width: auto; margin-right: 10px;"> High Transfer Machine Language
-            </label>
-            
-            <button onclick="checkQuizUpgrade()" style="padding: 12px; margin-top: 5px; background:cyan; color:#0f172a; border:none; border-radius:10px; font-weight:bold; width:100%;">Submit Quiz</button>
-            
-            <div id="quizResultUpgrade" style="margin-top: 15px; padding: 12px; border-radius: 8px; display: none; font-size: 14px;">
-                <h4 id="resultTitle" style="margin-bottom: 5px;"></h4>
-                <p id="resultExplain" style="color: #cbd5e1; line-height: 1.4;"></p>
-            </div>
-        </div>
-
-        <div class="login-box" style="flex: 1; min-width: 320px; max-width: 500px;">
-            <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-keyboard"></i> Typing Speed Test</h3>
-            <p id="typingText" style="background:#0f172a; padding:12px; border-radius:8px; margin-bottom:12px; font-size: 14px; color: #cbd5e1; text-align: left;">Pradeep AI Study is the best place to learn coding and AI tools.</p>
-            <textarea id="typingInput" rows="3" placeholder="Upar diye gaye text ko same type karein..." style="font-size: 14px; padding: 12px; margin-bottom: 10px;"></textarea>
-            <button onclick="checkTypingSpeed()" style="padding: 12px; background:cyan; color:#0f172a; border:none; border-radius:10px; font-weight:bold; width:100%;">Check Speed</button>
-            <h4 id="typingResult" style="margin-top:12px; color: cyan;"></h4>
         </div>
     </div>
 </section>
@@ -504,8 +418,7 @@
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
-        <a href="
-http://www.youtube.com/channel/UC1nPQfCaMBT0yreHuA3cHdQ" target="_blank" style="display: inline-block; background: #ff0000; color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,0,0,0.2);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <a href="http://www.youtube.com/channel/UC1nPQfCaMBT0yreHuA3cHdQ" target="_blank" style="display: inline-block; background: #ff0000; color: white; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,0,0,0.2);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             <i class="fa-brands fa-youtube" style="margin-right: 8px;"></i> Subscribe Our Channel
         </a>
     </div>
@@ -553,7 +466,7 @@ http://www.youtube.com/channel/UC1nPQfCaMBT0yreHuA3cHdQ" target="_blank" style="
         let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         let progressBar = document.getElementById("progress-bar");
         if(progressBar) progressBar.style.width = (winScroll / height) * 100 + "%";
-        if (winScroll > 800) startStats();
+        // removed stats trigger to prevent errors since that section is gone
     };
 
     // Hero Section Typing Effect
@@ -580,100 +493,6 @@ http://www.youtube.com/channel/UC1nPQfCaMBT0yreHuA3cHdQ" target="_blank" style="
             scoreSpan.innerText = score;
             resultDiv.style.display = "block";
             alert("Starting " + topic + " Quiz! Demo result processing...");
-        }
-    }
-
-    // Achievements Counters
-    let started = false;
-    function startStats() {
-        if (started) return;
-        started = true;
-        animateValue("students", 0, 500, 2000);
-        animateValue("courses", 0, 50, 2000);
-        animateValue("success", 0, 95, 2000, "%");
-    }
-    function animateValue(id, start, end, duration, suffix="") {
-        let obj = document.getElementById(id);
-        if(!obj) return;
-        let range = end - start;
-        let startTime = new Date().getTime();
-        let timer = setInterval(() => {
-            let timePassed = new Date().getTime() - startTime;
-            let progress = Math.min(timePassed / duration, 1);
-            obj.innerHTML = Math.floor(progress * range + start) + suffix;
-            if (progress === 1) clearInterval(timer);
-        }, 10);
-    }
-
-    // Study Timer Logic
-    let studyTimer, sec=0, min=0, hrs=0;
-    function startTimer() {
-        if(studyTimer) return;
-        studyTimer = setInterval(() => {
-            sec++; if(sec==60){sec=0; min++;} if(min==60){min=0; hrs++;}
-            let timeElement = document.getElementById("time");
-            if(timeElement) {
-                timeElement.innerHTML = (hrs<10?'0'+hrs:hrs)+":"+(min<10?'0'+min:min)+":"+(sec<10?'0'+sec:sec);
-            }
-        }, 1000);
-    }
-    function stopTimer() { clearInterval(studyTimer); studyTimer=null; }
-
-    // To-Do List Logic
-    function addTask() {
-        let input = document.getElementById("taskInput");
-        let taskList = document.getElementById("taskList");
-        if (!input || !input.value || !taskList) return;
-        let li = document.createElement("li");
-        li.innerHTML = "✅ " + input.value;
-        taskList.appendChild(li);
-        input.value = "";
-    }
-
-    // Web Dev Quiz Logic
-    function checkQuizUpgrade() {
-        let q = document.getElementsByName("q1");
-        let resultDiv = document.getElementById("quizResultUpgrade");
-        let title = document.getElementById("resultTitle");
-        let explain = document.getElementById("resultExplain");
-        if(!resultDiv || !title || !explain) return;
-        
-        let selected = "";
-        for(let i=0; i<q.length; i++) { if(q[i].checked) selected = q[i].value; }
-        
-        resultDiv.style.display = "block";
-        if(selected === "a") {
-            resultDiv.style.background = "rgba(74, 222, 128, 0.1)";
-            resultDiv.style.border = "1px solid #4ade80";
-            title.style.color = "#4ade80";
-            title.innerHTML = "Correct Answer! 🎉";
-            explain.innerHTML = "HTML ka full form 'Hyper Text Markup Language' hota hai. Yeh web page ka structure banati hai.";
-        } else {
-            resultDiv.style.background = "rgba(248, 113, 113, 0.1)";
-            resultDiv.style.border = "1px solid #f87171";
-            title.style.color = "#f87171";
-            title.innerHTML = "Wrong Answer! ❌";
-            explain.innerHTML = "Sahi jawab option (A) hai. High Transfer ya Machine Language galat options hain.";
-        }
-    }
-
-    // Typing Speed Logic
-    function checkTypingSpeed() {
-        let inputElement = document.getElementById("typingInput");
-        let targetElement = document.getElementById("typingText");
-        let result = document.getElementById("typingResult");
-        if(!inputElement || !targetElement || !result) return;
-        
-        let input = inputElement.value.trim();
-        let target = targetElement.innerText.trim();
-        if(!input) { result.innerHTML = "Kripya niche box mein type karein!"; return; }
-        
-        if(input === target) {
-            result.style.color = "#4ade80";
-            result.innerHTML = "Perfect Match! Aapki typing speed aur accuracy lajawab hai. ⚡";
-        } else {
-            result.style.color = "#fb923c";
-            result.innerHTML = "Text match nahi hua. Kripya spellings aur capital letters check karein.";
         }
     }
 
