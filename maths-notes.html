@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Notes - Pradeep AI Study</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* BASE STYLES */
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
+        body { background:#0f172a; color:white; overflow-x:hidden; line-height: 1.6; }
+        
+        /* NAVBAR */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 5%; background: rgba(15, 23, 42, 0.85); 
+            border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .back-btn { color: cyan; text-decoration: none; font-weight: bold; font-size: 16px; transition: 0.3s; }
+        .back-btn:hover { text-shadow: 0 0 10px cyan; }
+
+        /* HEADER */
+        .notes-header { text-align: center; padding: 50px 5%; background: rgba(0, 252, 254, 0.02); border-bottom: 1px solid rgba(0,255,255,0.1); }
+        .notes-header h1 { font-size: 38px; color: cyan; margin-bottom: 10px; }
+        .notes-header p { color: #cbd5e1; font-size: 18px; max-width: 600px; margin: auto; }
+
+        /* CONTAINER & CARDS */
+        .container { max-width: 900px; margin: 40px auto; padding: 0 5%; }
+        .content-card {
+            background: rgba(255, 255, 255, 0.03); padding: 30px; border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            margin-bottom: 30px; backdrop-filter: blur(10px); transition: 0.3s;
+        }
+        .content-card:hover { border-color: rgba(0, 252, 254, 0.3); background: rgba(0, 252, 254, 0.02); }
+        
+        .content-card h2 { color: cyan; margin-bottom: 20px; font-size: 24px; border-bottom: 2px solid rgba(0,255,255,0.1); padding-bottom: 10px; }
+        .content-card h3 { color: white; margin-top: 20px; margin-bottom: 10px; font-size: 20px; }
+        .content-card p, .content-card li { color: #cbd5e1; font-size: 16px; margin-bottom: 10px; }
+        .content-card ul { margin-left: 20px; margin-bottom: 15px; }
+
+        /* HIGHLIGHTS & QUIZ */
+        .highlight-box { background: rgba(74, 222, 128, 0.1); border-left: 4px solid #4ade80; padding: 15px; border-radius: 8px; margin-top: 20px; }
+        .highlight-box p { color: white; margin-bottom: 5px; }
+        
+        .quiz-box { background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 10px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .quiz-box h4 { color: white; font-size: 18px; margin-bottom: 10px; }
+        .quiz-box .options { color: #cbd5e1; margin-bottom: 10px; }
+        .quiz-box .answer { display: inline-block; background: rgba(0, 252, 254, 0.1); color: cyan; padding: 5px 15px; border-radius: 5px; font-weight: bold; border: 1px solid cyan; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <h3 style="color: white; font-size: 18px;">Pradeep AI Study</h3>
+</nav>
+
+<div class="notes-header">
+    <h1>🔢 गणित (Mathematics)</h1>
+    <p>NTPC, RRB Group-D, SSC, CET, Police तथा अन्य प्रतियोगी परीक्षाओं का महत्वपूर्ण विषय[cite: 2]。</p>
+</div>
+
+<div class="container">
+    
+    <!-- Parichay Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-book-open"></i> परिचय</h2>
+        <p>गणित में अच्छे अंक प्राप्त करने के लिए मूलभूत अवधारणाओं और नियमित अभ्यास की आवश्यकता होती है[cite: 2]।</p>
+    </div>
+
+    <!-- Number System & Basics -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-calculator"></i> 1️⃣ संख्या पद्धति व सूत्र (Number System & Formulas)</h2>
+        <p><strong>महत्वपूर्ण तथ्य:</strong></p>
+        <ul>
+            <li>प्राकृतिक संख्याएँ: 1, 2, 3, 4...[cite: 2]</li>
+            <li>पूर्ण संख्याएँ: 0, 1, 2, 3...[cite: 2]</li>
+            <li>पूर्णांक: ..., -2, -1, 0, 1, 2...[cite: 2]</li>
+            <li>अभाज्य संख्या: 2, 3, 5, 7, 11... (सबसे छोटी अभाज्य संख्या 2 है)[cite: 2]</li>
+        </ul>
+        
+        <h3 style="margin-top: 20px;">सूत्र (Formulas)</h3>
+        <ul>
+            <li><strong>प्रतिशत:</strong> (प्राप्त मान ÷ कुल मान) × 100[cite: 2]</li>
+            <li><strong>लाभ:</strong> विक्रय मूल्य - क्रय मूल्य[cite: 2]</li>
+            <li><strong>हानि:</strong> क्रय मूल्य - विक्रय मूल्य[cite: 2]</li>
+            <li><strong>औसत:</strong> कुल योग ÷ कुल संख्या[cite: 2]</li>
+            <li><strong>साधारण ब्याज (SI):</strong> (P × R × T) ÷ 100[cite: 2]</li>
+        </ul>
+    </div>
+
+    <!-- Concepts Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-shapes"></i> 2️⃣ महत्वपूर्ण अवधारणाएं (Key Concepts)</h2>
+        <h3>समय और कार्य (Time & Work)</h3>
+        <p>कार्य = समय × दक्षता[cite: 2]। यदि A किसी कार्य को 10 दिन में पूरा करता है तो 1 दिन का कार्य = 1/10 होगा[cite: 2]。</p>
+
+        <h3>क्षेत्रमिति (Mensuration)</h3>
+        <ul>
+            <li><strong>वर्ग (Square):</strong> क्षेत्रफल = भुजा × भुजा[cite: 2]। परिमाप = 4 × भुजा[cite: 2]।</li>
+            <li><strong>आयत (Rectangle):</strong> क्षेत्रफल = लंबाई × चौड़ाई[cite: 2]। परिमाप = 2(लंबाई + चौड़ाई)[cite: 2]।</li>
+        </ul>
+    </div>
+
+    <!-- One Liners Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-bolt"></i> महत्वपूर्ण एक पंक्ति तथ्य (One Liners)</h2>
+        <ul style="list-style-type: none; margin-left: 0;">
+            <li>✅ सबसे छोटी अभाज्य संख्या 2 है[cite: 2]।</li>
+            <li>✅ प्रतिशत निकालने का सूत्र (मान ÷ कुल) × 100 है[cite: 2]।</li>
+            <li>✅ लाभ = विक्रय मूल्य - क्रय मूल्य[cite: 2]</li>
+            <li>✅ औसत = कुल योग ÷ कुल संख्या[cite: 2]</li>
+            <li>✅ साधारण ब्याज का सूत्र P×R×T÷100 है[cite: 2]।</li>
+            <li>✅ वर्ग का क्षेत्रफल = भुजा²[cite: 2]</li>
+        </ul>
+    </div>
+
+    <!-- MCQ Quiz Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-list-check"></i> Mathematics MCQ Practice</h2>
+        
+        <div class="quiz-box">
+            <h4>Q1. सबसे छोटी अभाज्य संख्या कौन-सी है?[cite: 2]</h4>
+            <p class="options">A. 0 &nbsp;&nbsp; B. 1 &nbsp;&nbsp; C. 2 &nbsp;&nbsp; D. 3[cite: 2]</p>
+            <span class="answer">✅ उत्तर: C. 2[cite: 2]</span>
+        </div>
+
+        <div class="quiz-box">
+            <h4>Q2. 200 का 25% कितना है?[cite: 2]</h4>
+            <p class="options">A. 25 &nbsp;&nbsp; B. 40 &nbsp;&nbsp; C. 50 &nbsp;&nbsp; D. 75[cite: 2]</p>
+            <span class="answer">✅ उत्तर: C. 50[cite: 2]</span>
+        </div>
+
+        <div class="quiz-box">
+            <h4>Q3. लाभ का सूत्र क्या है?[cite: 2]</h4>
+            <p class="options">A. CP - SP &nbsp;&nbsp; B. SP - CP &nbsp;&nbsp; C. SP + CP &nbsp;&nbsp; D. इनमें से कोई नहीं[cite: 2]</p>
+            <span class="answer">✅ उत्तर: B. SP - CP[cite: 2]</span>
+        </div>
+        
+        <button onclick="location.href='maths.html'" style="width: 100%; padding: 15px; background: cyan; color: #0f172a; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">
+            Take Full Maths Test <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>
