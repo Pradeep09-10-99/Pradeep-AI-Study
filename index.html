@@ -316,25 +316,38 @@
     <h1 class="section-title">Student Dashboard & Login</h1>
     
     <div class="feature-container">
-        <!-- Login Form -->
-        <div class="login-box" style="flex: 1; min-width: 300px; max-width: 400px; border: 1px solid rgba(0, 252, 254, 0.3);">
+        
+        <!-- Login Form Container -->
+        <div id="login-container" class="login-box" style="flex: 1; min-width: 300px; max-width: 400px; border: 1px solid rgba(0, 252, 254, 0.3);">
             <div style="font-size: 40px; color: cyan; margin-bottom: 10px;"><i class="fa-solid fa-user-shield"></i></div>
             <h3 style="font-size: 22px; color: white;">Login to Account</h3>
             
             <div style="text-align: left; position: relative; margin-top: 20px;">
                 <span style="position: absolute; left: 15px; top: 15px; color: cyan;"><i class="fa-solid fa-envelope"></i></span>
-                <input type="email" placeholder="Email Address" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white;">
+                <input type="email" id="userEmail" placeholder="Email Address" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white;" required>
             </div>
             <div style="text-align: left; position: relative;">
                 <span style="position: absolute; left: 15px; top: 15px; color: cyan;"><i class="fa-solid fa-lock"></i></span>
-                <input type="password" placeholder="Password" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white;">
+                <input type="password" id="userPassword" placeholder="Password" style="padding-left: 45px; background: rgba(255,255,255,0.05); color: white;" required>
             </div>
             
-            <button style="background: cyan; color: #0f172a; font-weight: bold; font-size: 16px;">Sign In <i class="fa-solid fa-right-to-bracket"></i></button>
+            <button onclick="loginUser()" style="background: cyan; color: #0f172a; font-weight: bold; font-size: 16px;">Sign In <i class="fa-solid fa-right-to-bracket"></i></button>
+        </div>
+
+        <!-- Welcome & Logout Container (Pehle chhipa rahega) -->
+        <div id="welcome-container" class="login-box" style="display: none; flex: 1; min-width: 300px; max-width: 400px; border: 1px solid rgba(74, 222, 128, 0.3);">
+            <div style="font-size: 40px; color: #4ade80; margin-bottom: 10px;"><i class="fa-solid fa-circle-check"></i></div>
+            <h3 style="font-size: 22px; color: white;">Welcome Back!</h3>
+            <p id="displayEmail" style="color: cyan; margin-bottom: 20px; word-wrap: break-word;"></p>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 20px;">Aapka dashboard successfully load ho gaya hai. Apni padhai shuru karein!</p>
+            
+            <button onclick="logoutUser()" style="background: #ef4444; color: white; font-weight: bold; font-size: 16px; border: none;">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
         </div>
 
         <!-- User Progress & Leaderboard -->
-        <div class="login-box" style="flex: 1; min-width: 300px; max-width: 500px; text-align: left;">
+        <div id="dashboard-stats" class="login-box" style="flex: 1; min-width: 300px; max-width: 500px; text-align: left; opacity: 0.5; pointer-events: none; transition: 0.3s;">
+            <div id="lock-msg" style="color: #ef4444; font-size: 14px; margin-bottom: 10px; font-weight: bold;"><i class="fa-solid fa-lock"></i> Please login to view your progress</div>
+            
             <h3 style="color: cyan; margin-bottom: 15px;"><i class="fa-solid fa-chart-line"></i> Your Progress</h3>
             <div style="background: rgba(255,255,255,0.1); border-radius: 10px; height: 10px; margin-bottom: 30px; overflow: hidden;">
                 <div style="background: cyan; width: 65%; height: 100%;"></div>
@@ -357,6 +370,7 @@
                 </tr>
             </table>
         </div>
+        
     </div>
 </section>
 
@@ -504,6 +518,67 @@
             if(responseSpan) responseSpan.innerHTML = `⚠️ Network Error. Check connection.`;
         }
     }
+    // ================= LOGIN SYSTEM LOGIC =================
+    function loginUser() {
+        let email = document.getElementById("userEmail").value.trim();
+        let pass = document.getElementById("userPassword").value.trim();
+
+        if(email === "" || pass === "") {
+            alert("Kripya apna Email aur Password daalein!");
+            return;
+        }
+
+        // Browser ki memory me save kar rahe hain
+        localStorage.setItem("pradeepStudentEmail", email);
+        localStorage.setItem("isLoggedIn", "true");
+        
+        checkLoginStatus(); // Update Screen
+    }
+
+    function logoutUser() {
+        localStorage.removeItem("pradeepStudentEmail");
+        localStorage.removeItem("isLoggedIn");
+        
+        // Form clear karna
+        document.getElementById("userEmail").value = "";
+        document.getElementById("userPassword").value = "";
+        
+        checkLoginStatus(); // Update Screen
+    }
+
+    function checkLoginStatus() {
+        let loggedIn = localStorage.getItem("isLoggedIn");
+        let email = localStorage.getItem("pradeepStudentEmail");
+
+        let loginContainer = document.getElementById("login-container");
+        let welcomeContainer = document.getElementById("welcome-container");
+        let dashboardStats = document.getElementById("dashboard-stats");
+        let lockMsg = document.getElementById("lock-msg");
+
+        if (loggedIn === "true") {
+            // Agar Login hai toh
+            loginContainer.style.display = "none";
+            welcomeContainer.style.display = "block";
+            document.getElementById("displayEmail").innerText = email;
+            
+            // Dashboard ko Unlock karna
+            dashboardStats.style.opacity = "1";
+            dashboardStats.style.pointerEvents = "auto";
+            lockMsg.style.display = "none";
+        } else {
+            // Agar Login NAHI hai toh
+            loginContainer.style.display = "block";
+            welcomeContainer.style.display = "none";
+            
+            // Dashboard ko Lock karna
+            dashboardStats.style.opacity = "0.5";
+            dashboardStats.style.pointerEvents = "none";
+            lockMsg.style.display = "block";
+        }
+    }
+
+    // Page load hone par automatically check karega
+    document.addEventListener("DOMContentLoaded", checkLoginStatus);
 </script>
 </body>
 </html>
