@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian History Notes - Pradeep AI Study</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* BASE STYLES */
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
+        body { background:#0f172a; color:white; overflow-x:hidden; line-height: 1.6; }
+        
+        /* NAVBAR */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 5%; background: rgba(15, 23, 42, 0.85); 
+            border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .back-btn { color: cyan; text-decoration: none; font-weight: bold; font-size: 16px; transition: 0.3s; }
+        .back-btn:hover { text-shadow: 0 0 10px cyan; }
+
+        /* HEADER */
+        .notes-header { text-align: center; padding: 50px 5%; background: rgba(0, 252, 254, 0.02); border-bottom: 1px solid rgba(0,255,255,0.1); }
+        .notes-header h1 { font-size: 38px; color: cyan; margin-bottom: 10px; }
+        .notes-header p { color: #cbd5e1; font-size: 18px; max-width: 600px; margin: auto; }
+
+        /* CONTAINER & CARDS */
+        .container { max-width: 900px; margin: 40px auto; padding: 0 5%; }
+        .content-card {
+            background: rgba(255, 255, 255, 0.03); padding: 30px; border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            margin-bottom: 30px; backdrop-filter: blur(10px); transition: 0.3s;
+        }
+        .content-card:hover { border-color: rgba(0, 252, 254, 0.3); background: rgba(0, 252, 254, 0.02); }
+        
+        .content-card h2 { color: cyan; margin-bottom: 20px; font-size: 24px; border-bottom: 2px solid rgba(0,255,255,0.1); padding-bottom: 10px; }
+        .content-card h3 { color: white; margin-top: 20px; margin-bottom: 10px; font-size: 20px; }
+        .content-card p, .content-card li { color: #cbd5e1; font-size: 16px; margin-bottom: 10px; }
+        .content-card ul { margin-left: 20px; margin-bottom: 15px; }
+
+        /* TABLES */
+        .notes-table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 20px; }
+        .notes-table th { background: rgba(0, 252, 254, 0.1); color: cyan; padding: 12px; text-align: left; border: 1px solid rgba(0,255,255,0.2); }
+        .notes-table td { padding: 12px; border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; }
+        .notes-table tr:hover td { background: rgba(255,255,255,0.05); }
+
+        /* HIGHLIGHTS & QUIZ */
+        .highlight-box { background: rgba(74, 222, 128, 0.1); border-left: 4px solid #4ade80; padding: 15px; border-radius: 8px; margin-top: 20px; }
+        .highlight-box p { color: white; margin-bottom: 5px; }
+        
+        .quiz-box { background: rgba(15, 23, 42, 0.6); padding: 20px; border-radius: 10px; margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .quiz-box h4 { color: white; font-size: 18px; margin-bottom: 10px; }
+        .quiz-box .options { color: #cbd5e1; margin-bottom: 10px; }
+        .quiz-box .answer { display: inline-block; background: rgba(0, 252, 254, 0.1); color: cyan; padding: 5px 15px; border-radius: 5px; font-weight: bold; border: 1px solid cyan; }
+
+        @media (max-width: 768px) {
+            .notes-header h1 { font-size: 28px; }
+            .content-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <h3 style="color: white; font-size: 18px;">Pradeep AI Study</h3>
+</nav>
+
+<div class="notes-header">
+    <h1>📜 भारतीय इतिहास (Indian History)</h1>
+    <p>NTPC, SSC और अन्य प्रतियोगी परीक्षाओं के लिए संपूर्ण इतिहास के महत्वपूर्ण नोट्स।</p>
+</div>
+
+<div class="container">
+    
+    <!-- Parichay Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-book-open"></i> परिचय</h2>
+        <p>भारतीय इतिहास विश्व के सबसे प्राचीन इतिहासों में से एक है। इसे मुख्य रूप से तीन भागों में बांटा जाता है:</p>
+        <ul>
+            <li>प्राचीन भारत (Ancient India)</li>
+            <li>मध्यकालीन भारत (Medieval India)</li>
+            <li>आधुनिक भारत (Modern India)</li>
+        </ul>
+    </div>
+
+    <!-- Prachin Bharat Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-vihara"></i> 1. प्राचीन भारत</h2>
+        
+        <h3>सिंधु घाटी सभ्यता (2500–1750 ई.पू.)</h3>
+        <p><strong>महत्वपूर्ण तथ्य:</strong></p>
+        <ul>
+            <li><strong>खोजकर्ता:</strong> दयाराम साहनी</li>
+            <li><strong>प्रमुख स्थल:</strong> हड़प्पा, मोहनजोदड़ो, लोथल, कालीबंगन, धौलावीरा</li>
+        </ul>
+
+        <h3>वैदिक काल</h3>
+        <p><strong>ऋग्वैदिक काल:</strong></p>
+        <ul>
+            <li>सबसे प्राचीन वेद: ऋग्वेद</li>
+            <li>समाज का आधार: पशुपालन</li>
+        </ul>
+        <p><strong>उत्तर वैदिक काल:</strong></p>
+        <ul>
+            <li>कृषि का विकास</li>
+            <li>वर्ण व्यवस्था का विकास</li>
+        </ul>
+    </div>
+
+    <!-- Madhyakalin Bharat Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-khanda"></i> 2. मध्यकालीन भारत</h2>
+        
+        <h3>दिल्ली सल्तनत</h3>
+        <p><strong>प्रमुख वंश:</strong> गुलाम वंश, खिलजी वंश, तुगलक वंश, सैयद वंश, लोदी वंश</p>
+        <ul>
+            <li>कुतुबुद्दीन ऐबक ने गुलाम वंश की स्थापना की।</li>
+            <li>अलाउद्दीन खिलजी ने बाजार नियंत्रण नीति लागू की।</li>
+        </ul>
+
+        <h3>मुगल साम्राज्य</h3>
+        <table class="notes-table">
+            <tr>
+                <th>शासक</th>
+                <th>विशेषता</th>
+            </tr>
+            <tr>
+                <td>बाबर</td>
+                <td>मुगल साम्राज्य का संस्थापक</td>
+            </tr>
+            <tr>
+                <td>हुमायूं</td>
+                <td>बाबर का पुत्र</td>
+            </tr>
+            <tr>
+                <td>अकबर</td>
+                <td>महान शासक</td>
+            </tr>
+            <tr>
+                <td>जहांगीर</td>
+                <td>न्याय की जंजीर</td>
+            </tr>
+            <tr>
+                <td>शाहजहां</td>
+                <td>ताजमहल का निर्माण</td>
+            </tr>
+            <tr>
+                <td>औरंगजेब</td>
+                <td>अंतिम शक्तिशाली मुगल शासक</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Adhunik Bharat Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-flag-inward"></i> 3. आधुनिक भारत</h2>
+        
+        <h3>1857 की क्रांति</h3>
+        <p><strong>कारण:</strong> अंग्रेजों की नीतियां, सैनिक असंतोष, आर्थिक शोषण</p>
+        
+        <table class="notes-table">
+            <tr>
+                <th>स्थान</th>
+                <th>नेता</th>
+            </tr>
+            <tr>
+                <td>झांसी</td>
+                <td>रानी लक्ष्मीबाई</td>
+            </tr>
+            <tr>
+                <td>कानपुर</td>
+                <td>नाना साहेब</td>
+            </tr>
+            <tr>
+                <td>बिहार</td>
+                <td>कुंवर सिंह</td>
+            </tr>
+            <tr>
+                <td>दिल्ली</td>
+                <td>बहादुर शाह जफर</td>
+            </tr>
+        </table>
+
+        <div class="highlight-box">
+            <p><strong>NTPC Important:</strong></p>
+            <p><strong>Q.</strong> 1857 की क्रांति का प्रथम शहीद कौन था?</p>
+            <p style="color: cyan; font-weight: bold;">Ans. मंगल पांडे</p>
+        </div>
+
+        <h3 style="margin-top: 30px;">भारतीय राष्ट्रीय कांग्रेस</h3>
+        <ul>
+            <li><strong>स्थापना वर्ष:</strong> 1885</li>
+            <li><strong>संस्थापक:</strong> ए.ओ. ह्यूम</li>
+            <li><strong>प्रथम अध्यक्ष:</strong> डब्ल्यू.सी. बनर्जी</li>
+        </ul>
+    </div>
+
+    <!-- One Liners Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-bolt"></i> महत्वपूर्ण एक पंक्ति तथ्य (One Liners)</h2>
+        <ul style="list-style-type: none; margin-left: 0;">
+            <li>✅ भारतीय राष्ट्रीय कांग्रेस की स्थापना 1885 में हुई।</li>
+            <li>✅ मुगल साम्राज्य का संस्थापक बाबर था।</li>
+            <li>✅ ताजमहल का निर्माण शाहजहां ने करवाया।</li>
+            <li>✅ 1857 की क्रांति का प्रथम शहीद मंगल पांडे थे।</li>
+            <li>✅ सिंधु सभ्यता का प्रमुख बंदरगाह लोथल था।</li>
+        </ul>
+    </div>
+
+    <!-- MCQ Quiz Section -->
+    <div class="content-card">
+        <h2><i class="fa-solid fa-list-check"></i> History MCQ Practice</h2>
+        
+        <div class="quiz-box">
+            <h4>Q1. मुगल साम्राज्य का संस्थापक कौन था?</h4>
+            <p class="options">A. अकबर &nbsp;&nbsp; B. बाबर &nbsp;&nbsp; C. जहांगीर &nbsp;&nbsp; D. शाहजहां</p>
+            <span class="answer">✅ उत्तर: B. बाबर</span>
+        </div>
+
+        <div class="quiz-box">
+            <h4>Q2. भारतीय राष्ट्रीय कांग्रेस की स्थापना कब हुई?</h4>
+            <p class="options">A. 1885 &nbsp;&nbsp; B. 1857 &nbsp;&nbsp; C. 1905 &nbsp;&nbsp; D. 1919</p>
+            <span class="answer">✅ उत्तर: A. 1885</span>
+        </div>
+
+        <div class="quiz-box">
+            <h4>Q3. 1857 की क्रांति का प्रथम शहीद कौन था?</h4>
+            <p class="options">A. तात्या टोपे &nbsp;&nbsp; B. नाना साहेब &nbsp;&nbsp; C. मंगल पांडे &nbsp;&nbsp; D. कुंवर सिंह</p>
+            <span class="answer">✅ उत्तर: C. मंगल पांडे</span>
+        </div>
+
+        <div class="quiz-box">
+            <h4>Q4. ताजमहल का निर्माण किसने करवाया?</h4>
+            <p class="options">A. अकबर &nbsp;&nbsp; B. बाबर &nbsp;&nbsp; C. शाहजहां &nbsp;&nbsp; D. जहांगीर</p>
+            <span class="answer">✅ उत्तर: C. शाहजहां</span>
+        </div>
+        
+        <button onclick="location.href='history.html'" style="width: 100%; padding: 15px; background: cyan; color: #0f172a; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">
+            Take Full History Test <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>
