@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta name="description" content="Pradeep AI Study - Learn AI, Coding, Web Development, and prepare for Exams with smart AI tools.">
-    <meta name="keywords" content="Pradeep AI Study, Pradeep Meena, Learn Coding, NTPC Prep, Study Timer, HTML Notes, Free AI Chatbot">
+    <meta name="description" content="Pradeep AI Hub - Learn Coding, Web Development, Digital Marketing, and prepare for Exams with smart AI tools.">
+    <meta name="keywords" content="Pradeep AI Study, Digital Marketing, SEO, Learn Coding, NTPC Prep, Study Timer, Free AI Chatbot">
     <meta name="author" content="Pradeep Meena">
     
-    <title>Pradeep AI Study</title>
+    <title>Pradeep AI Hub | Study & Digital Skills</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* BASE STYLES */
@@ -43,6 +43,7 @@
         .logo-container { display: flex; align-items: center; }
         .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; margin: 0; padding: 0; }
         .nav-links li a { text-decoration: none; color: #cbd5e1; font-weight: 600; font-size: 15px; transition: 0.3s; }
+        .nav-links li a:hover { color: cyan; }
         
         /* SEARCH BAR */
         .search-box { display: flex; align-items: center; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 5px 15px; border: 1px solid rgba(0,255,255,0.2); }
@@ -139,13 +140,13 @@
 <body>
 
 <div id="progress-bar"></div>
-<div id="loader"><h1>Pradeep AI Study</h1></div>
+<div id="loader"><h1>Pradeep AI Hub</h1></div>
 <div class="bg-animation"><span></span><span></span><span></span><span></span><span></span></div>
 
 <nav>
    <div class="logo-container">
-    <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="PRADEEP STUDY.jpg" alt="Pradeep AI Study" style="height: 55px; width: auto; object-fit: contain; mix-blend-mode: screen; filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.8));">
+    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; font-size: 24px; font-weight: bold; color: white;">
+        Pradeep AI <span style="color: cyan; margin-left: 5px;">Hub</span>
     </a>
 </div>
 
@@ -161,7 +162,7 @@
         <li><a href="index.html">Home</a></li>
         
         <li class="dropdown">
-            <a href="#" style="cursor: pointer;">Subjects ▾</a>
+            <a href="#subjects" style="cursor: pointer;">Study Zone ▾</a>
             <ul class="dropdown-menu">
                 <li><a href="#subjects">History</a></li>
                 <li><a href="#subjects">Geography</a></li>
@@ -171,47 +172,60 @@
             </ul>
         </li>
 
-        <li><a href="#current-affairs">📰 Daily CA</a></li>
-        <li><a href="#notes-library">📚 Notes/PDF</a></li>
+        <li><a href="#digital-skills" style="color: #f59e0b;"><i class="fa-solid fa-laptop-code"></i> Digital Skills</a></li>
+        <li><a href="#notes-library">📚 Notes</a></li>
         <li><a href="#chatbot" style="color: cyan; border: 1px solid rgba(0,242,254,0.3); padding: 6px 12px; border-radius: 6px; background: rgba(0,242,254,0.05);">AI Chatbot</a></li>
     </ul>
 </nav>
 
 <section class="hero">
     <div class="hero-content">
-        <h1>Pradeep AI Study</h1>
+        <h1>Pradeep AI Hub</h1>
         <h2 id="typing"></h2>
-        <p>Master History, Geography, Polity, Science, Maths and Daily Current Affairs with smart AI tools.</p>
+        <p>Master History, Geography, Polity & Maths with smart AI tools, <strong style="color: cyan;">OR level up your career with Advanced Digital Marketing & Web Development.</strong></p>
         <div class="hero-btns">
             <button class="btn1" onclick="location.href='#subjects'">Start Learning</button>
-            <button class="btn2" onclick="location.href='#login'">Join Dashboard</button>
+            <button class="btn2" onclick="location.href='#digital-skills'">Grow Digitally</button>
         </div>
     </div>
     <div class="hero-image">
-        <img src="pradeep-profile.jpg" alt="Pradeep Meena">
+        <!-- Make sure to link your profile image here properly -->
+        <img src="pradeep-profile.jpg" alt="Pradeep Meena" onerror="this.src='https://via.placeholder.com/350/0f172a/00ffff?text=Pradeep+AI'">
     </div>
 </section>
 
-<!-- DAILY CURRENT AFFAIRS SECTION (Added from Flowchart) -->
-<section id="current-affairs" style="background: rgba(0, 252, 254, 0.02); border-top: 1px solid rgba(0, 255, 255, 0.05);">
-    <h1 class="section-title"><i class="fa-regular fa-newspaper"></i> Daily Current Affairs Update</h1>
-    <div class="feature-container">
-        <div class="login-box" style="flex: 1; min-width: 300px; text-align: left;">
-            <i class="fa-regular fa-bookmark bookmark-btn" onclick="toggleBookmark(this)"></i>
-            <h3 style="color: cyan;">Top Headlines - Today</h3>
-            <ul style="list-style: none; margin-top: 15px; color: #cbd5e1; font-size: 15px; line-height: 1.8;">
-                <li>🔹 ISRO announces new space mission timeline.</li>
-                <li>🔹 RBI updates monetary policy rates.</li>
-                <li>🔹 National Sports Awards winners declared.</li>
-                <li>🔹 Global Tech Summit concludes in New Delhi.</li>
-            </ul>
-            <button class="btn2" style="width:100%; margin-top: 20px;">Download CA PDF</button>
+<!-- ================= NEW SECTION: DIGITAL MARKETING & CREATOR HUB ================= -->
+<section id="digital-skills" style="background: rgba(0, 252, 254, 0.02); border-top: 1px solid rgba(0, 255, 255, 0.05);">
+    <h1 class="section-title"><i class="fa-solid fa-rocket"></i> Digital Marketing & Tech Hub</h1>
+    <div class="subject-box">
+        
+        <div class="card" style="border-top: 3px solid #f59e0b;">
+            <i class="fa-solid fa-chart-line bookmark-btn" onclick="toggleBookmark(this)"></i>
+            <h2 style="color:white; margin-bottom:10px;">SEO & AEO Masterclass</h2>
+            <p style="color:#cbd5e1; font-size:14px;">Google Search Console strategies, canonical tags, aur AI platforms par rank karne ke liye AEO blueprints.</p>
+            <button class="btn2" style="width:100%; margin-top:15px; padding:10px; border-color: #f59e0b; color: #f59e0b;">Explore SEO</button>
         </div>
+        
+        <div class="card" style="border-top: 3px solid #ec4899;">
+            <i class="fa-solid fa-video bookmark-btn" onclick="toggleBookmark(this)"></i>
+            <h2 style="color:white; margin-bottom:10px;">Cinematic Content Creation</h2>
+            <p style="color:#cbd5e1; font-size:14px;">Viral Instagram Reels, YouTube Shorts, smooth transitions, aur pro video editing techniques.</p>
+            <button class="btn2" style="width:100%; margin-top:15px; padding:10px; border-color: #ec4899; color: #ec4899;">Creator Tools</button>
+        </div>
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <i class="fa-solid fa-code bookmark-btn" onclick="toggleBookmark(this)"></i>
+            <h2 style="color:white; margin-bottom:10px;">Web & App Development</h2>
+            <p style="color:#cbd5e1; font-size:14px;">Marketing agency websites banayein. GitHub, Netlify, aur Firebase ka smart integration sikhein.</p>
+            <button class="btn2" style="width:100%; margin-top:15px; padding:10px; border-color: #3b82f6; color: #3b82f6;">Start Coding</button>
+        </div>
+        
     </div>
 </section>
+<!-- ================= END NEW SECTION ================= -->
 
 <section id="subjects">
-    <h1 class="section-title">Quizzes & Practice</h1>
+    <h1 class="section-title"><i class="fa-solid fa-book-open"></i> Academic Quizzes & Practice</h1>
     <div class="subject-box">
         
         <div class="card">
@@ -245,12 +259,14 @@
         <div class="card">
             <i class="fa-regular fa-bookmark bookmark-btn" onclick="toggleBookmark(this)"></i>
             <h2 style="color:white; margin-bottom:10px;">Maths</h2>
-            <p style="color:#cbd5e1; font-size:14px;">Arithmetic & Advanced Math.</p>
+            <p style="color:#cbd5e1; font-size:14px;">Geometry, Cubes, Squares & Advanced Math.</p>
             <button class="btn1" onclick="location.href='maths.html'" style="width:100%; margin-top:15px; padding:10px;">Start Quiz</button>
         </div>
         
-    </div> </section>
-<!-- NOTES & PDF SECTION (Aligned with Flowchart) -->
+    </div> 
+</section>
+
+<!-- NOTES & PDF SECTION -->
 <section id="notes-library" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05);">
     <h1 class="section-title"><i class="fa-solid fa-book-journal-whills"></i> Premium Notes Library</h1>
     
@@ -282,8 +298,27 @@
     </div>
 </section>
 
-<!-- PYQ SECTION (Aligned with Flowchart) -->
-<section id="pyq-section">
+<!-- DAILY CURRENT AFFAIRS SECTION -->
+<section id="current-affairs">
+    <h1 class="section-title"><i class="fa-regular fa-newspaper"></i> Daily Current Affairs Update</h1>
+    <div class="feature-container">
+        <div class="login-box" style="flex: 1; min-width: 300px; text-align: left;">
+            <i class="fa-regular fa-bookmark bookmark-btn" onclick="toggleBookmark(this)"></i>
+            <h3 style="color: cyan;">Top Headlines - Today</h3>
+            <ul style="list-style: none; margin-top: 15px; color: #cbd5e1; font-size: 15px; line-height: 1.8;">
+                <li>🔹 ISRO announces new space mission timeline.</li>
+                <li>🔹 RBI updates monetary policy rates.</li>
+                <li>🔹 National Sports Awards winners declared.</li>
+                <li>🔹 Global Tech Summit concludes in New Delhi.</li>
+            </ul>
+            <button class="btn2" style="width:100%; margin-top: 20px;">Download CA PDF</button>
+        </div>
+    </div>
+</section>
+
+
+<!-- PYQ SECTION -->
+<section id="pyq-section" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05);">
     <h1 class="section-title">Previous Year Papers (PYQ)</h1>
     <div class="login-box" style="max-width: 800px; margin: auto; overflow-x: auto;">
         <table class="pyq-table">
@@ -311,8 +346,8 @@
     </div>
 </section>
 
-<!-- DASHBOARD, PROGRESS & LOGIN SECTION (From Flowchart) -->
-<section id="login" style="background: rgba(0, 252, 254, 0.02); border-top: 1px solid rgba(0, 255, 255, 0.05);">
+<!-- DASHBOARD, PROGRESS & LOGIN SECTION -->
+<section id="login">
     <h1 class="section-title">Student Dashboard & Login</h1>
     
     <div class="feature-container">
@@ -334,12 +369,12 @@
             <button onclick="loginUser()" style="background: cyan; color: #0f172a; font-weight: bold; font-size: 16px;">Sign In <i class="fa-solid fa-right-to-bracket"></i></button>
         </div>
 
-        <!-- Welcome & Logout Container (Pehle chhipa rahega) -->
+        <!-- Welcome & Logout Container -->
         <div id="welcome-container" class="login-box" style="display: none; flex: 1; min-width: 300px; max-width: 400px; border: 1px solid rgba(74, 222, 128, 0.3);">
             <div style="font-size: 40px; color: #4ade80; margin-bottom: 10px;"><i class="fa-solid fa-circle-check"></i></div>
             <h3 style="font-size: 22px; color: white;">Welcome Back!</h3>
             <p id="displayEmail" style="color: cyan; margin-bottom: 20px; word-wrap: break-word;"></p>
-            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 20px;">Aapka dashboard successfully load ho gaya hai. Apni padhai shuru karein!</p>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 20px;">Aapka dashboard successfully load ho gaya hai. Apni padhai ya digital skills seekhna shuru karein!</p>
             
             <button onclick="logoutUser()" style="background: #ef4444; color: white; font-weight: bold; font-size: 16px; border: none;">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
         </div>
@@ -375,12 +410,12 @@
 </section>
 
 <!-- AI CHATBOT SECTION -->
-<section id="chatbot">
+<section id="chatbot" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(0, 255, 255, 0.05);">
     <h1 class="section-title">Pradeep AI Assistant</h1>
     <div class="login-box" style="max-width: 750px; margin: auto; text-align: left; display: flex; flex-direction: column; height: 500px;">
         <div id="chatScreen" style="flex-grow: 1; overflow-y: auto; padding: 15px; background: rgba(15, 23, 42, 0.4); border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(0, 255, 255, 0.05);">
             <div style="background: rgba(0, 252, 254, 0.1); border-left: 4px solid cyan; padding: 12px; border-radius: 8px; margin-bottom: 15px; color: #cbd5e1;">
-                🤖 <b>Pradeep AI:</b> Hello! Aap history, polity, geography ya CA ke baare mein kya poochna chahte hain?
+                🤖 <b>Pradeep AI:</b> Hello! Aap maths/history ke doubts clear karna chahte hain, ya digital marketing aur web development ke baare mein poochna chahte hain? Main dono mein aapki madad kar sakta hoon!
             </div>
             <div id="chatHistory"></div>
         </div>
@@ -392,7 +427,7 @@
 </section>
 
 <footer>
-    <h3>© 2026 Pradeep AI Study | All Rights Reserved</h3>
+    <h3>© 2026 Pradeep AI Hub | All Rights Reserved</h3>
     <div class="social-icons" style="margin-top: 20px;">
         <i class="fa-brands fa-youtube"></i>
         <i class="fa-brands fa-instagram"></i>
@@ -433,7 +468,7 @@
         if(progressBar) progressBar.style.width = (winScroll / height) * 100 + "%";
     };
 
-    const texts = ["Master History ", "Learn Geography ", "Daily Current Affairs "];
+    const texts = ["Master Academics ", "Learn Web Dev ", "Grow with Digital Marketing "];
     let tCount = 0, tIndex = 0, isDeleting = false;
     function typeEffect() {
         const current = texts[tCount % texts.length];
